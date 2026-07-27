@@ -1,0 +1,365 @@
+# 중력을 이용한 Circadian Rhythm 조절 — 드라이랩 로드맵
+
+> 연구계획서 작성을 위한 사전 계산·분석 파트 (컴퓨터 전공 담당분)
+> 최종 산출물: 실현 가능한 연구계획서 + 첨부용 in-silico 모의실험 결과
+
+---
+
+## 0. 프로젝트 개요
+
+| 항목 | 내용 |
+|---|---|
+| 목표 | 실현 가능한 연구계획서 작성, 사전 모의실험 결과 첨부 |
+| 팀 | 컴퓨터 전공 2명 / 생명과학 전공 2명 |
+| 역할 | 생명과학: 이론적 배경·결과 해석 / 컴퓨터: 데이터 분석·시뮬레이션 |
+| 자원 | GPU 대여 가능, NASA OSDR 공개 데이터 |
+| 기간 | 8주 |
+
+---
+
+## 1. 가설 정밀화 — "조절"을 4개로 분해
+
+문서 초안의 "중력으로 circadian rhythm 조절"은 실제로 서로 다른 4개 질문이다.
+이걸 분리하지 않으면 선행연구와 충돌하거나 중복된다.
+
+| | 질문 | 현재 상태 |
+|---|---|---|
+| (a) **교란 (disruption)** | μg가 리듬을 망가뜨리는가 | 확립됨. 새로울 것 없음 |
+| (b) **동조 (entrainment)** | 주기적 중력 자극이 zeitgeber로 작동하는가 | **이미 부분적으로 답이 나옴** |
+| (c) **복구 (countermeasure)** | 무너진 리듬을 인공중력으로 되살릴 수 있는가, 최소 유효 G는? | **핵심 gap** |
+| (d) **분자 기전** | 위 전부 표현형 수준. SCN clock gene 수준에서는? | 미확인 |
+
+### (b)에 대한 선행연구 경고
+
+- Fuller et al. (1992), *Physiologist* — 1시간 G pulse로 rat 리듬 동조 유도
+- Hoban-Higgins et al. (1995) — 급성 2G 노출이 rat circadian timing system을 위상 이동시킴
+- Holley et al. (2003), *J Appl Physiol* — 만성 원심분리(hypergravity)의 용량 의존적 리듬 교란, 14일 적응 시간 경과 문서화
+- Fuller & Fuller (2020 계열), *Sci Rep* — 2G 펄스가 LD+6 위상 전진 후 체온 리듬 재동조를 가속. **양측 전정계 손상(BVL) 쥐에서는 효과 소실** → 전정계 의존성 입증
+
+> **결론**: 초안 문서의 "중력 자체가 동조 가능한가? 전정계 의존인가?"는
+> **표현형 수준에서는 이미 yes / yes.** 이걸 그대로 가설로 내면 안 됨.
+
+### 권장 포지셔닝
+
+> **부분중력(달 0.17g / 화성 0.38g 포함)에서 circadian 리듬이 얼마나 유지되는가,
+> 인공중력의 최소 유효 용량·시간 스케줄은 무엇인가,
+> 그리고 그 효과가 전정계 → 미토파지 → NR1D1 축에서 분자적으로 확인되는가**
+
+이 프레임의 장점:
+1. 선행연구를 부정하지 않고 확장한다
+2. 미션 설계상 실질적 의의가 있다 (달·화성 거주 시설의 인공중력 요구사항)
+3. 마침 데이터가 최근에 생겼다 → **JAXA/NASA MHU-8 (JPG-RR)** 미션
+
+### MHU-8 / MARS — 이 프로젝트의 핵심 자산
+
+- JAXA MARS(Multiple Artificial-gravity Research System) 시설
+- ISS에서 마우스를 **0G / 0.33G / 0.67G / 1G** 네 단계 인공중력에 노출 (원심분리, 각각 44 / 63 / 77 rpm)
+- 30일 체류 후 생환, RNA-seq 수행
+- MHU-8 하위 과제에 근골격계·신경운동뿐 아니라 **circadian rhythm, 대사**가 명시적으로 포함
+- 인공중력이 미세중력 전사체 반응을 **용량 의존적으로 완화**한다는 결과 이미 보고 (망막/시신경)
+
+→ **중력 dose-response 공개 데이터가 존재한다는 것이 이 프로젝트의 성립 근거.**
+
+---
+
+## 2. 드라이랩의 구조적 함정 (미리 알 것)
+
+**Spaceflight omics는 거의 전부 단일 시점 희생(single timepoint)이다.**
+Circadian 분석에 필요한 24시간 시계열이 없다. JTK_CYCLE 돌리려다 1주차에 벽을 만난다.
+
+### 돌파구 3개
+
+**① 메타데이터 기반 pseudo-timeseries**
+여러 스터디의 희생 시각(time of day) + 조명 스케줄을 긁어서 pooling → 24h 커버 시도.
+**되는지 여부가 프로젝트 실현가능성을 사실상 결정 → Week 1에서 제일 먼저 확인.**
+
+**② Single-sample phase inference** ★
+CYCLOPS, ZeitZeiger, molecular timetable 계열.
+샘플 하나에서 내부 circadian phase를 추정하는 방법.
+→ **CS 전공자가 낼 수 있는 유일하고 진짜인 기여점. GPU도 여기서 의미가 생김.**
+
+**③ ALSDA 텔레메트리**
+OSDR은 omics 외에 생리·행동·환경 텔레메트리도 호스팅.
+체온·활동량 시계열이 확보되면 그게 리듬 분석의 본진.
+
+---
+
+## 3. OSDR API 레퍼런스
+
+인증·API 키 불필요, 전부 무료. 브라우저에 URL만 쳐도 JSON이 나옴.
+
+### ① Search API — "어떤 연구가 있나"
+```
+https://osdr.nasa.gov/osdr/data/search?term=spaceflight
+https://osdr.nasa.gov/osdr/data/search?ffield=organism&fvalue=Mus%20musculus
+```
+- `ffield`(필터 필드)와 `fvalue`(필터 값)는 **항상 쌍**으로
+- 정확 일치는 필드명 뒤에 `.raw` 추가
+- 유용한 필터 필드: `organism`, `Material Type`(조직), `Study Factor Name`,
+  `Study Assay Technology Type`, `Flight Program`, `Project Type`
+- **필드명 대소문자 구분**, 값도 대소문자 구분
+
+### ② Metadata API — "그 연구가 뭘 했나"
+```
+https://osdr.nasa.gov/osdr/data/osd/meta/137
+```
+
+### ③ Data File API — "파일이 어디 있나"
+```
+https://osdr.nasa.gov/osdr/data/osd/files/87
+https://osdr.nasa.gov/osdr/data/osd/files/137,87-95,20-50
+```
+- 쉼표·범위 혼용 가능, `87.1`처럼 소수점으로 버전 지정
+- 응답의 `study_files` → `remote_url` 앞에 `https://osdr.nasa.gov` 붙이면 다운로드 URL
+- 페이지당 최대 25개 → 페이지네이션 필요
+
+### ④ 부가 객체 API
+```
+https://osdr.nasa.gov/geode-py/ws/api/missions
+https://osdr.nasa.gov/geode-py/ws/api/payloads
+https://osdr.nasa.gov/geode-py/ws/api/biospecimens
+```
+MHU-8 페이로드 정보 추적용.
+
+### ⑤ GLOpenAPI — **샘플 단위 factor value** (실제 주력)
+```
+https://visualization.genelab.nasa.gov/GLOpenAPI/metadata/?id=OSD-758&study.factor value
+https://visualization.genelab.nasa.gov/GLOpenAPI/data/?id=OSD-758&file.datatype=unnormalized counts
+```
+위 ①~③은 "연구 단위" 정보만 준다. 어느 마우스가 0.33G였고 몇 시에 희생됐는지는
+GLOpenAPI가 CSV로 바로 떨궈줌 → pandas 직결. **`studies.csv` 작성의 메인 도구.**
+
+### ⑥ 대량 다운로드 — S3 (인증 불필요)
+```bash
+aws s3 ls --no-sign-request s3://nasa-osdr/
+aws s3 cp --no-sign-request s3://nasa-osdr/OSD-758/ ./ --recursive
+```
+브라우저 탐색: `nasa-osdr.s3-website-us-west-2.amazonaws.com`
+
+> ⚠️ 원시 FASTQ까지 다 있어서 TB 단위. **processed counts만 받을 것.**
+
+---
+
+## 4. 8주 로드맵
+
+### Week 1 — 데이터 지도 만들기
+
+**중요: 데이터를 받는 단계가 아니라 메타데이터로 "쓸 만한지 판정"하는 단계.**
+실제 count matrix는 2~3개만 시험 삼아 받고, 본격 다운로드는 Week 2부터.
+
+#### 산출물 (파일이 아니라 판단 3개)
+
+**① `studies.csv`** — 마우스 스터디 전수 목록. 그대로 계획서 부록 표가 됨.
+
+| 컬럼 | 설명 |
+|---|---|
+| OSD ID | accession (구 GLDS 번호 병기) |
+| 조직 | Material Type |
+| n | 그룹별 개체 수 |
+| 중력 조건 | μg / 0.33 / 0.67 / 1G / hindlimb unloading / 지상 원심분리 |
+| 조명 주기 | LD 12:12 등 |
+| **희생 시각** | time of day — 최우선 확인 항목 |
+| 미션 | RR-1, MHU-8, RRRM-2 ... |
+| assay | RNA-seq / microarray / proteomics |
+| 대조군 유형 | ground control / vivarium / basal |
+
+**② 희생 시각이 기록된 스터디 개수** ← 프로젝트 노선을 결정하는 숫자
+- 10개 이상 → **pseudo-timeseries 노선** (스터디 pooling으로 24h 커버)
+- 3개 이하 → **single-sample phase inference 노선**으로 전면 전환
+
+**③ 중력 단계가 factor로 인코딩된 스터디 목록**
+MHU-8/MARS 계열이 0/0.33/0.67/1G를 메타데이터에 어떻게 넣어놨는지 확인.
+factor가 아니라 자유 텍스트 설명에만 있으면 파싱 작업이 추가로 발생.
+
+#### "될만한" 판정 기준 (A/B/C 등급 부여)
+
+- **조직**: SCN 있으면 최상, 없으면 간·근육(말초시계)
+- **조건**: 중력 수준이 2단계 이상 구분되는가
+- **시간 정보**: 희생 시각 또는 조명 스케줄 기록 여부
+- **대조군**: ground control이 flight hardware 기준인가 vivarium 기준인가
+  → 섞으면 batch effect 폭발
+
+#### 우선 타깃 스터디
+
+| OSD ID | 내용 | 용도 |
+|---|---|---|
+| **OSD-758 / 759** | MHU-8, 0/0.33/0.67/1G 망막·시신경 | dose-response 프레임 원형 |
+| **OSD-686** | JAXA ISS 30일, 1g 원심 vs μg 마우스 간 | 말초시계 표준 조직 |
+| **GLDS-98/99/101 계열** | clock gene asynchrony 재분석에 쓰인 8개 세트 | 재현 대상 |
+| **OSD-104 / 105** | RR-1 근육 (SOL / TA) | 다조직 비교 |
+| **OSD-562** | RRRM-2, 연령별 flight/ground | 교란 변수 확인 |
+
+#### Week 1 종료 조건
+`studies.csv`를 생명과학 팀원에게 전달 → "이 조직 중 circadian 분석에 의미 있는 게 뭐냐" 판정 요청.
+여기서 가설이 한 번 깎이는 게 정상.
+
+---
+
+### Week 2 — 재현 (reproduction)
+
+남의 결과 하나를 그대로 재현. 파이프라인 검증 + 팀 내 용어 정렬이 목적.
+
+- **대상**: 우주비행이 말초조직 간 clock gene 발현의 비동기화를 촉진한다는 GeneLab 재분석 결과
+- **clock gene 패널 고정**:
+  `Arntl(Bmal1), Clock, Npas2, Per1/2/3, Cry1/2, Nr1d1/2, Dbp, Tef, Hlf, Ciart, Bhlhe40/41`
+- DESeq2 / limma
+- **미션별 batch effect가 큼** → GeneLab 전사체 batch correction 방법론 논문 참조
+
+---
+
+### Week 3–4 — 핵심 분석 ①: 중력 dose-response
+
+- MHU-8 계열에서 clock gene set 발현이 G에 monotonic한지 검정
+- **조직간 탈동기화 지수 설계**:
+  `log(Nr1d1/Arntl)`, `log(Per2/Arntl)` 같은 상대 발현비 = 내부 시각의 프록시
+  → 조직 간 이 값의 분산 = 탈동기화 정도
+- 이 지수가 G 증가에 따라 감소하면 → "인공중력이 조직 간 시계를 재동기화한다"
+
+> **계획서 예비 데이터 1번.**
+
+---
+
+### Week 4–5 — 핵심 분석 ②: Single-sample phase inference `GPU`
+
+- 지상 마우스 시계열 공개 데이터(12조직 48시점 계열, CircaDB)로 phase predictor 학습
+- OSDR flight 샘플에 적용 → 각 샘플의 추정 CT, 지상 대조군 대비 위상 이동 Δφ
+- CYCLOPS(오토인코더 기반) 재구현 또는 ZeitZeiger 포팅
+- 학습에 GPU 사용
+
+> **"우리 팀 아니면 못 하는 것" = 계획서에서 CS 인력 2명이 있는 이유.**
+
+---
+
+### Week 5–6 — In-silico 모의실험 `GPU` ★ 계획서 첨부용
+
+**모델**: Poincaré 진동자 SCN 네트워크 또는 mammalian clock ODE (Relógio, Kim–Forger)
+
+**중력 입력을 두 경로로 명시적으로 파라미터화:**
+1. 전정계 → SCN 직접 위상 자극 (pulse 입력)
+2. 미토파지↓ → NR1D1 분해율 `k_deg`↓ (선행 IJMS 논문 기전 그대로)
+
+**시뮬레이션 3종:**
+
+| # | 내용 | 산출물 |
+|---|---|---|
+| 1 | **μg 재현** | `k_deg`를 낮췄을 때 관측된 진폭 감소·위상 표류와 부합하는 파라미터 범위 |
+| 2 | **Arnold tongue** | G pulse의 세기 × 지속시간 × 주기 스윕 → 동조 가능 영역 지도 |
+| 3 | **PRC (위상반응곡선)** | G pulse를 CT별로 인가했을 때의 위상 이동 예측 |
+
+> **웻랩에서 원심분리기를 하루 중 언제, 몇 시간, 몇 G로 돌릴지가 여기서 나온다.**
+> 계획서가 "해보고 싶다"에서 "이 스케줄이 최적이고 근거는 이것"으로 바뀌는 지점.
+
+**기술**: JAX + diffrax, `vmap`으로 파라미터 스윕 병렬화.
+수만~수십만 조건 ODE → **GPU가 실제로 의미 있는 거의 유일한 부분.**
+
+---
+
+### Week 6–7 — 웻랩 설계 파라미터 산출
+
+- PRC / Arnold tongue → 원심분리 스케줄 후보 2~3개 도출
+- **Power analysis**: 예상 효과크기(Δ진폭, Δ위상)로 필요 마리 수 / 시점 수 / 시점 간격 계산
+- 표준은 4시간 간격 6시점이지만 마리 수와 곱해져서 비쌈
+  → **시뮬로 "3~4시점으로 줄여도 검출되는가"를 미리 검증** → 예산 방어 논리 확보
+
+---
+
+### Week 7–8 — 계획서 작성 + 재현 패키지
+
+- GitHub repo, conda/Docker 환경, 분석 노트북
+- 핵심 그림 5장:
+  1. 데이터 지도 (studies.csv 요약)
+  2. 중력 dose-response
+  3. Phase 추정 결과
+  4. Arnold tongue
+  5. Power curve
+
+---
+
+## 5. 툴스택
+
+### Python
+| 패키지 | 용도 |
+|---|---|
+| `requests`, `pandas` | OSDR / GLOpenAPI 크롤링 |
+| `pydeseq2` | 차등발현 분석 |
+| `jax` + `diffrax` | ODE 파라미터 스윕 (GPU) |
+| `scipy` | 통계, 신호처리 |
+| `pyBOAT` | 웨이블릿 — 진폭이 시간에 따라 변하는 비정상 리듬 |
+
+### R
+| 패키지 | 용도 |
+|---|---|
+| `DESeq2`, `limma` | 차등발현 |
+| `MetaCycle` | JTK_CYCLE / LS / ARSER 래퍼 |
+| `CircaCompare` | 그룹 간 리듬 파라미터 비교 |
+| `ZeitZeiger` | phase 추정 |
+
+### GPU 현실 체크
+- ❌ FASTQ→count 재정렬: GPU 무의미. 게다가 GeneLab이 표준 워크플로로 **처리된 counts를 이미 제공**하므로 재정렬 자체가 대부분 불필요 → 시간 크게 절약
+- ✅ ODE 파라미터 스윕
+- ✅ Phase predictor 딥러닝 학습
+- ✅ SCN 다세포 네트워크 시뮬레이션
+
+---
+
+## 6. 하지 말 것
+
+**기전 축은 하나만 고른다.** 초안 문서에 도파민–미토콘드리아–SCN–전정계를 전부 엮으려는 흔적이 있는데, 계획서에서는 산만해진다.
+
+**추천: 미토파지–NR1D1 축**
+- 근거 논문이 명확하다
+- ODE 파라미터화가 자연스럽다 (`k_deg` 하나로 표현 가능)
+- 웻랩 정량 대상이 분명하다 (SCN 미토콘드리아, NR1D1 단백질/mRNA 해리)
+
+도파민 경로는 discussion에 한 문단으로.
+
+---
+
+## 7. 즉시 착수 항목
+
+```python
+import requests, pandas as pd
+
+# 1) 마우스 우주비행 연구 검색 — 응답 구조부터 파악
+r = requests.get("https://osdr.nasa.gov/osdr/data/search",
+                 params={"term": "spaceflight", "size": 25,
+                         "ffield": "organism", "fvalue": "Mus musculus"}).json()
+print(r.keys())
+
+# 2) MHU-8 망막 데이터 메타데이터
+m = requests.get("https://osdr.nasa.gov/osdr/data/osd/meta/758").json()
+
+# 3) 샘플 단위 factor 추출 ← 여기가 핵심
+u = "https://visualization.genelab.nasa.gov/GLOpenAPI/metadata/"
+df = pd.read_csv(u + "?id=OSD-758&study.factor value", skiprows=1)
+print(df.columns.tolist())
+```
+
+**3번 출력에서 확인할 것:**
+- [ ] 중력 조건(0/0.33/0.67/1G)이 factor 컬럼으로 잡혀 있는가
+- [ ] 시간 관련 필드(희생 시각, 조명 스케줄)가 존재하는가
+
+이 두 체크박스의 결과가 Week 1 전체의 방향을 결정한다.
+
+---
+
+## 부록 A. 선행연구 링크
+
+| 주제 | 링크 |
+|---|---|
+| 미토파지–NR1D1–SCN (TSI 모델) | https://doi.org/10.3390/ijms25094853 |
+| 사육 온도와 간 대사·시계유전자 리듬 (method 참고) | https://doi.org/10.1530/JOE-20-0100 |
+| 도파민–보상–SCN | https://doi.org/10.1007/978-3-030-81147-1_4 |
+| MARS 플랫폼 개발 | https://doi.org/10.1038/s41598-017-10998-4 |
+| MARS 개선 + 1g 인공중력 사육 | https://doi.org/10.1038/s41526-019-0077-0 |
+| 2G 전정 자극과 체온 리듬 재동조 | https://doi.org/10.1038/s41598-020-65496-x |
+
+## 부록 B. 데이터 소스
+
+| 소스 | URL |
+|---|---|
+| OSDR 본체 | https://osdr.nasa.gov |
+| OSDR API 문서 | https://genelab.nasa.gov/genelabAPIs |
+| GLOpenAPI | https://visualization.genelab.nasa.gov/GLOpenAPI/ |
+| AWS S3 미러 | http://nasa-osdr.s3-website-us-west-2.amazonaws.com/ |
+| RadLab (방사선 교란변수) | https://visualization.osdr.nasa.gov/radlab/api |

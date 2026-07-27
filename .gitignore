@@ -1,0 +1,8 @@
+# 내려받은 원본 데이터 (약 308MB). run_all.py 실행 시 자동 재생성된다.
+cache/
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db

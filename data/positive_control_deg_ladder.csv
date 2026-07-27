@@ -1,0 +1,9 @@
+﻿tissue,gravity_g,group,n_DEG_fdr05,n_DEG_fdr05_lfc0.5
+Retina,0.0,uG,693,534
+Retina,0.33,0.33G by centrifugation,735,536
+Retina,0.66,0.66G by centrifugation,177,125
+Retina,1.0,1G by centrifugation,56,56
+Optic nerve,0.0,uG,310,287
+Optic nerve,0.33,0.33G by centrifugation,3822,3383
+Optic nerve,0.66,0.66G by centrifugation,131,124
+Optic nerve,1.0,1G by centrifugation,4,4

@@ -1,0 +1,79 @@
+﻿term,OSD_ID,title,organism,measurement,source_type
+telemetry,OSD-738,"Effects of Space Flight on Inflammasome Activation in the Brain of Mice (Brain, Western Blot and ECL",Mus musculus,protein quantification     protein quantification     protei,alsda     cgene
+telemetry,OSD-583,Characterization of mouse ocular responses (intraocular pressure) to a 35-day (RR-9) spaceflight mis,Mus musculus,Intraocular Pressure,alsda
+telemetry,OSD-568,Characterization of mouse ocular responses (Microscopy) to a 35-day (RR-9) spaceflight mission: Evid,Mus musculus,Molecular Cellular Imaging     Molecular Cellular Imaging   ,cgene     alsda
+telemetry,OSD-319,"Muscle atrophy, osteoporosis prevention in hibernating mammals",Urocitellus parryii,transcription profiling,cgene
+telemetry,OSD-898,Spaceflight induces oxidative damage to blood‐brain barrier integrity in a mouse model,Mus musculus,Molecular Cellular Imaging     Molecular Cellular Imaging   ,alsda
+telemetry,OSD-222,STS-135 Cerebellum Transcriptomics,Mus musculus,transcription profiling,cgene
+telemetry,OSD-557,"Spaceflight influences gene expression, photoreceptor integrity, and oxidative stress related damage",Mus musculus,Bone Microstructure     Histological Assay     Molecular Cel,alsda
+telemetry,OSD-536,Gene expression profiling for spaceflight induced-neuroinflammation in the mouse brain,Mus musculus,transcription profiling,cgene
+telemetry,OSD-7,"The Arabidopsis spaceflight transcriptome: a comparison of whole plants to discrete root, hypocotyl ",Arabidopsis thaliana,transcription profiling,cgene
+telemetry,OSD-108,STS-135 Liver Metabolomics,Mus musculus,metabolite profiling,cgene
+telemetry,OSD-205,HSFA2 functions in the physiological adaptation of undifferentiated plant cells to spaceflight micro,Arabidopsis thaliana,transcription profiling,cgene
+telemetry,OSD-173,STS-135: Mouse Liver Transcriptomics using RNA-Seq,Mus musculus,transcription profiling,cgene
+telemetry,OSD-17,Transcription profiling by array of the response of Arabidopsis cultivar Columbia etiolated seedling,Arabidopsis thaliana,transcription profiling,cgene
+telemetry,OSD-147,Arg1 functions in the physiological adaptation of undifferentiated plant cells to spaceflight,Arabidopsis thaliana,transcription profiling,cgene
+telemetry,OSD-25,STS-135 Liver Transcriptomics,Mus musculus,transcription profiling,cgene
+telemetry,OSD-715,Characterization of mouse ocular response to a 35-day spaceflight mission: Evidence of blood-retinal,Mus musculus,protein expression profiling,cgene
+telemetry,OSD-255,"Spaceflight influences gene expression, photoreceptor integrity, and oxidative stress-related damage",Mus musculus,transcription profiling,cgene
+telemetry,OSD-684,Human skeletal muscle tissue chip autonomous payload reveals changes in fiber type and metabolic gen,Homo sapiens,transcription profiling,cgene
+core body temperature,OSD-681,"Head-Down Tilt As a Model for Intracranial and Intraocular Pressures, and Retinal Changes during Spa",Rattus norvegicus,Body Temperature     Intracranial Pressure,alsda
+core body temperature,OSD-319,"Muscle atrophy, osteoporosis prevention in hibernating mammals",Urocitellus parryii,transcription profiling,cgene
+core body temperature,OSD-305,Transcriptomic responses of Serratia liquefaciens cells grown under simulated Martian conditions of ,Serratia liquefaciens,transcription profiling,cgene
+core body temperature,OSD-690,Nrf2 alleviates spaceflight-induced immunosuppression and thrombotic microangiopathy in mice,Mus musculus,transcription profiling,cgene
+core body temperature,OSD-354,Molecular Transducers of Human Skeletal Muscle Remodeling under Different Loading States,Homo sapiens,transcription profiling,cgene
+core body temperature,OSD-678,Light has a principal role in the Arabidopsis transcriptomic response to the spaceflight environment,Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-47,"Rodent Research-1 (RR1) National Lab Validation Flight: Mouse liver transcriptomic, proteomic, epige",Mus musculus,transcription profiling     protein expression profiling    ,cgene     alsda
+core body temperature,OSD-48,"Rodent Research-1 (RR1) NASA Validation Flight: Mouse liver transcriptomic, proteomic, epigenomic an",Mus musculus,transcription profiling     protein expression profiling    ,cgene     alsda
+core body temperature,OSD-510,The SOG1 transcriptional activator and the MYB3R family of repressors control a complex gene network,Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-508,The SOG1 transcriptional activator and the MYB3R family of repressors control a complex gene network,Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-498,The SOG1 transcriptional activator and the MYB3R family of repressors control a complex gene network,Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-502,The SOG1 transcriptional activator and the MYB3R family of repressors control a complex gene network,Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-138,"BRIC-23 GeneLab Process Verification Test: Bacillus subtilis transcriptomic, proteomic, and metabolo",Not Applicable     Bacillus subtilis,protein expression profiling     metabolite profiling     tr,cgene
+core body temperature,OSD-145,"BRIC-23 GeneLab Process Verification Test: Staphylococcus aureus transcriptomic, proteomic, and meta",Staphylococcus aureus,protein expression profiling     metabolite profiling     me,cgene
+core body temperature,OSD-207,Correlated Gene and Protein Expression in heads from Drosophila reared in microgravity,Drosophila melanogaster,transcription profiling     protein expression profiling,cgene
+core body temperature,OSD-295,RNA-Seq transcriptome profiling of soleus from adult and aged mice following disuse muscle atrophy a,Mus musculus,transcription profiling,cgene
+core body temperature,OSD-173,STS-135: Mouse Liver Transcriptomics using RNA-Seq,Mus musculus,transcription profiling,cgene
+core body temperature,OSD-161,"Rodent Research-3-CASIS: Mouse adrenal gland transcriptomic, proteomic, and epigenomic data",Mus musculus,protein expression profiling     DNA methylation profiling  ,cgene
+core body temperature,OSD-162,Rodent Research-3-CASIS: Mouse eye transcriptomic and proteomic data,Mus musculus,protein expression profiling     transcription profiling,cgene
+core body temperature,OSD-591,Effects of low-dose oxygen ions and protons on cardiac function and structure in male C57BL/6J mice ,Mus musculus,protein quantification     Molecular Cellular Imaging     Mo,alsda
+core body temperature,OSD-193,"During development, the Sku6 mutant roots engage different genes than wild type Col-0 roots, either ",Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-163,"Rodent Research-3-CASIS: Mouse kidney transcriptomic, proteomic, and epigenomic data",Mus musculus,protein expression profiling     DNA methylation profiling  ,cgene
+core body temperature,OSD-98,"Rodent Research-1 (RR1) NASA Validation Flight: Mouse adrenal gland transcriptomic, proteomic, and e",Not Applicable     Mus musculus,protein expression profiling     DNA methylation profiling  ,cgene
+core body temperature,OSD-323,Evaluating the effect of spaceflight on the host-pathogen interaction between human intestinal epith,Homo sapiens,transcription profiling,cgene
+core body temperature,OSD-49,Multi-omic investigations of mouse liver subjected to simulated spaceflight freezing and storage pro,Mus musculus,transcription profiling     protein expression profiling    ,cgene
+core body temperature,OSD-102,"Rodent Research-1 (RR1) NASA Validation Flight: Mouse kidney transcriptomic, proteomic, and epigenom",Not Applicable     Mus musculus,protein expression profiling     DNA methylation profiling  ,cgene
+core body temperature,OSD-321,Relevance of Unfolded Protein Response to Spaceflight-Induced Transcriptional Reprogramming in Arabi,Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-218,Plant development on ISS differs from the development on the ground and is influenced by the genetic,Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-313,Dissecting transcriptional responses of nucleolin mutants to red light stimulation and darkness in g,Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-194,Rodent Research-3-CASIS: Mouse retina transcriptomic data,Mus musculus,transcription profiling,cgene
+core body temperature,OSD-168,RR-1 and RR-3 mouse liver transcriptomics with and without ERCC control RNA spike-ins,Mus musculus,transcription profiling,cgene
+core body temperature,OSD-103,"Rodent Research-1 (RR1) NASA Validation Flight: Mouse quadriceps muscle transcriptomic, proteomic, a",Not Applicable     Mus musculus,protein expression profiling     RNA methylation profiling  ,cgene
+core body temperature,OSD-281,"During development, the Sku5 mutant roots engage different genes than wild type WS roots, either on ",Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-101,"Rodent Research-1 (RR1) NASA Validation Flight: Mouse left gastrocnemius muscle transcriptomic, prot",Mus musculus,RNA methylation profiling     protein expression profiling  ,cgene
+core body temperature,OSD-208,Comparing RNA-Seq and microarray gene expression data in two zones of the Arabidopsis root apex rele,Arabidopsis thaliana,transcription profiling     transcription profiling,cgene
+core body temperature,OSD-554,"Characterization of Biofilm Formation, Growth, and Gene Expression on Different Materials and Enviro",Pseudomonas aeruginosa,transcription profiling,cgene
+core body temperature,OSD-105,"Rodent Research-1 (RR1) NASA Validation Flight: Mouse tibialis anterior muscle transcriptomic, prote",Not Applicable     Mus musculus,transcription profiling     protein expression profiling    ,cgene
+core body temperature,OSD-522,Integrative Transcriptomics and Proteomics Profiling of Arabidopsis thaliana Elucidates Novel Mechan,Arabidopsis thaliana,protein expression profiling     transcription profiling,cgene
+core body temperature,OSD-314,Adaptive response of Arabidopsis seedlings in microgravity and Mars reduced gravity environment is e,Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-427,Characterizing Epigenetic Changes in Methylation Mutants (elp2-5 and met1-7) in Response to Spacefli,Arabidopsis thaliana,transcription profiling,cgene
+core body temperature,OSD-684,Human skeletal muscle tissue chip autonomous payload reveals changes in fiber type and metabolic gen,Homo sapiens,transcription profiling,cgene
+locomotor activity,OSD-596,Artificial gravity partially protects space-induced neurological deficits in Drosophila melanogaster,Drosophila melanogaster,Behavior,alsda
+circadian rhythm,OSD-195,Effects of 21 days of bedrest on human skeletal muscle gene expression,Homo sapiens,transcription profiling,cgene
+circadian rhythm,OSD-343,Comprehensive multi-omics analysis reveals mitochondrial stress as a central biological hub for spac,Mus musculus,metabolite profiling,cgene
+circadian rhythm,OSD-287,Murine TCR-beta repertoire sequencing,Mus musculus,Targeted Transcriptome Sequencing,cgene
+heart rate,OSD-435,Effects of low-dose oxygen ions and protons on cardiac function and structure in male C57BL/6J mice ,Mus musculus,Echocardiogram     Echocardiogram,cgene     alsda
+heart rate,OSD-591,Effects of low-dose oxygen ions and protons on cardiac function and structure in male C57BL/6J mice ,Mus musculus,protein quantification     Molecular Cellular Imaging     Mo,alsda
+heart rate,OSD-881,Life long effects of radiation and high fat diet on the mouse right ventricular tissue,Mus musculus,transcription profiling,cgene
+heart rate,OSD-334,miRNA signature detection and countermeasures against HZE radiation exposure for tissue degeneration,Mus musculus,transcription profiling,cgene
+heart rate,OSD-720,Long-lasting sex-specific alteration in left ventricular cardiac transcriptome following gamma and s,Mus musculus,transcription profiling,cgene
+heart rate,OSD-122,Microgravity induces proteomics changes involved in endoplasmic reticulum stress and mitochondrial p,Rattus norvegicus,protein expression profiling,cgene
+heart rate,OSD-270,Bulk and spatially resolved transcriptional analysis of hearts from mice flown on the RR-3,Mus musculus,transcription profiling     transcription profiling,cgene
+heart rate,OSD-347,Heart Flies - effect of microgravity on heart function in Drosophila,Drosophila melanogaster,transcription profiling,cgene
+heart rate,OSD-50,Evaluation of in vitro macrophage differentiation during space flight,,transcription profiling,cgene
+heart rate,OSD-580,Transcriptional profiling of heart tissue from mice flown on the RRRM-2 mission,Mus musculus,transcription profiling,cgene
+heart rate,OSD-335,miRNA signature detection and countermeasures against HZE radiation exposure for tissue degeneration,Mus musculus,transcription profiling,cgene
+heart rate,OSD-337,miRNA signature detection and countermeasures against HZE radiation exposure for tissue degeneration,Mus musculus,transcription profiling,cgene
+heart rate,OSD-972,Radiation-Induced Long Noncoding RNAs in a Mouse Model after Whole-Body Irradiation.,Mus musculus,transcription profiling,cgene
+heart rate,OSD-336,miRNA signature detection and countermeasures against HZE radiation exposure for tissue degeneration,Mus musculus,transcription profiling,cgene
+heart rate,OSD-352,Multi-modal transcriptional and chromatin accessibility analysis of brains from mice flown on the RR,Mus musculus,transcription profiling     transcription profiling     tran,cgene

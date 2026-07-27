@@ -1,0 +1,5 @@
+﻿window_h,n_subsets,median_rel_err_h,frac_within_2h,mean_corr_true_vs_pred
+4,144,5.92,0.113,0.117
+6,144,5.27,0.153,0.08
+8,144,4.76,0.151,0.123
+10,144,4.16,0.203,0.164

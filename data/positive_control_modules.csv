@@ -1,0 +1,11 @@
+﻿tissue,module,n_genes,mean_abs_rho,null_mean,permutation_p
+Retina,oxidative_stress,19,0.147,0.173,0.685
+Retina,inflammation,19,0.162,0.171,0.5735
+Retina,apoptosis,10,0.246,0.172,0.103
+Retina,lipid_metabolism,10,0.228,0.171,0.102
+Retina,circadian_clock,17,0.151,0.171,0.5975
+Optic nerve,oxidative_stress,19,0.174,0.171,0.4295
+Optic nerve,inflammation,20,0.24,0.17,0.089
+Optic nerve,apoptosis,10,0.226,0.171,0.133
+Optic nerve,lipid_metabolism,10,0.167,0.172,0.4575
+Optic nerve,circadian_clock,17,0.232,0.172,0.0965

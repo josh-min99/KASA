@@ -1,0 +1,9 @@
+﻿behavior,dark_frac,light_frac,dark_minus_light
+eating,0.7376,0.0806,0.657
+circling,0.6,0.0372,0.5628
+grooming,0.0726,0.0182,0.0544
+drifting,0.1107,0.0658,0.0449
+crawling,0.413,0.384,0.029
+huddling,0.0085,0.0,0.0085
+backflips,0.0041,0.0014,0.0028
+background,0.0687,0.5449,-0.4762

@@ -1,0 +1,4 @@
+﻿study,tissue,n_flight,n_sig_p05,n_genes,module_mean_abs_rho,permutation_p,within_group_sd_log2,mde_log2fc,mde_log2fc_bonferroni
+OSD-758,Retina,23,0,17,0.151,0.606,0.343,0.65,1.02
+OSD-759,Optic nerve,23,2,17,0.232,0.0865,0.67,1.28,1.99
+OSD-714,Soleus,12,0,17,0.271,0.34,0.504,1.53,3.05

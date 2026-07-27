@@ -1,0 +1,12 @@
+﻿OSD_ID,tissue,n_total,n_by_gravity,gravity_levels_g,n_inflight_levels,dose_response_usable,light_cycle,euthanasia_date,time_of_day_recorded,controls
+OSD-758,Right retina,35,0.33G by centrifugation=6; 0.66G by centrifugation=6; 1G by centrifugation=6; 1G on Earth=12; uG=5,"0.00, 0.33, 0.66, 1.00",4,True,12 h light/dark cycle,"15-Apr-2023, 16-Apr-2023, 19-Apr-2023",False,"Ground Control, Space Flight"
+OSD-759,Right optic nerve,35,0.33G by centrifugation=6; 0.66G by centrifugation=6; 1G by centrifugation=6; 1G on Earth=12; uG=5,"0.00, 0.33, 0.66, 1.00",4,True,12 h light/dark cycle,"15-Apr-2023, 16-Apr-2023, 19-Apr-2023",False,"Ground Control, Space Flight"
+OSD-714,Soleus,21,1/6G with centrifugation=6; 1G on Earth=9; 1G with centrifugation=3; uG=3,"0.00, 0.17, 1.00",3,True,12 h light/dark cycle,NOT RECORDED,False,"Ground Control, Space Flight"
+OSD-238,dorsal skin,24,1G by centrifugation=6; 1G on Earth=12; uG=6,"0.00, 1.00",2,False,NOT RECORDED,"18-Sep-2017, 23-Mar-2018",False,"Ground Control, Space Flight, Vivarium Control"
+OSD-239,femoral skin,23,1G by centrifugation=6; 1G on Earth=12; uG=5,"0.00, 1.00",2,False,NOT RECORDED,"18-Sep-2017, 23-Mar-2018",False,"Ground Control, Space Flight, Vivarium Control"
+OSD-289,thymus,18,1G by centrifugation=6; 1G on Earth=6; uG=6,"0.00, 1.00",2,False,NOT RECORDED,NOT RECORDED,False,"Ground Control, Space Flight, Vivarium Control"
+OSD-426,Cells,18,1G by centrifugation=6; 1G on Earth=6; uG=6,"0.00, 1.00",2,False,NOT RECORDED,NOT RECORDED,False,"Ground Control, Space Flight"
+OSD-532,Plasma,17,1G by centrifugation=6; 1G on Earth=6; uG=5,"0.00, 1.00",2,False,12:12-h light-dark cycle,NOT RECORDED,False,"Ground Control, Space Flight"
+OSD-686,Liver,9,1G by centrifugation=3; 1G on Earth=3; uG=3,"0.00, 1.00",2,False,NOT RECORDED,NOT RECORDED,False,"Ground Control, Space Flight"
+OSD-288,Spleen,9,1G by centrifugation=3; 1G on Earth=3; uG=3,"0.00, 1.00",2,False,12 h light/dark cycle,NOT RECORDED,False,"Ground Control, Space Flight"
+OSD-29,,8,1G on Earth=4; 1G with centrifugation=2; uG=2,"0.00, 1.00",2,False,NOT RECORDED,NOT RECORDED,False,"Ground Control, Space Flight, Vivarium Control"
