@@ -1,0 +1,10 @@
+﻿OSD_ID,tissue,paradigm,treat,ctrl,flipped,dirt_score,n_candidate_contrasts
+OSD-99,EDL,FLIGHT,Space Flight,Ground Control,True,0,2
+OSD-101,gastrocnemius,FLIGHT,Space Flight,Ground Control,True,0,2
+OSD-103,quadriceps,FLIGHT,Space Flight,Ground Control,True,0,2
+OSD-104,soleus,FLIGHT,Space Flight,Ground Control,True,0,2
+OSD-105,tibialis anterior,FLIGHT,Space Flight,Ground Control,True,0,2
+OSD-876,gastrocnemius,HLU,Hindlimb Unloaded,Normally Loaded Control,False,0,4
+OSD-880,gastrocnemius,HLU,Control & Hindlimb Unloaded,Control & Normally Loaded Control,False,2,16
+OSD-935,soleus,HLU,Hindlimb Unloaded & x-ray radiation & corticosterone,Normally Loaded Control & sham irradiation & Non-treated,False,44,2
+OSD-949,soleus,HLU,Control & Female & Hindlimb Unloaded,Control & Female & Normally Loaded Control,False,4,32
