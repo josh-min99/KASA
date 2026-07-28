@@ -25,3 +25,7 @@
 [2026-07-29 05:00] Stage 4 | (1) clock |log2FC| 를 같은 데이터셋의 전역 |log2FC| 로 정규화 (2) RR-1 수준 효과의 검출 가능성 | 결과: clock enrichment FLIGHT-A 3.114(1.90~5.28) vs HLU-A 0.778(0.63~1.38). clock 백분위 0.808 vs 0.428. Mann-Whitney p=0.004 (n=8 vs 4, 참고치). 검정력: HLU 데이터셋 전역 log2FC SD 0.93~1.14 라 RR-1 수준 효과(1.105)는 z=1.13 으로 묻힘 | 판정: **모듈 수준 = 판정 가능(HLU 는 clock 특이적 반응 없음) / 단일 유전자 수준 = 판정 불가** | 다음: OSD-21 앵커
 
 [2026-07-29 05:10] Stage 3d | OSD-21 앵커. DE 테이블이 없어 정규화 발현행렬+샘플표에서 직접 군간 차이 계산. 5군 전부 매칭(Flight 4/GC 4/HLU 5/HLU+Reloaded 5/NormalLoaded 5) | 결과: Flight vs GC 에서 Arntl +0.458(d=2.49), Per1 +1.585(d=3.21), Nr1d1 +0.374(d=3.13), |차이|>0.5 3/15. HLU vs NormalLoaded 는 |차이|>0.5 1/15 이고 Arntl 은 -0.302 로 반대방향. HLU+Reloaded vs HLU 는 |차이|>0.5 1/15 | 판정: **단일 스터디 내부에서 Stage 3c/4 결론을 독립 재현. 배치 교란 없음** | 다음: Stage 5
+
+[2026-07-29 05:45] Stage 5 | 계획서용 그림 3장 + 문서 2편 작성. Fig3 캡션의 U+2212 가 Malgun Gothic 에 없어 □ 로 깨진 것과 x축 라벨 겹침을 수정 | 결과: results/figures/fig1~3, docs/dry_lab_section.md, docs/expected_results.md | 판정: **완료** | 다음: FINAL_REPORT, OPEN_QUESTIONS
+
+[2026-07-29 06:00] 종료 | FINAL_REPORT.md, OPEN_QUESTIONS.md 작성 | 결과: Stage 0·1·5 완료, Stage 2 조건부 통과, Stage 3 완료, Stage 4 부분(모듈 수준만 판정 가능) | 판정: **야간 작업 종료** | 다음: 아침에 사용자 판단 3건 (결론 수위 / 이전 전제와의 충돌 / Fig3 포함 여부)
