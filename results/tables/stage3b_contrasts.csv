@@ -1,0 +1,11 @@
+﻿OSD_ID,tissue,treat,ctrl,flipped,dirt,n_DEG_fdr05,note,series
+OSD-243,dorsal skin,Space Flight & ~30 day & On Earth & Upon euthanasia,Ground Control & ~30 day & On Earth & Upon euthanasia,True,6.0,5.0,,FLIGHT-B (RR-6)
+OSD-244,thymus,Space Flight & ~30 day & On Earth & Upon euthanasia,Ground Control & ~30 day & On Earth & Upon euthanasia,True,6.0,5031.0,,FLIGHT-B (RR-6)
+OSD-245,liver,Space Flight & ~30 day & On Earth & Upon euthanasia,Ground Control & ~30 day & On Earth & Upon euthanasia,True,6.0,62.0,,FLIGHT-B (RR-6)
+OSD-246,spleen,Space Flight & ~30 day & On Earth & Upon euthanasia,Ground Control & ~30 day & On Earth & Upon euthanasia,True,6.0,0.0,,FLIGHT-B (RR-6)
+OSD-247,colon,Space Flight & ~30 day & On Earth & Upon euthanasia,Ground Control & ~30 day & On Earth & Upon euthanasia,True,6.0,7.0,,FLIGHT-B (RR-6)
+OSD-248,lung,Space Flight & ~30 day & On Earth & Upon euthanasia,Ground Control & ~30 day & On Earth & Upon euthanasia,True,6.0,6.0,,FLIGHT-B (RR-6)
+OSD-334,heart,,,,,,DE 없음/실패,HLU-A
+OSD-335,liver,,,,,,DE 없음/실패,HLU-A
+OSD-336,plasma,,,,,,DE 없음/실패,HLU-A
+OSD-337,soleus,,,,,,DE 없음/실패,HLU-A

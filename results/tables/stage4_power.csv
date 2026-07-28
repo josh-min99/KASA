@@ -1,0 +1,5 @@
+﻿OSD_ID,tissue,sd_log2fc_all,Bmal1_observed,target_RR1_Bmal1,target_z_vs_sd,target_pctile_in_dataset
+OSD-202,brain,1.1371,0.555,1.105,0.97,0.8488
+OSD-203,retina,0.999,-0.058,1.105,1.11,0.8899
+OSD-211,spleen,0.9601,-0.117,1.105,1.15,0.9052
+OSD-237,dorsal skin,0.9314,0.012,1.105,1.19,0.8878

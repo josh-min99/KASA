@@ -1,0 +1,5 @@
+﻿paradigm,gene,n_tissues,sign_concordance,mean_log2fc,direction
+FLIGHT,Bmal1,8,1.0,1.105,상향
+FLIGHT,Per2,8,0.875,-1.005,하향
+HLU,Bmal1,7,0.571,0.009,상향
+HLU,Per2,7,0.571,-0.027,하향

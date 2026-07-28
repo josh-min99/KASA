@@ -1,0 +1,29 @@
+﻿t1,t2,r,p,n_genes
+EDL,adrenal gland,0.824,0.0001,16
+EDL,gastrocnemius,0.956,0.0,16
+EDL,kidney,0.895,0.0,16
+EDL,liver,0.812,0.0001,16
+EDL,quadriceps,0.975,0.0,16
+EDL,soleus,0.831,0.0001,16
+EDL,tibialis anterior,0.985,0.0,16
+adrenal gland,gastrocnemius,0.789,0.0003,16
+adrenal gland,kidney,0.863,0.0,16
+adrenal gland,liver,0.853,0.0,16
+adrenal gland,quadriceps,0.794,0.0002,16
+adrenal gland,soleus,0.702,0.0025,16
+adrenal gland,tibialis anterior,0.828,0.0001,16
+gastrocnemius,kidney,0.87,0.0,16
+gastrocnemius,liver,0.777,0.0004,16
+gastrocnemius,quadriceps,0.975,0.0,16
+gastrocnemius,soleus,0.815,0.0001,16
+gastrocnemius,tibialis anterior,0.959,0.0,16
+kidney,liver,0.971,0.0,16
+kidney,quadriceps,0.896,0.0,16
+kidney,soleus,0.735,0.0012,16
+kidney,tibialis anterior,0.895,0.0,16
+liver,quadriceps,0.817,0.0001,16
+liver,soleus,0.668,0.0047,16
+liver,tibialis anterior,0.818,0.0001,16
+quadriceps,soleus,0.86,0.0,16
+quadriceps,tibialis anterior,0.975,0.0,16
+soleus,tibialis anterior,0.877,0.0,16

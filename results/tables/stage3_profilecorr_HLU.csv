@@ -1,0 +1,22 @@
+﻿t1,t2,r,p,n_genes
+dorsal skin (OSD-237),gastrocnemius (OSD-876),0.179,0.5069,16
+dorsal skin (OSD-237),gastrocnemius (OSD-880),-0.023,0.9328,16
+dorsal skin (OSD-237),soleus (OSD-935),0.326,0.2186,16
+dorsal skin (OSD-237),soleus (OSD-949),-0.121,0.6544,16
+dorsal skin (OSD-237),spleen (OSD-201),-0.419,0.106,16
+dorsal skin (OSD-237),spleen (OSD-211),-0.501,0.0482,16
+gastrocnemius (OSD-876),gastrocnemius (OSD-880),0.776,0.0004,16
+gastrocnemius (OSD-876),soleus (OSD-935),-0.239,0.372,16
+gastrocnemius (OSD-876),soleus (OSD-949),0.781,0.0004,16
+gastrocnemius (OSD-876),spleen (OSD-201),0.504,0.0465,16
+gastrocnemius (OSD-876),spleen (OSD-211),-0.0,0.9999,16
+gastrocnemius (OSD-880),soleus (OSD-935),-0.499,0.0489,16
+gastrocnemius (OSD-880),soleus (OSD-949),0.814,0.0001,16
+gastrocnemius (OSD-880),spleen (OSD-201),0.301,0.257,16
+gastrocnemius (OSD-880),spleen (OSD-211),-0.104,0.7027,16
+soleus (OSD-935),soleus (OSD-949),-0.221,0.4111,16
+soleus (OSD-935),spleen (OSD-201),-0.428,0.0979,16
+soleus (OSD-935),spleen (OSD-211),-0.343,0.1932,16
+soleus (OSD-949),spleen (OSD-201),0.35,0.1836,16
+soleus (OSD-949),spleen (OSD-211),0.09,0.7402,16
+spleen (OSD-201),spleen (OSD-211),0.542,0.03,16

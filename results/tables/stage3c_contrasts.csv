@@ -1,0 +1,5 @@
+﻿OSD_ID,tissue,treat,ctrl,flipped,n_DEG_fdr05,note
+OSD-202,brain,non-irradiated & Hindlimb Unloaded & 1 month,non-irradiated & Normally Loaded Control & 1 month,False,195,
+OSD-203,retina,1 month & non-irradiated & Hindlimb Unloaded,1 month & non-irradiated & Normally Loaded Control,False,30,
+OSD-211,spleen,Hindlimb Unloaded & non-irradiated,Normally Loaded Control & non-irradiated,False,7,
+OSD-237,dorsal skin,Hindlimb Unloaded & non-irradiated,Normally Loaded Control & non-irradiated,False,196,

@@ -1,0 +1,3 @@
+﻿series,n_tissues,Bmal1_mean,Bmal1_absmean,Bmal1_concord,Per2_mean,Per2_absmean,Per2_concord,profile_r_median,profile_r_min,profile_r_max,n_pairs,clock_absmean_log2fc
+"FLIGHT-A (RR-1, 8조직, 단일미션)",8,1.105,1.105,1.0,-1.005,1.01,0.875,0.856,0.668,0.985,28,0.843
+"HLU-A (4조직, 단일실험)",4,0.098,0.186,0.5,-0.235,0.381,0.75,-0.199,-0.501,0.205,6,0.303

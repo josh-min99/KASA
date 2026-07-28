@@ -1,0 +1,10 @@
+﻿OSD_ID,tissue,treat,ctrl,flipped,dirt,n_DEG_fdr05,note,available
+OSD-876,gastrocnemius,Hindlimb Unloaded,Normally Loaded Control,False,0.0,944.0,,
+OSD-880,gastrocnemius,Control & Hindlimb Unloaded,Control & Normally Loaded Control,False,2.0,1159.0,,
+OSD-935,soleus,Hindlimb Unloaded & x-ray radiation & corticosterone,Normally Loaded Control & sham irradiation & Non-treated,False,44.0,9230.0,,
+OSD-949,soleus,Control & Female & Hindlimb Unloaded,Control & Female & Normally Loaded Control,False,4.0,382.0,,
+OSD-237,dorsal skin,Hindlimb Unloaded & non-irradiated,Normally Loaded Control & non-irradiated,False,2.0,196.0,,
+OSD-203,,,,,,,DE 파일 없음,
+OSD-201,spleen,Hindlimb Unloaded & not tetanus toxoid injected & CpG injected,Hindlimb Loaded Control & not tetanus toxoid injected & CpG inje,True,4.0,0.0,,
+OSD-211,spleen,Hindlimb Unloaded & non-irradiated,Normally Loaded Control & non-irradiated,False,2.0,7.0,,
+OSD-214,,,,,,,적합 대비 없음,Log2fc_(Hindlimb Loaded & not tetanus toxoid injected & CpG injected)v(Hindlimb Loaded & not tetanus toxoid injected & not CpG injected); Log2fc_(Hindlimb Loaded & not tetanus toxoid injected & CpG injected)v(Hindlimb Lo
