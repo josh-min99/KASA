@@ -1,0 +1,129 @@
+﻿SYMBOL,log2fc,fdr,tissue,OSD_ID,contrast_col,flipped
+Hlf,-0.403283447372987,0.653068995602329,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Cry1,-0.0734757047164071,0.996561853625345,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d1,-0.605106897461486,0.177021957858475,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Per1,0.252488643382234,0.918605200235759,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d2,-0.412400207112854,0.514312182947218,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Tef,-0.966672645075677,8.52478449007771e-05,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Npas2,1.68277618026375,0.043886370286375,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Per3,-0.826602267476805,0.372538366630506,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Clock,0.346120595238883,0.0137125310371222,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe40,-0.345482708958568,0.243059170965359,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe41,-0.636841684868242,0.548608007850803,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Ciart,-1.57768466593293,0.0001360445700706,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Bmal1,1.51605571742413,0.0178192109300582,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Per2,0.0205788304151943,0.998058438930203,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Dbp,-1.02824392927826,0.0890266681137015,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Cry2,-0.126646282302767,0.994879835193347,adrenal gland,OSD-98,Log2fc_(Ground Control)v(Space Flight),True
+Hlf,-0.735345021525547,2.88746102461774e-05,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Cry1,0.605355968733659,0.0002991492532755,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d1,-0.397493402648236,0.0041661919704107,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Per1,-0.171472614412208,0.687419981331533,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d2,-0.489829249726145,0.0002349984910373,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Tef,-0.691481226832046,8.697712665853971e-14,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Npas2,1.18249699854093,0.0130199839047496,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Per3,-1.19953342002068,1.71647175609195e-08,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Clock,0.20379351461429,0.0504460126283259,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe40,-0.486693649230704,0.0017877492952613,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe41,-0.525930209635493,9.4247599464456e-07,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Ciart,-1.61431441473596,0.0078612598603437,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Bmal1,0.926833655557367,0.0004084827939279,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Per2,-1.60793662789066,4.35003268909989e-06,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Dbp,-1.79011300053206,0.0004120917168628,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Cry2,-0.338600712253511,0.0078781452298495,EDL,OSD-99,Log2fc_(Ground Control)v(Space Flight),True
+Hlf,-0.435344704551182,0.215934352660771,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Cry1,0.29733962272209,0.102746048425287,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d1,-0.0344299755214056,0.977712290917696,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Per1,-0.33818066835386,0.516106577960239,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d2,-0.477327640397127,0.0043053435111981,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Tef,-0.351751296478641,0.15616755119493,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Npas2,1.83853908522071,6.36701281857205e-06,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Per3,-1.3488548068997,1.44706613589023e-09,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Clock,0.377942562572388,1.00066541688555e-05,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe40,0.0888801952367405,0.918666997329153,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe41,-0.176165311834607,0.831336494027763,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Ciart,-1.47556517164388,0.0012184494850213,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Bmal1,0.830471080793591,8.0081982673917e-08,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Per2,-1.52553661739592,6.67283206975587e-08,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Dbp,-1.67408390874137,0.0007040365830212,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Cry2,-0.395835696537995,0.0882298456539654,gastrocnemius,OSD-101,Log2fc_(Ground Control)v(Space Flight),True
+Hlf,-0.217278950637241,0.488570126411502,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Cry1,0.421826579674996,0.169249852115478,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d1,-0.740503543148757,4.905273533865e-06,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Per1,-0.0827655356514563,0.920285950892255,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d2,-0.891061035071874,2.2912497695655403e-09,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Tef,-0.652137410030793,5.49692466350493e-05,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Npas2,1.43669918970026,1.73964376099541e-16,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Per3,-1.19960322027583,3.77420836844289e-05,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Clock,0.143209171985028,0.470238780233178,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe40,-0.244266171570287,0.565610533347636,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe41,-1.12877782117578,2.32887034082876e-05,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Ciart,-0.982681750390757,0.191850069007076,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Bmal1,1.03967931342576,3.14405321877631e-07,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Per2,-0.707066633271852,0.0483250722558827,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Dbp,-2.20600837148134,7.4509878224925e-06,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Cry2,-0.423200739078209,0.022427656972282,kidney,OSD-102,Log2fc_(Ground Control)v(Space Flight),True
+Hlf,-0.760361095264314,6.33166915599539e-08,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Cry1,0.450154503760339,0.030518729131688,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d1,-0.399974103761887,0.0459890378961721,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Per1,-0.509886194795396,0.0324098148653459,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d2,-0.540047233511558,0.0002403283234711,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Tef,-0.412214695743664,0.0212819168954799,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Npas2,1.45053610466598,0.00030727369665,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Per3,-1.16705561600482,3.33035572860417e-07,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Clock,0.360282156103248,0.0002686385556667,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe40,-0.249814859982264,0.438229388378674,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe41,-0.448665439359341,0.181031385974043,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Ciart,-1.71913649227652,7.245349079607051e-09,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Bmal1,0.639682218690955,3.33151801076833e-05,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Per2,-1.48275295944003,1.96787329840325e-05,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Dbp,-2.18229140688801,1.06759585271364e-09,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Cry2,-0.336503471444276,0.0325781029232021,quadriceps,OSD-103,Log2fc_(Ground Control)v(Space Flight),True
+Hlf,-0.0489498461295183,0.825339143599481,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Cry1,0.639066322446784,5.28892853298316e-08,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d1,-0.101013848210859,0.575476658399584,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Per1,-0.408285115854791,0.244572042868334,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d2,-0.310724823784967,0.0034784770856639,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Tef,0.21508292163407,0.0448025319611467,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Npas2,1.07715325800254,1.26498568652328e-05,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Per3,-0.4658818259519,0.0007766566285963,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Clock,0.308868668944298,4.07156552449597e-05,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe40,-0.284050729504939,0.0177810408136746,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe41,-0.906699333605026,2.08889295268332e-05,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Ciart,-2.91176583335045,3.94940934203493e-23,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Bmal1,0.475006853695128,0.0035618192992761,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Per2,-1.10465597939813,1.9336516995369e-05,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Dbp,-1.70855939207903,3.37581725847645e-06,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Cry2,-0.628749852032489,1.4738074567681e-10,soleus,OSD-104,Log2fc_(Ground Control)v(Space Flight),True
+Hlf,-0.672332502546067,4.58832304131517e-11,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Cry1,0.657614299313458,5.30972880118015e-07,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d1,-0.279282817445556,0.0316746491629545,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Per1,-0.254178586907967,0.110162550452491,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Nr1d2,-0.479909978736111,0.0003825664100134,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Tef,-0.661031736889637,1.98259023054342e-06,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Npas2,1.25876673730937,0.0002801526978164,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Per3,-1.59683910783453,1.8694946206417702e-19,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Clock,0.382142350681662,1.42744770484085e-06,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe40,-0.281981361005265,0.158024433704906,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Bhlhe41,-0.682265384557174,7.27097667198174e-06,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Ciart,-2.20438830865797,2.36950427025332e-08,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Bmal1,1.10479292644472,5.14869937173836e-14,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Per2,-1.60559681108505,4.24495420881062e-13,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Dbp,-2.2107329425016,1.34622105834274e-16,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Cry2,-0.538667956471895,0.0001946320912544,tibialis anterior,OSD-105,Log2fc_(Ground Control)v(Space Flight),True
+Hlf,0.0202957841696087,0.953859248905124,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Cry1,1.01559782601568,0.0025036713583773,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Nr1d1,-0.956535626220882,0.0404758630350281,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Per1,-0.339636769802882,0.572978050615653,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Nr1d2,-0.855569243199217,0.0433501626694178,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Tef,-1.13349352186257,0.0251311472106937,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Npas2,2.95608996623757,0.0002006873063579,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Per3,-1.84137177822729,0.0267367300643422,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Clock,0.773949257978038,0.0002530206199644,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Bhlhe40,-0.603284656611521,0.0281599569474419,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Bhlhe41,-2.46068561272045,0.0001337105638171,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Ciart,-1.08836771684864,0.31569970994104,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Bmal1,2.30616868790123,0.0003973881409987,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Per2,-0.0286582030470191,0.970821879201002,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Dbp,-3.71021730946157,6.3385934790772e-05,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True
+Cry2,-0.302686416924489,0.112718412410973,liver,OSD-168,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True

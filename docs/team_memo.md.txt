@@ -1,0 +1,138 @@
+중력으로 circadian rhythm 조절
+
+조절한다의 의미 구체화 
+
+-HLU 하다가 안했을 때 생체리듬이 그때에 맞추어 유지가 되는지 (즉, 생체리듬 동기화가 microgravity에 따라 생겨난게 맞는지) (웻랩)
+-실제 우주로 간 마우스의 clock gene이 지구에서와 다르게 발현한다는 연구 존재 → 실제 우주로 간 마우스는 microgravity 뿐 아니라 여러 다른 요인들도 있으니 이를 HLU를 지상에서 모사한 마우스와 비교해서 microgravity로만으로도 clock gene 발현 변화가 이루어 지는지 (드라이랩)
+
+정도 보면 조절한다 = microgravity로 생체리듬이 새로 생겨난다 & 유전자 발현 변화가 일어난다
+
+중력으로 생체리듬 조절이 가능한가? -> 물리학 베이스 (선행연구) 
+-중력이 예로부터 인간에 미치는 영향…
+-중력과 생체리듬 관련된 gene 발현 변화 논문..
+등을 배경 부분 쓸 때 그때 그때 찾아서 레퍼런스 넣으면 될듯..? 레퍼런스는 무조건 있으니
+
+연구 설계
+
+웻랩
+목적: gravity가 새로운 zeitgeber로 작용하는지 HLU 위상이 유지되는지로 확인하기
+HLU 12시간씩 on/off로 15일(?) 유지 그룹 / 10시간씩인 그룹 / 14시간씩인 그룹
+HLU off 상태로 두면서 1번일 때의 위상이 유지되는지 확인 (Aschoff/Pittendrigh 식 entrainment의 표준 기준 )
+
+더 고려해야 할 요소
+-스트레스 정도 통제
+-체온 변화 통제
+→ 그냥 대조군으로 동일 handling stress 주는 그룹 추가
+
+분석 요소(그래서 뭘로 확인할건지?)
+-
+
+고려해야 할 점
+-다른 생체리듬 조절하는 요소 어떻게 관리 할건지
+-빛 (레퍼런스 바탕으로) (둘다 해도 상관ㄴ)
+-HLU - 음식이나 운동성 (레퍼런스 있으면 그걸로 방어)
+드라이랩
+-NASA OSDR에 마우스 spaceflight RNA-seq 데이터 → clock gene 발현이 지상대조군과 다르고 조직 간 비동기화가 일어난다고 함 
+https://doi.org/10.3390/life10090196 
+
+→ HLU 데이터셋과 실제 flight 데이터셋을 비교해서 clock gene 비동기화가 방사선이나 기타 요인 없이 중력 변화만으로도 재현되는가를 볼 수 있음
+
+
+
+
+연구 의의 
+
+생체리듬 조절 /수면주기 / 수면부족 / 에너지 대사 및 근육 
+
+우주 적용 
+지구 적용 
+
+선행연구 
+제목
+내용
+gap/의의
+링크
+Mitophagy Regulates the Circadian Rhythms by Degrading NR1D1 in Simulated Microgravity and Isolation Environments
+-장기간 우주 비행은 SCN의 중추 조절자에 의해 조절되는 circadian rhythm에 교란 일으키는 것으로 알려져 있음
+
+-TSI → microgravity 모사 →체온, 심박수, 운동활동 리듬 진폭에 교란 일으키는 것을 확인함
+
+-TSI 모델 쥐의 SCN에서 핵심 조절 유전자인 NR1D1의 단백질 수준 증가, mRNA 수준은 변화 없음, BMAL1은 감소
+
+-미토파지 결핍, 그로 인한 미토콘드리아 기능 장애가 SCN에서 관찰됨
+: 결론: 미토파지가 NR1D1 분해 조절을 통해 일주기 리듬을 조절함
+-우주 비행 및 SCN circadian rhythm 장애 질환에 대한 치료 표적으로 미토파지 제시
+
+-어쨌든 circadian rhythm이 교란되고 이 교란되는 분자적 기전을 미토파지랑 연관해서 본 논문
+
+-TSI 조건하에서 요산(UA)을 투여하여 SCN의 리듬 및 기능 조절에 미치는 영향을 조사, → 요산 투여를 통한 미토콘드리아 자가포식 활성화는 체온, 심박수, 운동 활동 리듬과 관련된 일주기 리듬 장애를 완화하고 SCN 조직의 미토콘드리아 기능 및 자가포식을 개선할 가능성이 있음을 보임 
+
+-본 연구 결과는 미토파지가 NR1D1 분해 조절을 통해 생체리듬을 조절한다는 것을 보여주며, 이는 장기간 우주 비행 및 SCN 교란 질환에 대한 잠재적인 치료 표적으로서 미토파지를 제시
+
+-이렇게 TSI가 교란한다와 그 분자적 기전은 보였는데 역으로 빛이 아니라 중력으로 circadian rhythm을 조절할 수 있나?는 아직 모름
+https://doi.org/10.3390/ijms25094853 
+Housing temperature affects the circadian rhythm of hepatic metabolism and clock genes
+-외부 온도가 circadian rhythm을 재설정 할 수 있다고 알려짐. 
+
+-근데 이 논문 자체는 그냥 일반 사육온도와 체온 온도가 circadian rhythm에 미치는 영향을 비교함
+-이 논문은 그냥 method를 참고할 만한 건데 circadian rhythm을 어떻게 측정했냐 = 혈청 노르에피네프린, 포도당, 콜레스테롤, 중성지방의 수치의 주기성, 생체 시계 유전자 발현 주기성을 관찰
+
+→혈액, 간 채취 → 혈청학적 분석, 간 대사물질 측정, RNA 추출 및 RT-qPCR, 조직학적 분석
+
+- 리듬성 식별 방법: 생체리듬 매개변수인 MESOR 등으로 계산하는 방법 존재 → ANOVA로 통계분
+
+-여러 혈청 정보→ 데이터 분석으로 드라이랩 분석도 가능할지도….
+https://doi.org/10.1530/JOE-20-0100
+
+
+
+Transcriptomes reveal alterations in gravity impact circadian clocks and activate mechanotransduction pathways with adaptation through epigenetic change
+
+
+
+
+Transcriptomes reveal alterations in gravity impact circadian clocks and activate mechanotransduction pathways with adaptation through epigenetic change | Physiological Genomics | American Physiological Society 
+Vestibular stimulation by 2G hypergravity modifies resynchronization in temperature rhythm in rats
+
+
+-오 여기 초록 자체가 이 연구에서 중력에 대한 방향 감지하는 전정계가 일주기 리듬을 동기화하는 감각 입력을 제공할 수 있다는 가설을 세웠다 이럼
+-이 실험에서의 결과
+: 전정기관 망가진 쥐(BVL)에서는 재동기화가 느리고 안망가진 쥐에서는 재동기화가 빠르다,, 그래서 전정기관이 이런 생체리듬 조절에 영향을 미친다
+
+-아근데 이 논문은 중력 위주로 봤다기 보단 전정계가 생체리듬 조절에 영향을 미친다는걸 보여줌
+-> 이 논문에서는 전정계가 영향에 미친다는걸 보여줬다면 우리는 전정계 이전 단계인 중력에 따라 영향이 달라지는지 설계하면 좋을듯?
+10.1038/s41598-020-65496-x 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<역할분배>
+ 
+1: 연구의 필요성 및 목적 (1p)
+2: 연구의 내용 및 방법 → 웻랩/드라이랩 나눠서
+3: 예상되는 결과 → 기본 웻랩 + preliminary 한 드라이랩
+(1/2)
+4: 1,2 도움 + 활용방안 & 연구추진 일정 (1p)
+
+석희-14
+민석-드라이랩2/3
+지호-14
+연서-연구방법2/3
+
+5페이지
+
+

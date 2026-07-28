@@ -1,0 +1,9 @@
+﻿osd,tissue,contrast,flipped,n_clock_found
+98,adrenal gland,Log2fc_(Ground Control)v(Space Flight),True,16
+99,EDL,Log2fc_(Ground Control)v(Space Flight),True,16
+101,gastrocnemius,Log2fc_(Ground Control)v(Space Flight),True,16
+102,kidney,Log2fc_(Ground Control)v(Space Flight),True,16
+103,quadriceps,Log2fc_(Ground Control)v(Space Flight),True,16
+104,soleus,Log2fc_(Ground Control)v(Space Flight),True,16
+105,tibialis anterior,Log2fc_(Ground Control)v(Space Flight),True,16
+168,liver,Log2fc_(Ground Control & SpaceX-4 (RR1) & With Spike-in)v(Space Flight & SpaceX-4 (RR1) & With Spike-in),True,16

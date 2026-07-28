@@ -6,3 +6,6 @@ __pycache__/
 .ipynb_checkpoints/
 .DS_Store
 Thumbs.db
+
+# 원본 데이터 — 재다운로드 가능(src/s0_download.py). 1.5GB 라 추적하지 않는다.
+data/raw/
