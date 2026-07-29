@@ -76,6 +76,24 @@ DISQUALIFY = re.compile(r"reloaded", re.I)
 # 궤도에서 원심분리로 1G 를 '복원' 한 군. Space Flight 이지만 중력 감소가 아니다.
 # (OSD-758·288·714·238 에 존재. 규칙 검증에서 잘못 채택되는 것을 발견해 추가)
 RESTORED_G = re.compile(r"1\s*g\s*(by|with)\s*centrifugation", re.I)
+# 배경이 양쪽에서 일치해도 '깨끗한' 배경이 낫다. 동률일 때 이것으로 우선순위를 정한다.
+# 주의: 문자열 전체에 정규식을 걸면 'not CpG injected' 가 'CpG injected' 와 같은 점수를 받는다.
+# 어제 non-irradiated 사고와 같은 유형이므로 성분 단위로 판정한다.
+_DIRTY_WORD = re.compile(r"gamma|cobalt|x-ray|irradiat|corticosterone|injected|"
+                         r"treated|mKO|knockout", re.I)
+_NEGATED = re.compile(r"^\s*(not|non[- ]|sham|un)\b", re.I)
+
+
+def dirtiness(background_terms):
+    """배경 성분 중 실제 처치에 해당하는 것의 개수.
+    'not CpG injected', 'non-irradiated', 'sham irradiation' 은 처치가 아니다."""
+    n = 0
+    for t in background_terms:
+        if _NEGATED.search(t.strip()):
+            continue
+        if _DIRTY_WORD.search(t):
+            n += 1
+    return n
 DE_RE = re.compile(r"differential_expression.*\.csv$", re.I)
 
 
@@ -161,13 +179,24 @@ def find_contrast(hdr):
             elif sorted(x.lower() for x in ba) != sorted(x.lower() for x in bb):
                 reason = f"배경 불일치 {sorted(ba)} vs {sorted(bb)}"
             if reason is None:
+                # 배경이 양쪽에서 일치하더라도 '무엇이 일치하는가' 가 중요하다.
+                # 방사선 조사 개체 안에서의 HLU 효과는 중력 단독 효과가 아니다.
+                # 또 부분중력(0.33G)보다 완전 미세중력(uG)이 대비로서 깨끗하다.
+                dirty = dirtiness(ba)
+                partial = 0 if any(re.search(r"^\s*u\s*g\s*$|micrograv", t, re.I)
+                                   for t in ga) else 1
+                # 지상 HLU 는 uG 표기가 없으므로 partial 패널티를 주지 않는다
+                if not any(re.search(r"space ?flight", t, re.I) for t in ga):
+                    partial = 0
                 cands.append({"col": c, "flip": flip, "treat": A, "ctrl": B,
-                              "n_background": len(ba)})
+                              "n_background": len(ba), "dirty_bg": dirty,
+                              "partial_g": partial})
             else:
                 log.append({"col": c, "dir": "rev" if flip else "fwd", "reason": reason})
     if not cands:
         return None, log
-    cands.sort(key=lambda d: d["n_background"])
+    # 우선순위: 배경 오염 적음 > 완전 미세중력 > 배경 성분 수 적음
+    cands.sort(key=lambda d: (d["dirty_bg"], d["partial_g"], d["n_background"]))
     return cands[0], log
 
 
