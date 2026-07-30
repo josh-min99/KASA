@@ -1,0 +1,152 @@
+<div style="font-family:'Malgun Gothic','맑은 고딕',serif; font-size:11pt; line-height:1.75; color:#000; max-width:780px;">
+
+<p style="text-align:center; font-size:15pt; font-weight:bold; margin:0 0 4px;">드라이랩 작업기록 — 조직 매칭 재분석</p>
+<p style="text-align:center; font-size:10pt; color:#444; margin:0 0 28px;">2026-07-30 · 조민석 · 상세 로그 PROGRESS.md</p>
+
+<p>전날 분석의 비교 설계에 교락이 있음을 확인하고 재분석하였다.
+결과적으로 전날 결론 세 항목을 철회하였다. 아래에 경과와 근거를 기록한다.</p>
+
+<p style="font-size:12.5pt; font-weight:bold; margin:26px 0 8px;">1. 무엇이 문제였는가</p>
+
+<p>전날 비교는 비행 8개 조직(EDL·부신·비복근·신장·간·사두근·가자미근·전경골근)과
+HLU 4개 조직(뇌·망막·비장·등쪽피부)을 대상으로 했다. <b>두 세트의 조직이 하나도 겹치지 않는다.</b>
+따라서 관측된 차이가 처리(비행 대 HLU) 때문인지 조직 구성 때문인지 구별할 수 없었다.</p>
+
+<p>핵심 지표는 데이터셋 내부에서 자기 정규화되므로 실험 간 배치 효과에 원래 강하다.
+배치 효과를 피하려고 조직 매칭을 포기한 것은 불필요한 선택이었다.</p>
+
+<p style="font-size:12.5pt; font-weight:bold; margin:26px 0 8px;">2. 무엇을 했는가</p>
+
+<p><b>대비 선택 방식을 바꿨다.</b> 전날 두 차례, 조건을 걸러내려고 넣은 정규식이
+필요한 대비까지 삭제하는 사고가 있었다(조사군을 배제하려는 <span style="font-family:monospace; font-size:10pt;">irradiat</span> 패턴이
+<span style="font-family:monospace; font-size:10pt;">non-irradiated</span>에도 걸린 경우).
+개별 조건을 배제 목록으로 지우는 방식 자체가 원인이었다.</p>
+
+<p>따라서 배제 목록을 버리고 <b>중력 이외의 모든 배경 조건이 처리군과 대조군에서 동일할 것</b>을
+요구하는 규칙으로 전환했다. 대비 문자열을 성분으로 분해한 뒤 중력 성분과 배경 성분을 나누고,
+배경 성분이 양쪽에서 완전히 일치할 때만 채택한다.
+이러면 유전형, 병용 처치, 주사, 조사 여부, 성별, 시점이 자동으로 매칭된다.</p>
+
+<p><b>실행 전에 규칙을 역검증했다.</b> 22개 사례로 규칙이 무엇을 채택하고 무엇을 탈락시키는지
+확인하는 과정에서 오류 두 건을 발견해 수정했다.</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0;">발견한 오류</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">내용</td>
+</tr>
+<tr><td style="padding:5px 18px 5px 0; vertical-align:top;">궤도 원심분리군 오채택</td>
+    <td style="padding:5px 0;">궤도에서 원심분리로 1G를 복원한 군이 '중력 감소'로 분류되고 있었다. 해당 군은 우주비행이지만 중력이 줄지 않는다. OSD-758·288·714·238 네 건이 영향을 받았다.</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 18px 5px 0; vertical-align:top;">부정 표현 오분류</td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">배경의 청결도를 문자열 단위로 판정해 '주사하지 않음'이 '주사함'과 같은 점수를 받았다. 전날 사고와 같은 유형이므로 성분 단위 판정으로 바꿨다.</td></tr>
+</table>
+
+<p style="font-size:12.5pt; font-weight:bold; margin:26px 0 8px;">3. 결과</p>
+
+<p>5개 조직 24개 데이터셋에서 대비를 구성하여 15건이 품질 게이트를 통과했다.
+제외 사유는 신호 없음 8건, 대비 불가 1건이다.</p>
+
+<p><b>조직을 맞추니 방향이 갈렸다.</b> 비교 가능한 4개 조직 중 비복근과 가자미근에서는
+비행이 높고, 망막과 등쪽피부에서는 HLU가 높다. 비장은 HLU 두 건이 모두
+신호 없음이어서 비교 자체가 불가능했다.</p>
+
+<p><b>더 큰 문제를 발견했다.</b> 조직별 지표를 산출하는 과정에서 비행 데이터셋 사이의
+변동이 눈에 띄어 미션별로 분리해 확인했다.</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0;">구분</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">n</td>
+  <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0;">중앙값</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">범위</td>
+</tr>
+<tr><td style="padding:5px 18px 5px 0;">RR-1 비행</td><td style="padding:5px 14px 5px 0;">8</td>
+    <td style="padding:5px 18px 5px 0;">3.11</td><td style="padding:5px 0;">1.90–5.28</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">기타 미션 비행</td><td style="padding:5px 14px 5px 0;">8</td>
+    <td style="padding:5px 18px 5px 0;">0.75</td><td style="padding:5px 0;">0.53–1.53</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;">지상 HLU</td>
+    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">5</td>
+    <td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;">1.07</td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">0.75–1.38</td></tr>
+</table>
+
+<p>전날 비행군으로 사용한 8개 데이터셋은 전부 RR-1 미션 소속이었다.
+다른 미션의 비행 데이터는 중앙값 0.75로 지상 HLU보다도 낮다.
+즉 전날의 값은 우주비행 일반의 성질이 아니라 특정 미션에 의존하는 값이었고,
+조직 교락과 미션 교락이 같은 방향으로 겹쳐 있었다.</p>
+
+<p style="font-size:12.5pt; font-weight:bold; margin:26px 0 8px;">4. 전날 결론의 처리</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0;">항목</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">처리</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">근거</td>
+</tr>
+<tr><td style="padding:5px 18px 5px 0;">선행연구 재현</td>
+    <td style="padding:5px 14px 5px 0;">유지</td>
+    <td style="padding:5px 0;">RR-1 데이터 내부의 재현이며 이번 작업과 무관하게 성립</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">파이프라인 무결성</td>
+    <td style="padding:5px 14px 5px 0;">유지</td>
+    <td style="padding:5px 0;">재분석에서도 24건 중 15건이 게이트 통과</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">단일 유전자 판정 불가</td>
+    <td style="padding:5px 14px 5px 0;">유지</td>
+    <td style="padding:5px 0;">변경 없음</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">위상 정보 부재 → 웻랩 필요</td>
+    <td style="padding:5px 14px 5px 0;">유지</td>
+    <td style="padding:5px 0;">한계가 더 분명해졌으므로 근거는 강화됨</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">지수 3.11 대 0.78</td>
+    <td style="padding:5px 14px 5px 0;"><b>철회</b></td>
+    <td style="padding:5px 0;">조직·미션 교락. 조직 매칭 시 2개 조직에서 방향 반전</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">하중 변화만으로는 재현되지 않는다</td>
+    <td style="padding:5px 14px 5px 0;"><b>철회</b></td>
+    <td style="padding:5px 0;">위와 동일</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">조직쌍 프로파일 상관 0.86 대 −0.20</td>
+    <td style="padding:5px 14px 5px 0;"><b>철회</b></td>
+    <td style="padding:5px 0;">비행군이 단일 미션이라 상관이 높을 수밖에 없는 구조</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;">앵커 분석(OSD-21)</td>
+    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">조건부 유지</td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">조직·배치 모두 통제됨. 단 조직 1종·n=4~5이므로 '근육에서'로 한정</td></tr>
+</table>
+
+<p style="font-size:12.5pt; font-weight:bold; margin:26px 0 8px;">5. 계획서에 미치는 영향</p>
+
+<p>논지의 구조는 바뀌지 않고 근거가 교체된다.
+전날은 '하중만으로는 재현되지 않으므로 비중력 요인의 기여가 크다'였다.
+이제는 <b>'조직과 미션에 따른 변동이 처리 효과를 넘어서므로 공개 데이터로는
+중력 단독의 효과를 분리할 수 없다'</b>가 된다.
+여기에 채취 시각 미기록과 SCN 조직 부재가 더해진다.
+통제된 조건에서 시간 해상도를 갖고 직접 측정할 필요성은 오히려 더 분명해졌다.</p>
+
+<p>분석 절차를 설계할 때 세 가지 결과 경우를 미리 상정하고
+어느 쪽이 나오더라도 연구 논리가 유지되도록 했던 것이 이번에 실제로 확인되었다.
+계획서 3장의 서술은 '판정 불가' 경우를 실제 결과로 채워 갱신한다.</p>
+
+<p style="font-size:12.5pt; font-weight:bold; margin:26px 0 8px;">6. 이번 작업의 한계</p>
+
+<p>조직당 데이터셋이 1~3개로 조직 내 비교의 표본이 작다.
+비장은 비교가 불가능했다. 망막의 HLU 데이터는 차등발현 유전자 30개로 게이트 경계에 걸려
+임계값 설정에 민감하다. 가자미근의 HLU는 유전자 결손 실험의 정상 유전형 군에서 왔으므로
+배경은 매칭했으나 완전한 야생형 실험은 아니다.
+지표 자체는 본 분석에서 정의한 것이므로 다른 연구와 직접 비교할 수 없다.</p>
+
+<p style="font-size:12.5pt; font-weight:bold; margin:26px 0 8px;">7. 산출물</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 22px 6px 0;">경로</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">내용</td>
+</tr>
+<tr><td style="padding:5px 22px 5px 0;">results/v2/REPORT_V2.md</td>
+    <td style="padding:5px 0;">재분석 보고서. 조직별 표, 판정, 전날 결론 처리</td></tr>
+<tr><td style="padding:5px 22px 5px 0;">results/v2/figures/</td>
+    <td style="padding:5px 0;">조직별 forest plot (흑백 인쇄 가능, 캡션 포함)</td></tr>
+<tr><td style="padding:5px 22px 5px 0;">results/v2/tables/</td>
+    <td style="padding:5px 0;">데이터셋별 수치, 조직별 요약, 미션별 비교</td></tr>
+<tr><td style="padding:5px 22px 5px 0;">src/v2_*.py</td>
+    <td style="padding:5px 0;">재실행 가능한 분석 스크립트 3편</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 22px 5px 0;">results/ (전날)</td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">덮어쓰지 않고 그대로 보존</td></tr>
+</table>
+
+</div>
