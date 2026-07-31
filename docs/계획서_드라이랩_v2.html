@@ -104,11 +104,18 @@
 <p><b>위상 정보 부재.</b> 확보한 27건 중 희생 시각이 기록된 것은 2건에 불과하다.
 동조 판정에 필수적인 주기와 위상은 공개 데이터에서 원리적으로 얻을 수 없으며,
 이것이 본 연구가 웻랩 연속 기록을 요구하는 직접적 근거다.
-이 한계의 크기는 앵커 데이터에서 직접 측정된다. 표 5의 마지막 행은 12일 현수를 동일하게 겪은
-두 군을 비교한 것으로, 둘의 차이는 마지막 3.5시간 구간뿐이다(시간 경과와 하중 재부하가 함께 변한다).
-이 3.5시간 구간만으로 발생한 clock 유전자 변화의 중앙값이 0.138이며,
-이는 <b>우주비행 대비에서 관측된 변화(0.215)의 약 64%에 해당한다.</b>
-채취 시점이 몇 시간만 어긋나도 비행 효과와 같은 규모의 차이가 만들어질 수 있다는 뜻이다.
+앵커 데이터는 이 한계를 우회할 설계를 갖추고 있었으나, 결국 우회하지 못했다.
+원저자는 HLU 군을 12일째 현수 상태에서, HLU+재하중 군을 현수를 푼 뒤 3.5시간을 더 두고 희생시켰다.
+STS-108 비행 마우스가 착륙 약 3.5시간 뒤에 희생되었으므로, 그 구간을 지상에서 재현해
+'착륙 후 채취' 교란을 통제하려 한 것이다.
+즉 이 스터디에는 <b>채취 시점 문제를 직접 검사할 수 있는 군이 설계되어 있다.</b></p>
+
+<p>그러나 그 검사가 성립하지 않는다. 두 군의 차이는 표 5의 마지막 행이며 |차이| 중앙값 0.138인데,
+이 값은 <b>효과가 전혀 없을 때 표본 잡음만으로 기대되는 크기(0.139)와 사실상 같다.</b>
+따라서 이 데이터로는 3.5시간 구간이 clock 유전자를 움직였는지 여부를 판정할 수 없다.
+움직였다는 증거도, 움직이지 않았다는 증거도 아니다.
+<b>통제군을 설계에 넣어두고도 군당 n=5에서는 그 통제가 작동하는지 확인할 수 없다는 뜻이며,</b>
+이것이 채취 시각 문제를 표본 수와 연속 기록 없이는 해결할 수 없는 이유다.
 
 <b>SCN 부재.</b> 공개 데이터에 시교차상핵 조직이 없어 결론을 말초 조직 수준으로 한정한다.
 <b>HLU의 복합성.</b> HLU는 하중과 함께 자세·이동성·구속 스트레스를 동시에 바꾸므로
@@ -266,43 +273,55 @@ OSD-21은 다섯 군이 한 실험 안에 모두 있는 유일한 스터디로, 
   <td style="padding:4px 0 2px;"></td>
 </tr>
 <tr>
-  <td style="border-bottom:1px solid #000; padding:6px 16px 6px 0;">대비</td>
-  <td style="border-bottom:1px solid #000; padding:6px 16px 6px 0;">|군간 차이| 중앙값</td>
-  <td style="border-bottom:1px solid #000; padding:6px 16px 6px 0;">신뢰구간 폭 중앙값</td>
-  <td style="border-bottom:1px solid #000; padding:6px 0;">CI가 0을 배제</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">대비</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">|군간 차이|<br>중앙값</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">신뢰구간 폭<br>중앙값</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">잡음 기대치<br>대비</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">CI가 0을<br>배제</td>
 </tr>
-<tr><td style="padding:5px 16px 5px 0;">HLU+재하중 vs 정상하중</td>
-    <td style="padding:5px 16px 5px 0;">0.224</td>
-    <td style="padding:5px 16px 5px 0;">0.43</td>
+<tr><td style="padding:5px 14px 5px 0;">HLU+재하중 vs 정상하중</td>
+    <td style="padding:5px 14px 5px 0;">0.224</td>
+    <td style="padding:5px 14px 5px 0;">0.43</td>
+    <td style="padding:5px 14px 5px 0;"><b>3.53배</b></td>
     <td style="padding:5px 0;"><b>8 / 15</b></td></tr>
-<tr><td style="padding:5px 16px 5px 0;">우주비행 vs 지상대조</td>
-    <td style="padding:5px 16px 5px 0;">0.215</td>
-    <td style="padding:5px 16px 5px 0;">0.64</td>
+<tr><td style="padding:5px 14px 5px 0;">우주비행 vs 지상대조</td>
+    <td style="padding:5px 14px 5px 0;">0.215</td>
+    <td style="padding:5px 14px 5px 0;">0.64</td>
+    <td style="padding:5px 14px 5px 0;"><b>2.45배</b></td>
     <td style="padding:5px 0;"><b>5 / 15</b></td></tr>
-<tr><td style="padding:5px 16px 5px 0;">HLU vs 정상하중</td>
-    <td style="padding:5px 16px 5px 0;">0.182</td>
-    <td style="padding:5px 16px 5px 0;">0.82</td>
+<tr><td style="padding:5px 14px 5px 0;">HLU vs 정상하중</td>
+    <td style="padding:5px 14px 5px 0;">0.182</td>
+    <td style="padding:5px 14px 5px 0;">0.82</td>
+    <td style="padding:5px 14px 5px 0;">1.51배</td>
     <td style="padding:5px 0;">0 / 15</td></tr>
-<tr><td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">HLU+재하중 vs HLU<br>
+<tr><td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">HLU+재하중 vs HLU<br>
     <span style="font-size:9pt; color:#555;">재하중 3.5시간 — 시간 경과와<br>하중 재부하가 함께 변함</span></td>
-    <td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">0.138</td>
-    <td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">0.95</td>
+    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">0.138</td>
+    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">0.95</td>
+    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;"><b>0.99배</b></td>
     <td style="border-bottom:1px solid #000; padding:5px 0;">0 / 15</td></tr>
 </table>
 <p style="font-size:9.5pt; color:#444; margin:-4px 0 14px;">표 5. OSD-21 단일 스터디 내 네 대비.
 값은 clock 유전자 15개에 대한 중앙값이며 단위는 log2다. 군당 n=4~5.
 행은 CI가 0을 배제한 유전자 수의 내림차순으로 배열하였다.
 신뢰구간은 다중검정 보정을 하지 않았다. 15개 유전자에서 우연히 0을 배제하는 개수는
-대비당 0.75개가 기대되므로, 이 열은 검정 결과가 아니라 기술 통계로 읽어야 한다.</p>
+대비당 0.75개가 기대되므로, 이 열은 검정 결과가 아니라 기술 통계로 읽어야 한다.
+'잡음 기대치 대비'는 효과가 0일 때 표본 잡음만으로 기대되는 |차이| 중앙값을 기준으로 한 비율이며,
+1.0이면 관측값이 잡음과 구별되지 않음을 뜻한다.</p>
 
 <p><b>유의한 개수의 차이는 효과크기로 설명되지 않는다.</b>
 우주비행에서 신뢰구간이 0을 배제하는 유전자는 5개
 (Arntl +0.46, Cry2 +0.61, Nr1d1 +0.37, Per1 +1.58, Hlf −0.21)이고 HLU에서는 0개다.
 그런데 두 대비의 |군간 차이| 중앙값은 0.215와 0.182로 <b>차이가 0.033에 불과하다.</b>
 이는 두 대비의 신뢰구간 폭(0.64, 0.82)의 4~5% 수준으로, 효과크기 차이 자체가
-이 데이터의 해상도 아래에 있다는 뜻이다.
-따라서 5 대 0이라는 갈림은 처리 효과의 크기 차이로 설명될 수 없으며,
+이 데이터의 해상도 아래에 있다.
+5 대 0이라는 갈림을 만든 것은 효과의 크기가 아니라 그것을 재는 정밀도이며,
+잡음 기대치 대비로 보면 2.45배와 1.51배로 훨씬 완만한 차이다.
 군당 n=4~5에서 무엇이 유의해지는지는 군내 분산이 좌우한다.</p>
+
+<p>같은 열이 마지막 행에서는 0.99배다.
+즉 <b>네 대비 중 하나는 관측된 차이가 잡음 기대치와 구별되지 않는다.</b>
+이 대비에서는 효과의 유무를 어느 쪽으로도 판정할 수 없다.</p>
 
 <p>같은 표에서 더 직접적인 반례가 나온다.
 <b>이 스터디에서 clock 신호가 가장 많이 잡힌 대비는 우주비행이 아니라
