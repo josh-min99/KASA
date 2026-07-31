@@ -88,7 +88,9 @@ def main():
 
     ax.set_xlabel("I4  =  clock 유전자 |log2FC| 중앙값 ÷ 전체 유전자 |log2FC| 중앙값")
     ax.legend(loc="lower right", frameon=False)
-    ax.set_title("Fig 2(v2). 조직을 맞춘 clock 특이 반응 비교", loc="left",
+    # 제목은 계획서의 그림 번호를 따른다.
+    # (v2 작업 당시 파일명 기준으로 'Fig 2(v2)' 라 붙였으나 계획서에서는 그림 1이다.)
+    ax.set_title("그림 1. 조직을 맞춘 clock 특이 반응 비교", loc="left",
                  fontsize=10.5, pad=10)
     ax.text(1.04, R.y.max() + 0.6, "1.0 = 전체 유전자와 동일", fontsize=8, color="#555555")
 
