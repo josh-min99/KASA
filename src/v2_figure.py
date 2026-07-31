@@ -86,7 +86,8 @@ def main():
                 transform=ax.get_yaxis_transform(), color="#999999", lw=1.0,
                 clip_on=False, zorder=2)
 
-    ax.set_xlabel("I4  =  clock 유전자 |log2FC| 중앙값 ÷ 전체 유전자 |log2FC| 중앙값")
+    # 축 라벨 용어는 본문과 통일한다 ('I4' 는 스크립트 내부 이름이다).
+    ax.set_xlabel("clock 특이 반응 지수  =  clock 유전자 |log2FC| 중앙값 ÷ 전체 유전자 |log2FC| 중앙값")
     ax.legend(loc="lower right", frameon=False)
     # 제목은 계획서의 그림 번호를 따른다.
     # (v2 작업 당시 파일명 기준으로 'Fig 2(v2)' 라 붙였으나 계획서에서는 그림 1이다.)
@@ -94,10 +95,17 @@ def main():
                  fontsize=10.5, pad=10)
     ax.text(1.04, R.y.max() + 0.6, "1.0 = 전체 유전자와 동일", fontsize=8, color="#555555")
 
-    exlines = [f"{r['OSD_ID']} ({r['조직']}, {r['처리']}): {str(r['제외사유'])[:74]}"
-               for _, r in ex.iterrows()]
+    # 제외 사유는 잘라내지 않고 줄바꿈한다.
+    # ([:74] 로 자르면 OSD-935 의 '배경 불일치 [...] vs [Non-' 에서 끊겨 뜻이 사라진다)
+    import textwrap
+    exlines = []
+    for _, r in ex.iterrows():
+        head = f"{r['OSD_ID']} ({r['조직']}, {r['처리']}): "
+        wrapped = textwrap.wrap(str(r["제외사유"]), width=104 - len(head)) or [""]
+        exlines.append(head + wrapped[0])
+        exlines.extend(" " * (len(head) + 2) + w for w in wrapped[1:])
     cap = ("각 점은 데이터셋 하나이며, 같은 조직 안에서 우주비행과 지상 HLU 를 나란히 배치했다.\n"
-           "I4 는 데이터셋 내부에서 자기 정규화되므로 실험 간 신호 규모 차이에 영향을 받지 않는다.\n"
+           "이 지수는 데이터셋 내부에서 자기 정규화되므로 실험 간 신호 규모 차이에 영향을 받지 않는다.\n"
            "대비는 중력 이외의 모든 배경 조건이 양쪽에서 동일할 것을 요구해 선택했다.\n"
            "품질 게이트로 FDR<0.05 인 DEG 가 30개 미만인 데이터셋은 신호 없음으로 제외했다.\n"
            "괄호 안은 해당 대비의 DEG 수다.\n\n"
