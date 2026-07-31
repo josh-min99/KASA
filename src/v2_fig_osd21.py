@@ -9,10 +9,11 @@ v2 — OSD-21 앵커 그림 수정판.
   표시되지 않아, 그림을 올바르게 읽을 수 없는 상태였다.
 
 수정 내용
-  1) 범례 추가 — 두 arm 을 명시
-  2) arm 경계에 구분선과 라벨 추가
-  3) 캡션에 부호화 설명 명시
-  4) 군 이름을 가로로 배치해 회전 라벨 겹침 해소
+  x축에 군 이름이 이미 적혀 있으므로 마커 채움은 같은 정보를 중복 부호화한 것이었다.
+  중복을 없애고 arm 경계는 세로 점선 하나로만 표시한다.
+  마커를 통일하면 범례 자체가 불필요해진다.
+  (첫 수정에서는 범례를 추가했으나, 그것은 불필요한 부호화를 설명하려고
+   요소를 더 늘린 것이었다. 부호화를 제거하는 쪽이 맞다.)
 
 기존 파일은 덮어쓰지 않고 results/v2/figures/ 에 새로 저장한다.
 """
@@ -23,7 +24,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
-from matplotlib.lines import Line2D
+# (범례를 없앴으므로 Line2D 불필요)
 
 warnings.filterwarnings("ignore")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -64,9 +65,9 @@ def main():
             v = sub[sub.group == key].value_log2.values
             if not len(v):
                 continue
-            face = INK if arm == "flight" else "white"
             ax.scatter(np.full(len(v), i) + np.linspace(-0.14, 0.14, len(v)), v,
-                       s=30, facecolor=face, edgecolor="black", lw=0.8, zorder=3)
+                       s=30, facecolor=INK, edgecolor="black", lw=0.8,
+                       alpha=0.85, zorder=3)
             ax.plot([i - 0.28, i + 0.28], [v.mean()] * 2, color="black", lw=1.9, zorder=4)
         # arm 경계선
         ax.axvline(1.5, color="#aaaaaa", lw=1.0, ls=(0, (3, 3)), zorder=1)
@@ -81,29 +82,14 @@ def main():
         if ax is axes[0]:
             ax.set_ylabel("정규화 발현 (log2)")
 
-    # arm 구분은 범례와 세로 점선으로 전달한다.
-    # 패널 안에 arm 이름을 넣으면 유전자 제목과 겹친다.
-
-    handles = [
-        Line2D([], [], marker="o", linestyle="none", markersize=7,
-               markerfacecolor=INK, markeredgecolor="black",
-               label="비행 arm — 지상대조 · 우주비행"),
-        Line2D([], [], marker="o", linestyle="none", markersize=7,
-               markerfacecolor="white", markeredgecolor="black",
-               label="HLU arm — 정상하중 · HLU · HLU+재하중"),
-        Line2D([], [], color="black", lw=1.9, label="군 평균"),
-    ]
-    fig.legend(handles=handles, loc="lower center", ncol=3, frameon=False,
-               bbox_to_anchor=(0.5, -0.16), fontsize=8.5)
-
     fig.suptitle("그림 2. 단일 스터디(OSD-21, STS-108) 내 5군 비교 — 개체값",
-                 x=0.0, ha="left", fontsize=10.5, y=1.08)
-    fig.text(0.0, -0.30,
+                 x=0.0, ha="left", fontsize=10.5, y=1.04)
+    fig.text(0.0, -0.34,
              "동일 스터디에 우주비행·지상대조·HLU·HLU+재하중·정상하중 5군이 모두 있어 배치 효과가 없다.\n"
              "점은 개체, 가로선은 군 평균이다. 군당 n=4-5.\n"
-             "마커의 채움은 실험 arm 을 나타낸다. 채워진 점은 비행 arm(STS-108 비행 실험),\n"
-             "빈 점은 지상 HLU arm 이다. 두 arm 은 사육 조건과 기준선이 다르므로\n"
-             "arm 을 가로질러 비교하지 않고 각 arm 내부의 대비만 사용하였다(세로 점선이 경계).\n"
+             "세로 점선 왼쪽 두 군은 STS-108 비행 실험, 오른쪽 세 군은 지상 후지현수 실험이다.\n"
+             "두 실험은 사육 조건과 기준선이 다르므로 점선을 가로질러 비교하지 않고\n"
+             "각 실험 내부의 대비만 사용하였다.\n"
              "우주비행에서 Arntl +0.46 (Cohen d=2.49), Per1 +1.59 (d=3.21), Nr1d1 +0.37 (d=3.13) 이\n"
              "관측되나 HLU 에서는 같은 방향의 변화가 나타나지 않는다 (Arntl -0.30 으로 오히려 반대).\n"
              "HLU+재하중 군은 원저자가 착륙-희생 간 3.5시간을 모사하려 설계한 군으로,\n"
