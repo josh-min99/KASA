@@ -46,6 +46,41 @@ plt.rcParams.update({
 })
 INK = "#2b2b2b"
 
+def beeswarm_offsets(values, y_range, thresh_frac=0.025, step=0.075):
+    """겹치는 점만 중앙 기준 대칭으로 벌린다.
+
+    x 축이 범주형이므로 가로 위치에는 정보가 없다. 따라서
+      - 겹치지 않는 점은 정확히 중앙에 둔다
+      - 겹치는 점만, 그것도 좌우 대칭으로 배치한다 (0, +1, -1, +2, -2 ...)
+    이전 판은 np.linspace 로 모든 점을 샘플 순서대로 좌->우 배치해
+    가로 위치가 무언가를 뜻하는 것처럼 보였다.
+    """
+    v = np.asarray(values, dtype=float)
+    order = np.argsort(v)
+    thresh = y_range * thresh_frac
+    off = np.zeros(len(v))
+    cluster, last = [], None
+    clusters = []
+    for idx in order:
+        if last is not None and abs(v[idx] - v[last]) > thresh:
+            clusters.append(cluster); cluster = []
+        cluster.append(idx); last = idx
+    if cluster:
+        clusters.append(cluster)
+    for cl in clusters:
+        if len(cl) == 1:
+            continue
+        # 0, +1, -1, +2, -2 ... 순으로 대칭 배치
+        seq = []
+        for k in range(len(cl)):
+            m = (k + 1) // 2
+            seq.append(m if k % 2 == 1 else -m)
+        seq = sorted(seq)
+        for idx, s in zip(cl, seq):
+            off[idx] = s * step
+    return off
+
+
 GENES = ["Arntl", "Per1", "Nr1d1", "Cry2"]
 # (군, 표시명, arm)
 GROUPS = [("GroundControl", "지상대조", "flight"),
@@ -61,13 +96,14 @@ def main():
 
     for ax, g in zip(axes, GENES):
         sub = L[L.gene == g]
+        yr = sub.value_log2.max() - sub.value_log2.min()
         for i, (key, lab, arm) in enumerate(GROUPS):
             v = sub[sub.group == key].value_log2.values
             if not len(v):
                 continue
-            ax.scatter(np.full(len(v), i) + np.linspace(-0.14, 0.14, len(v)), v,
-                       s=30, facecolor=INK, edgecolor="black", lw=0.8,
-                       alpha=0.85, zorder=3)
+            ax.scatter(np.full(len(v), i) + beeswarm_offsets(v, yr), v,
+                       s=26, facecolor=INK, edgecolor="white", lw=0.7,
+                       alpha=0.9, zorder=3)
             ax.plot([i - 0.28, i + 0.28], [v.mean()] * 2, color="black", lw=1.9, zorder=4)
         # arm 경계선
         ax.axvline(1.5, color="#aaaaaa", lw=1.0, ls=(0, (3, 3)), zorder=1)
@@ -87,6 +123,8 @@ def main():
     fig.text(0.0, -0.34,
              "동일 스터디에 우주비행·지상대조·HLU·HLU+재하중·정상하중 5군이 모두 있어 배치 효과가 없다.\n"
              "점은 개체, 가로선은 군 평균이다. 군당 n=4-5.\n"
+             "가로축은 범주형이며 점의 가로 위치에는 의미가 없다.\n"
+             "값이 서로 가까워 겹치는 개체만 중앙을 기준으로 좌우 대칭으로 벌려 표시하였다.\n"
              "세로 점선 왼쪽 두 군은 STS-108 비행 실험, 오른쪽 세 군은 지상 후지현수 실험이다.\n"
              "두 실험은 사육 조건과 기준선이 다르므로 점선을 가로질러 비교하지 않고\n"
              "각 실험 내부의 대비만 사용하였다.\n"
