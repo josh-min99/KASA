@@ -165,8 +165,16 @@
 괄호 안은 해당 조직에서 품질 게이트를 통과한 데이터셋 수이며, 값이 둘 이상인 경우 평균 내지 않고 그대로 나열하였다.
 비교 가능한 4개 조직 중 2곳에서 방향이 뒤집힌다.</p>
 
-<p><b>미션 간 변동.</b> 조직별로 지표를 산출하는 과정에서 비행 데이터셋 사이의 변동이
-처리 간 차이보다 크다는 것이 드러났다. 미션을 기준으로 나누면 다음과 같다.</p>
+<p><b>비행 데이터셋 사이의 변동.</b> 조직별로 지표를 산출하는 과정에서 비행 데이터셋
+사이의 변동이 처리 간 차이보다 크다는 것이 드러났다.
+선행연구가 사용한 8개 데이터셋은 모두 RR-1(Rodent Research-1, 2014년 SpaceX-4)
+소속이며, 나머지 비행 데이터는 RR-7·RR-9·RR-23과 JAXA MHU-1·2·8 등
+서로 다른 5개 이상의 미션에 흩어져 있다.</p>
+
+<p>다만 이 두 묶음은 <b>미션과 조직이 함께 다르다.</b>
+RR-1 8건은 근육 5종과 간·부신·신장이고, 나머지 8건은 가자미근 2건을 제외하면
+비장·망막·등쪽피부다. 겹치는 조직은 가자미근 하나뿐이다.
+따라서 두 묶음의 차이를 미션 효과로 귀속할 수 없다. 층별로 나누어 제시한다.</p>
 
 <table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
 <tr>
@@ -175,29 +183,43 @@
   <td colspan="2" style="border-bottom:1px solid #999; padding:4px 0 2px; text-align:center; font-size:9.5pt; color:#333;">clock 특이 반응 지수 (1.0 = 전체 유전자와 동일)</td>
 </tr>
 <tr>
-  <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0;">구분</td>
+  <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0;">층</td>
   <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">데이터셋 수</td>
   <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0;">중앙값</td>
   <td style="border-bottom:1px solid #000; padding:6px 0;">범위</td>
 </tr>
-<tr><td style="padding:5px 18px 5px 0;">RR-1 비행</td><td style="padding:5px 14px 5px 0;">8</td>
-    <td style="padding:5px 18px 5px 0;"><b>3.11</b></td><td style="padding:5px 0;">1.90–5.28</td></tr>
-<tr><td style="padding:5px 18px 5px 0;">기타 미션 비행</td><td style="padding:5px 14px 5px 0;">8</td>
-    <td style="padding:5px 18px 5px 0;"><b>0.75</b></td><td style="padding:5px 0;">0.53–1.53</td></tr>
-<tr><td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;">지상 HLU</td>
-    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">5</td>
-    <td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;"><b>1.07</b></td>
-    <td style="border-bottom:1px solid #000; padding:5px 0;">0.75–1.38</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">RR-1 (조직 혼합)</td><td style="padding:5px 14px 5px 0;">8</td>
+    <td style="padding:5px 18px 5px 0;">3.11</td><td style="padding:5px 0;">1.90–5.28</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">기타 미션 (조직 혼합)</td><td style="padding:5px 14px 5px 0;">8</td>
+    <td style="padding:5px 18px 5px 0;">0.75</td><td style="padding:5px 0;">0.53–1.53</td></tr>
+<tr><td colspan="4" style="padding:8px 0 2px; font-size:9.5pt; color:#555;">골격근으로 층화</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">RR-1 · 근육</td><td style="padding:5px 14px 5px 0;">5</td>
+    <td style="padding:5px 18px 5px 0;">2.88</td><td style="padding:5px 0;">1.90–4.25</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">기타 미션 · 근육</td><td style="padding:5px 14px 5px 0;">2</td>
+    <td style="padding:5px 18px 5px 0;">1.15</td><td style="padding:5px 0;">0.77–1.53</td></tr>
+<tr><td colspan="4" style="padding:8px 0 2px; font-size:9.5pt; color:#555;">가자미근 — 양쪽에 모두 있는 유일한 조직</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">RR-1 · 가자미근</td><td style="padding:5px 14px 5px 0;">1</td>
+    <td style="padding:5px 18px 5px 0;"><b>1.90</b></td><td style="padding:5px 0;">—</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;">기타 미션 · 가자미근</td>
+    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">2</td>
+    <td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;"><b>1.15</b></td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">0.77–1.53</td></tr>
 </table>
-<p style="font-size:9.5pt; color:#444; margin:-4px 0 14px;">표 4. 미션별 clock 특이 반응 지수.
+<p style="font-size:9.5pt; color:#444; margin:-4px 0 14px;">표 4. 비행 데이터셋의 미션별·조직별 층화.
 표 3과 동일한 지수이며 단위는 없다. 데이터셋 수는 품질 게이트를 통과한 것만 센 값이다.
-RR-1과 그 외 미션의 차이가 비행과 HLU의 차이보다 크다.</p>
+RR-1 8건은 표 3과 동일한 대비 선택 규칙으로 재계산하여 두 묶음의 산출 방식을 일치시켰다.
+참고로 지상 HLU 5건의 중앙값은 1.07(0.75–1.38)이다.</p>
 
-<p>선행연구가 사용한 8개 데이터셋은 모두 RR-1 미션 소속이다.
-다른 미션의 비행 데이터는 중앙값 0.75로 지상 HLU(1.07)보다도 낮으며,
-1.0을 넘는 것은 8건 중 2건뿐이다.
-따라서 비행에서 관측되는 clock 특이 반응은 우주비행 일반의 성질이 아니라
-특정 미션에 강하게 의존하는 값으로 보아야 한다.</p>
+<p>조직을 통제하지 않으면 두 묶음의 비는 4.15배이나, 골격근으로 층화하면 2.51배로 줄어든다.
+차이의 일부가 조직 구성에서 온다는 뜻이다.
+양쪽에 모두 존재하는 유일한 조직인 가자미근에서는 1건 대 2건이며
+범위가 거의 접한다(RR-1 1.90 대 기타 0.77~1.53).
+따라서 <b>미션 효과와 조직 효과를 분리할 수 없으며</b>, 어느 쪽도 단독으로 주장하지 않는다.</p>
+
+<p>확실한 것은 방향이 아니라 폭이다. 비행 데이터셋 16건의 지수는 0.53에서 5.28까지 열 배로
+흩어지는 반면, 비행과 지상 HLU의 중앙값 차이는 그보다 작다.
+즉 <b>어느 데이터셋을 고르는지가 처리를 무엇으로 두는지보다 결과를 크게 좌우한다.</b>
+이것이 공개 데이터로 중력 단독의 효과를 분리할 수 없다고 판단하는 근거다.</p>
 
 <p style="margin:16px 0;"><span style="font-size:10pt; color:#666;">[그림 1 자리]</span><br>
 <b>그림 1.</b> 조직을 맞춘 clock 특이 반응 비교. 각 점은 데이터셋 하나이며 같은 조직 안에서
@@ -290,7 +312,7 @@ Per2는 +0.04(d=0.33)로 재현되지 않는다.
 중력이 시계에 직접 작용한다는 예비 근거가 된다.</p>
 
 <p><b>판정 불가 — 실제 결과.</b> 조직을 매칭한 결과 비교 가능한 4개 조직 중 2곳에서
-방향이 뒤집혔고, 미션 간 변동이 처리 간 차이를 넘어섰다.
+방향이 뒤집혔고, 비행 데이터셋 사이의 변동이 처리 간 차이를 넘어섰다.
 즉 공개 데이터의 분해능이 이 질문에 미치지 못한다.
 그리고 이 결과 자체가 새로운 실험 설계의 필요성을 입증한다.
 어느 경우가 나오더라도 본 연구의 논리가 유지되도록 절차를 설계한 것이 여기서 확인된다.</p>

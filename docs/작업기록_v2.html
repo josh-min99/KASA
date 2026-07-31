@@ -223,4 +223,84 @@ HLU 4개 조직(뇌·망막·비장·등쪽피부)을 대상으로 했다. <b>�
 <p>이에 따라 '근육 한정으로는 신호가 존재할 가능성이 있다'는 서술을 <b>미확정</b>으로 하향하였다.
 근육은 후속 분석의 우선 대상으로만 남긴다.</p>
 
+<hr style="border:none; border-top:1px solid #000; margin:30px 0 22px;">
+
+<p style="font-size:12.5pt; font-weight:bold; margin:0 0 8px;">9. 표 3 재검증과 표 4 조직 매칭 (2026-07-31)</p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(1) 저장소 자료의 오염을 발견하고 복구하였다</p>
+
+<p>표 4의 근거를 확인하는 과정에서 저장소의 데이터셋별 결과 파일이 보고서 본문과
+일치하지 않는 것을 발견하였다. 채택 건수가 13건으로 기록되어 있었으나 보고서는 15건이었고,
+여러 데이터셋에서 선택된 대비가 달랐다. 오염된 쪽은 방사선 조사군, 유전자 결손군,
+궤도 원심분리로 부분 중력을 준 군을 선택하고 있었다. 모두 선택 규칙이 배제해야 하는 조건이다.</p>
+
+<p>원인을 조사하기 위해 현재 스크립트에 현재 자료로 선택 함수를 직접 호출하였다.
+다섯 건 모두 보고서와 동일한 깨끗한 대비를 정확히 선택하였다. 즉 규칙 자체에는 문제가 없다.
+문제의 실행 시점에 원본 파일의 다운로드가 완료되지 않았던 것으로 판단된다.
+같은 실행 기록에 한 데이터셋의 다운로드 실패가 함께 남아 있다.
+파일 선택이 로컬 파일 목록에 의존하므로, 다운로드가 진행 중인 상태에서 실행하면
+결과가 달라질 수 있다. 이는 <b>미해결 위험</b>으로 기록한다.</p>
+
+<p>오염본을 별도 파일로 보존하고 전체를 재실행하였다.
+채택 15건, 채택된 15건의 차등발현 유전자 수와 지수가 보고서 값과 전부 일치하였다.
+<b>표 3의 숫자는 검증되었다.</b></p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(2) 표 4에 표 3과 같은 교락이 있었다</p>
+
+<p>표 4는 RR-1 미션 8건과 그 외 미션 8건을 비교한 표였다. 두 군의 조직 구성을 확인하였다.
+RR-1은 골격근 5종과 간·부신·신장이고, 나머지는 가자미근 2건을 제외하면 비장·망막·등쪽피부다.
+<b>겹치는 조직이 가자미근 하나뿐이다.</b> 이는 앞의 1절에서 전날 결론을 철회한 근거와
+정확히 같은 구조이며, 같은 오류를 표 4에서 반복한 것이다.</p>
+
+<p>또한 '기타 미션'은 단일 미션이 아니라 잔여 범주였다. 원본 메타데이터에서 확인한 결과
+RR-7, RR-9, RR-23과 JAXA의 MHU-1·MHU-2·MHU-8 등 5개 이상의 서로 다른 미션이
+2016년부터 2023년까지 걸쳐 있으며 운영 기관도 둘이다.</p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(3) 층화 결과</p>
+
+<p>먼저 RR-1 8건을 표 3과 동일한 대비 선택 규칙으로 재계산하였다.
+값은 기존 산출과 동일하였으므로, 두 묶음의 산출 방식 차이는 교락 요인이 아니었다.</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0;">층</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">n</td>
+  <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0;">중앙값</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">범위</td>
+</tr>
+<tr><td style="padding:5px 18px 5px 0;">RR-1 (조직 혼합)</td><td style="padding:5px 14px 5px 0;">8</td>
+    <td style="padding:5px 18px 5px 0;">3.114</td><td style="padding:5px 0;">1.899–5.282</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">기타 미션 (조직 혼합)</td><td style="padding:5px 14px 5px 0;">8</td>
+    <td style="padding:5px 18px 5px 0;">0.750</td><td style="padding:5px 0;">0.527–1.529</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">RR-1 · 근육</td><td style="padding:5px 14px 5px 0;">5</td>
+    <td style="padding:5px 18px 5px 0;">2.880</td><td style="padding:5px 0;">1.899–4.254</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">기타 미션 · 근육</td><td style="padding:5px 14px 5px 0;">2</td>
+    <td style="padding:5px 18px 5px 0;">1.148</td><td style="padding:5px 0;">0.766–1.529</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">RR-1 · 가자미근</td><td style="padding:5px 14px 5px 0;">1</td>
+    <td style="padding:5px 18px 5px 0;"><b>1.899</b></td><td style="padding:5px 0;">—</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;">기타 미션 · 가자미근</td>
+    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">2</td>
+    <td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;"><b>1.148</b></td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">0.766–1.529</td></tr>
+</table>
+
+<p>조직을 통제하지 않으면 두 묶음의 비는 4.15배이나 골격근으로 층화하면 2.51배로 줄어든다.
+차이의 일부가 조직 구성에서 온다는 뜻이다. 양쪽에 모두 존재하는 유일한 조직인 가자미근에서는
+1건 대 2건이며 범위가 거의 접한다. 따라서 미션 효과와 조직 효과를 분리할 수 없다.</p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(4) 결론을 방향에서 폭으로 옮겼다</p>
+
+<p>'RR-1과 그 외 미션의 차이'라는 서술은 철회하였다.
+대신 비행 데이터셋 16건의 지수가 0.53에서 5.28까지 열 배로 흩어지며
+그 폭이 비행과 지상 후지현수의 중앙값 차이보다 크다는 사실을 서술한다.
+이 진술은 변동의 원인을 미션과 조직 어느 쪽에도 귀속하지 않으므로 교락의 영향을 받지 않는다.
+공개 데이터로 중력 단독의 효과를 분리할 수 없다는 계획서의 논지는 그대로 유지된다.</p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(5) 이번 작업의 한계</p>
+
+<p>조직이 일치하는 미션 비교는 가자미근 1건 대 2건뿐이므로 확정할 수 없다.
+RR-1에는 비장·망막·등쪽피부 자료가 없고 그 외 미션에는 간·신장·부신 자료가 없어
+현재 보유분으로는 매칭 범위를 넓힐 수 없다.
+원본 파일 선택이 다운로드 상태에 의존하는 문제는 아직 수정하지 않았다.</p>
+
 </div>

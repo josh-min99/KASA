@@ -1,0 +1,155 @@
+﻿python : C:\Users\louis\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\__init__.py:113: RequestsDep
+endencyWarning: urllib3 (2.5.0) or chardet (7.1.0)/charset_normalizer (3.4.2) doesn't match a supported version!
+At line:4 char:1
++ python "src\v2_tissue_matched.py" > "results\v2\rerun_20260731.log" 2 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\louis\...ported version!:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  warnings.warn(
+[비복근] OSD-876 (HLU)
+        I4=1.069 DEG=944 채택=True
+    (Hindlimb Unloaded) v (Normally Loaded Control)
+[비복근] OSD-880 (HLU)
+        I4=1.104 DEG=1159 채택=True
+    (Control & Hindlimb Unloaded) v (Control & Normally Loaded Control)
+[비복근] OSD-101 (FLIGHT)
+        I4=2.631 DEG=242 채택=True
+    (Space Flight) v (Ground Control)
+[비복근] OSD-419 (FLIGHT)
+    신호 없음 (DEG 14 < 30)
+    (Space Flight) v (Ground Control)
+[가자미근] OSD-935 (HLU)
+    대비 불가 (후보 4개 전부 탈락: 배경 불일치 ['corticosterone', 'x-ray radiation'] vs ['Non-treated', 'sham irradiation']; 처리측이 중력 감소 조건 아님; 처리측이 중력 감소 조건 아님)
+[가자미근] OSD-949 (HLU)
+        I4=0.751 DEG=382 채택=True
+    (Control & Female & Hindlimb Unloaded) v (Control & Female & Normally Loaded Control)
+[가자미근] OSD-104 (FLIGHT)
+        I4=1.899 DEG=5002 채택=True
+    (Space Flight) v (Ground Control)
+[가자미근] OSD-714 (FLIGHT)
+        I4=0.766 DEG=7024 채택=True
+    (Mouse Habitat Unit 1 (MHU-1) & Space Flight & uG) v (Mouse Habitat Unit 1 (MHU-1) & Ground Control & 1G o)
+[가자미근] OSD-770 (FLIGHT)
+        I4=1.529 DEG=5899 채택=True
+    (Space Flight) v (Ground Control)
+[비장] OSD-201 (HLU)
+    신호 없음 (DEG 1 < 30)
+    (Hindlimb Unloaded & not tetanus toxoid injected & not Cp) v (Hindlimb Loaded Control & not tetanus toxoid injecte)
+[비장] OSD-211 (HLU)
+    신호 없음 (DEG 7 < 30)
+    (Hindlimb Unloaded & non-irradiated) v (Normally Loaded Control & non-irradiated)
+[비장] OSD-246 (FLIGHT)
+    신호 없음 (DEG 0 < 30)
+    (Space Flight & ~30 day & On Earth & Upon euthanasia) v (Ground Control & ~30 day & On Earth & Upon euthanasi)
+[비장] OSD-288 (FLIGHT)
+        I4=1.209 DEG=95 채택=True
+    (Space Flight & uG) v (Ground Control & 1G on Earth)
+[비장] OSD-506 (FLIGHT)
+        I4=0.636 DEG=501 채택=True
+    (Space Flight) v (Ground Control)
+[망막] OSD-203 (HLU)
+        I4=0.822 DEG=30 채택=True
+    (1 month & non-irradiated & Hindlimb Unloaded) v (1 month & non-irradiated & Normally Loaded Control)
+[망막] OSD-87 (FLIGHT)
+    신호 없음 (DEG 0 < 30)
+    (Space Flight) v (Ground Control)
+[망막] OSD-194 (FLIGHT)
+    신호 없음 (DEG 1 < 30)
+    (Space Flight) v (Ground Control)
+[망막] OSD-255 (FLIGHT)
+        I4=0.581 DEG=362 채택=True
+    (Space Flight) v (Ground Control)
+[망막] OSD-758 (FLIGHT)
+        I4=0.735 DEG=693 채택=True
+    (Space Flight & uG) v (Ground Control & 1G on Earth)
+[등쪽피부] OSD-237 (HLU)
+        I4=1.382 DEG=196 채택=True
+    (Hindlimb Unloaded & non-irradiated) v (Normally Loaded Control & non-irradiated)
+[등쪽피부] OSD-238 (FLIGHT)
+        I4=0.912 DEG=2988 채택=True
+    (Space Flight & uG & JAXA Chow with FOS) v (Ground Control & 1G on Earth & JAXA Chow with FOS)
+[등쪽피부] OSD-240 (FLIGHT)
+    신호 없음 (DEG 23 < 30)
+    (Space Flight) v (Ground Control)
+[등쪽피부] OSD-243 (FLIGHT)
+    신호 없음 (DEG 5 < 30)
+    (Space Flight & ~30 day & On Earth & Upon euthanasia) v (Ground Control & ~30 day & On Earth & Upon euthanasi)
+[등쪽피부] OSD-254 (FLIGHT)
+        I4=0.527 DEG=61 채택=True
+    (C3H/HeJ & Space Flight & ~25 day) v (C3H/HeJ & Ground Control & ~25 day)
+
+====================================================================================================
+데이터셋별 결과
+====================================================================================================
+  조직  OSD_ID     처리    DEG    I4  clock_백분위  Bmal1_log2fc    채택                                           제외사유
+ 비복근 OSD-876    HLU  944.0 1.069     0.5245         0.067  True                                               
+ 비복근 OSD-880    HLU 1159.0 1.104     0.5312        -0.473  True                                               
+ 비복근 OSD-101 FLIGHT  242.0 2.631     0.7636         0.830  True                                               
+ 비복근 OSD-419 FLIGHT   14.0 0.689     0.3950         1.140 False                            신호 없음 (DEG 14 < 30)
+가자미근 OSD-935    HLU    NaN   NaN        NaN           NaN False 대비 불가 (후보 4개 전부 탈락: 배경 불일치 ['corticosterone...
+가자미근 OSD-949    HLU  382.0 0.751     0.4081        -0.142  True                                               
+가자미근 OSD-104 FLIGHT 5002.0 1.899     0.6985         0.475  True                                               
+가자미근 OSD-714 FLIGHT 7024.0 0.766     0.4119         0.040  True                                               
+가자미근 OSD-770 FLIGHT 5899.0 1.529     0.6315         1.384  True                                               
+  비장 OSD-201    HLU    1.0 1.557     0.6207         0.249 False                             신호 없음 (DEG 1 < 30)
+  비장 OSD-211    HLU    7.0 0.633     0.3504        -0.117 False                             신호 없음 (DEG 7 < 30)
+  비장 OSD-246 FLIGHT    0.0 0.379     0.2611         0.023 False                             신호 없음 (DEG 0 < 30)
+  비장 OSD-288 FLIGHT   95.0 1.209     0.5617        -0.238  True                                               
+  비장 OSD-506 FLIGHT  501.0 0.636     0.3549         0.029  True                                               
+  망막 OSD-203    HLU   30.0 0.822     0.4504        -0.058  True                                               
+  망막  OSD-87 FLIGHT    0.0 1.179     0.5668           NaN False                             신호 없음 (DEG 0 < 30)
+  망막 OSD-194 FLIGHT    1.0 0.642     0.3519        -0.023 False                             신호 없음 (DEG 1 < 30)
+  망막 OSD-255 FLIGHT  362.0 0.581     0.3336        -0.080  True                                               
+  망막 OSD-758 FLIGHT  693.0 0.735     0.4031         0.014  True                                               
+등쪽피부 OSD-237    HLU  196.0 1.382     0.6139         0.012  True                                               
+등쪽피부 OSD-238 FLIGHT 2988.0 0.912     0.4714         0.378  True                                               
+등쪽피부 OSD-240 FLIGHT   23.0 1.196     0.5574        -0.042 False                            신호 없음 (DEG 23 < 30)
+등쪽피부 OSD-243 FLIGHT    5.0 0.927     0.4759         0.096 False                             신호 없음 (DEG 5 < 30)
+등쪽피부 OSD-254 FLIGHT   61.0 0.527     0.3322        -0.234  True                                               
+
+채택 15 / 전체 24
+
+====================================================================================================
+조직 내 비교 (FLIGHT vs HLU) — 평균 내지 않고 개별 보고
+====================================================================================================
+
+--- 비복근 ---
+    FLIGHT  OSD-101   I4=2.631  DEG=242.0  clock백분위=0.7636
+    HLU     OSD-876   I4=1.069  DEG=944.0  clock백분위=0.5245
+    HLU     OSD-880   I4=1.104  DEG=1159.0 clock백분위=0.5312
+    → FLIGHT 2.63~2.63 vs HLU 1.07~1.10  [FLIGHT>HLU]
+
+--- 가자미근 ---
+    FLIGHT  OSD-104   I4=1.899  DEG=5002.0 clock백분위=0.6985
+    FLIGHT  OSD-714   I4=0.766  DEG=7024.0 clock백분위=0.4119
+    FLIGHT  OSD-770   I4=1.529  DEG=5899.0 clock백분위=0.6315
+    HLU     OSD-949   I4=0.751  DEG=382.0  clock백분위=0.4081
+    → FLIGHT 0.77~1.90 vs HLU 0.75~0.75  [FLIGHT>HLU]
+
+--- 비장 ---
+    FLIGHT  OSD-288   I4=1.209  DEG=95.0   clock백분위=0.5617
+    FLIGHT  OSD-506   I4=0.636  DEG=501.0  clock백분위=0.3549
+    → 비교 불가 (HLU 없음)
+
+--- 망막 ---
+    FLIGHT  OSD-255   I4=0.581  DEG=362.0  clock백분위=0.3336
+    FLIGHT  OSD-758   I4=0.735  DEG=693.0  clock백분위=0.4031
+    HLU     OSD-203   I4=0.822  DEG=30.0   clock백분위=0.4504
+    → FLIGHT 0.58~0.73 vs HLU 0.82~0.82  [HLU>FLIGHT]
+
+--- 등쪽피부 ---
+    FLIGHT  OSD-238   I4=0.912  DEG=2988.0 clock백분위=0.4714
+    FLIGHT  OSD-254   I4=0.527  DEG=61.0   clock백분위=0.3322
+    HLU     OSD-237   I4=1.382  DEG=196.0  clock백분위=0.6139
+    → FLIGHT 0.53~0.91 vs HLU 1.38~1.38  [HLU>FLIGHT]
+
+====================================================================================================
+  조직  n_FLIGHT  n_HLU  FLIGHT_I4_min  FLIGHT_I4_max  FLIGHT_I4_median  HLU_I4_min  HLU_I4_max  HLU_I4_median            판정
+ 비복근         1      2          2.631          2.631             2.631       1.069       1.104          1.086    FLIGHT>HLU
+가자미근         3      1          0.766          1.899             1.529       0.751       0.751          0.751    FLIGHT>HLU
+  비장         2      0            NaN            NaN               NaN         NaN         NaN            NaN 비교 불가(HLU 없음)
+  망막         2      1          0.581          0.735             0.658       0.822       0.822          0.822    HLU>FLIGHT
+등쪽피부         2      1          0.527          0.912             0.720       1.382       1.382          1.382    HLU>FLIGHT
+
+-> C:\Users\louis\Desktop\kaist\26 여름\KASA\results\v2\tables
