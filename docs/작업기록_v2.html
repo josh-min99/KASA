@@ -149,4 +149,78 @@ HLU 4개 조직(뇌·망막·비장·등쪽피부)을 대상으로 했다. <b>�
     <td style="border-bottom:1px solid #000; padding:5px 0;">덮어쓰지 않고 그대로 보존</td></tr>
 </table>
 
+<hr style="border:none; border-top:1px solid #000; margin:30px 0 22px;">
+
+<p style="font-size:12.5pt; font-weight:bold; margin:0 0 8px;">8. 추가 작업 (2026-07-31) — 앵커 분석 재검토</p>
+
+<p>계획서의 그림 2가 실제로 어떤 역할을 하고 있는지 점검하는 과정에서
+그림의 구성 자체에 문제가 있음을 확인하였다. 수치 계산에는 오류가 없었으나
+표시 방식이 결론을 실제보다 강하게 보이도록 만들고 있었다.</p>
+
+<p><b>유전자 선택이 순환적이었다.</b> 그림 2는 clock 유전자 15개 중 4개만 표시하고 있었고,
+확인 결과 그 4개는 전부 '우주비행에서 신뢰구간이 0을 배제하고 방향이 상향인' 유전자였다.
+0을 배제하는 5개 중 유일하게 하향인 Hlf(−0.215, d=−2.63)만 빠져 있었다.
+즉 '비행은 움직이고 HLU는 움직이지 않는다'는 메시지가
+비행에서 움직인 유전자를 선택해 그린 결과였다.
+더욱이 1단계 재현에서 분석 전에 지정한 Per2는 +0.04(d=0.33)로 재현되지 않는데
+그림에 포함되어 있지 않았다.</p>
+
+<p><b>기준선 차이가 효과보다 컸다.</b> 이전 그림은 절대 발현량을 표시하였는데,
+두 실험 arm의 기준선 차이(Arntl 0.49)가 주장하는 효과(0.46)보다 크다.
+캡션에서 무시하라고 지시한 세로 간격이 그림에서 가장 눈에 띄는 요소였다.</p>
+
+<p><b>재계산 결과 — 유의한 개수는 처리가 아니라 분산이 정한다.</b>
+유전자 선택 없이 15개 전부를 네 대비에 적용하였다.</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 16px 6px 0;">대비</td>
+  <td style="border-bottom:1px solid #000; padding:6px 16px 6px 0;">|차이| 중앙값</td>
+  <td style="border-bottom:1px solid #000; padding:6px 16px 6px 0;">신뢰구간 폭</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">CI가 0 배제</td>
+</tr>
+<tr><td style="padding:5px 16px 5px 0;">HLU+재하중 vs 정상하중</td>
+    <td style="padding:5px 16px 5px 0;">0.224</td><td style="padding:5px 16px 5px 0;">0.43</td>
+    <td style="padding:5px 0;"><b>8 / 15</b></td></tr>
+<tr><td style="padding:5px 16px 5px 0;">우주비행 vs 지상대조</td>
+    <td style="padding:5px 16px 5px 0;">0.215</td><td style="padding:5px 16px 5px 0;">0.64</td>
+    <td style="padding:5px 0;"><b>5 / 15</b></td></tr>
+<tr><td style="padding:5px 16px 5px 0;">HLU vs 정상하중</td>
+    <td style="padding:5px 16px 5px 0;">0.182</td><td style="padding:5px 16px 5px 0;">0.82</td>
+    <td style="padding:5px 0;">0 / 15</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">HLU+재하중 vs HLU
+    <span style="font-size:9pt; color:#555;">(처리 동일, 희생 시각만 3.5시간 차이)</span></td>
+    <td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">0.138</td>
+    <td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">0.95</td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">0 / 15</td></tr>
+</table>
+
+<p>효과크기 중앙값은 0.138~0.224로 네 대비가 서로 비슷하다.
+그런데 신뢰구간이 0을 배제하는 개수는 8, 5, 0, 0으로 갈리며
+그 순서는 신뢰구간 폭의 역순과 정확히 일치한다.
+군당 n=4~5에서 '유의한 clock 유전자가 몇 개인가'는 처리가 아니라 군내 분산이 정한다는 뜻이다.
+우주비행 5개와 HLU 0개의 차이도 효과크기의 차이가 아니다(0.215 대 0.182).</p>
+
+<p><b>중간 가설 하나는 기각하였다.</b> 8/15라는 값이 3.5시간의 희생 시각 차이 때문이라고
+추정하였으나, 시각 차이만 있는 대비(HLU+재하중 vs HLU)는 0/15이고
+효과크기 중앙값도 0.39로 네 대비 중 가장 작다. 시각이 아니라 분산에 의한 것이다.
+원저자가 HLU+재하중군을 설계한 의도는 원 프로토콜에서 확인하였다
+("unsuspended for 3.5 h ... to match the time between landing and death for the STS-108 mice").</p>
+
+<p><b>조치.</b> 그림 2를 전면 재작성하였다. (A) 유전자 선택 없이 15개 전부를 군간 차이로
+표시하고, (B) 사전 지정 유전자와 탐색 대상을 그림 안에서 구별하며,
+(C) 효과크기와 정밀도를 나란히 제시한다.
+계획서에는 앵커 분석을 별도 절로 분리하고 위 표를 표 5로 추가하였다.</p>
+
+<p><b>앵커 문단의 역할이 바뀌었다.</b> 이전에는 철회된 결론들 뒤에 남은 마지막 양성 근거였고,
+그래서 계획서에 왜 있어야 하는지가 분명하지 않았다. 이제는 다음을 보이는 문단이다.
+조직·배치·미션 교락을 모두 제거한 최선의 조건에서도 무엇이 유의한지를 처리가 아니라
+표본 분산이 정하며, 단일 시점 채취라는 제약 때문에 진폭 변화와 위상 이동을 구별할 수 없다.
+이 두 한계는 데이터를 더 모으거나 더 잘 선택하여 해결되지 않는다.
+웻랩의 정당화가 '다른 요인이 있으니 확인이 필요하다'에서
+'공개 데이터는 원리적으로 이 질문에 답할 수 없다'로 바뀌었다.</p>
+
+<p>이에 따라 '근육 한정으로는 신호가 존재할 가능성이 있다'는 서술을 <b>미확정</b>으로 하향하였다.
+근육은 후속 분석의 우선 대상으로만 남긴다.</p>
+
 </div>
