@@ -225,3 +225,40 @@
     (scratchpad/verify_doc.py — 채택 건수, 층화 중앙값, 표 3 HLU 값,
      앵커 4대비 |차이|와 0배제 개수, 본문 토큰 존재 여부)
   판정: **완료**
+
+[2026-08-02] git push 실패 해결 — SSH 전환 완료
+  증상: git add/commit/log 는 정상인데 push 만 실패. 재부팅으로만 복구.
+
+  원인 규명 (GIT_TRACE 로 확인)
+    git 은 자격증명 헬퍼를 명령 문자열 하나로 만들어 셸에 넘긴다.
+      run_command:   'git credential-manager get'
+      start_command: 'C:/Program Files/Git/usr/bin/sh.exe' -c 'git credential-manager get'
+    문자열에 공백이 있어 항상 sh.exe 를 거친다. 어떤 헬퍼를 써도 '<헬퍼> get'
+    형태라 공백을 피할 수 없다. 그래서 MSYS2 가 불안정해지면 HTTPS push 만 실패한다.
+
+  배제한 원인
+    msys-2.0.dll 중복(1개뿐) / Mandatory ASLR(NOTSET) /
+    fstab 마운트 과다(2항목) / 환경변수 블록 과대(3.5KB)
+
+  미규명
+    MSYS2 가 왜 간헐적으로 죽는지는 확정 못 함. 좀비 프로세스 가설이 있으나
+    (핸들 0·스레드 1 인 bash 발견) 그때도 sh.exe 는 정상이어서 인과 확정 불가.
+    Defender 제외 목록은 관리자 권한이 필요해 미확인.
+    -> 근본 원인 대신 '경로에서 제거' 로 우회했다.
+
+  해결
+    SSH 로 전환. 공백 없는 단일 경로를 core.sshCommand 로 주면 git 이 sh.exe 를
+    거치지 않고 ssh.exe 를 직접 실행한다.
+      git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"
+      git remote set-url origin git@github.com:josh-min99/KARA.git
+    사용자가 id_ed25519.pub 를 GitHub 에 등록.
+
+  검증
+    ssh -T git@github.com -> "Hi josh-min99! You've successfully authenticated"
+    git push --dry-run 추적 -> start_command: C:/Windows/System32/OpenSSH/ssh.exe ...
+    진짜 sh.exe 호출 0 회 (ssh.exe 는 제외하고 셈)
+
+  부수 작업
+    tools/fix-git-push.ps1 — 다른 HTTPS 저장소용 진단/복구 스크립트.
+    PowerShell 5.1 이 ps1 을 BOM 없으면 ANSI 로 읽어 한글이 깨지므로 UTF-8 BOM 으로 저장.
+  판정: **완료 (근본 원인은 미규명, 경로 우회로 해결)**

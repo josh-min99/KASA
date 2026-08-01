@@ -104,26 +104,28 @@ if (Test-Shell) {
     Write-Host "  여전히 실패." -ForegroundColor Red
     Write-Host @"
 
-  이 경우 남은 방법은 두 가지다.
+  이 저장소(KARA)는 2026-08-02 에 SSH 로 전환했으므로 이 오류의 영향을 받지 않는다.
+  아래는 아직 HTTPS 를 쓰는 다른 저장소를 위한 안내다.
 
-  (1) 재부팅 — 지금까지 쓰던 방법. 확실하지만 매번 해야 한다.
+  (1) 재부팅 — 확실하지만 매번 해야 한다.
 
   (2) SSH 로 전환 — push 경로에서 MSYS2 를 완전히 제거한다. 권장.
 
       확인된 사실: 공백 없는 단일 경로를 core.sshCommand 로 주면
       git 이 sh.exe 를 거치지 않고 ssh.exe 를 직접 실행한다.
+      KARA 에서 dry-run 으로 검증한 결과 sh.exe 호출 0 회였다.
 
-        trace: start_command: C:/Windows/System32/OpenSSH/ssh.exe -o SendEnv=...
+        trace: start_command: C:/Windows/System32/OpenSSH/ssh.exe git@github.com 'git-receive-pack ...'
         (sh -c 래핑 없음)
 
       필요한 작업
         a. 공개키를 GitHub 에 등록 (https://github.com/settings/keys)
            키 파일: %USERPROFILE%\.ssh\id_ed25519.pub
-           이 키에는 암호가 걸려 있지 않아 무인 push 가 가능하다.
+           (이 키는 등록 완료. 암호가 없어 무인 push 가 가능하다)
 
         b. 설정 (a 를 마친 뒤에 실행할 것. 먼저 하면 push 가 아예 막힌다)
-           git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"
-           git remote set-url origin git@github.com:josh-min99/KARA.git
+           git config --global core.sshCommand "C:/Windows/System32/OpenSSH/ssh.exe"   # 전역, 이미 적용됨
+           git remote set-url origin git@github.com:<계정>/<저장소>.git
 
         c. 검증
            C:\Windows\System32\OpenSSH\ssh.exe -T git@github.com
