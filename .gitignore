@@ -9,3 +9,6 @@ Thumbs.db
 
 # 원본 데이터 — 재다운로드 가능(src/s0_download.py). 1.5GB 라 추적하지 않는다.
 data/raw/
+
+# OSDR 전 파일 색인 (20MB). src/v3_r1_osdr_sweep.py 로 재생성된다.
+data/rhythm/osdr_files_index.csv

@@ -1,0 +1,74 @@
+============================================================================================
+R5  웻랩 검정력 — 잡음을 실측 텔레메트리에서 뽑아 계획서 판정 기준으로 검정
+============================================================================================
+
+[1단계] 하루치 데이터로 위상을 얼마나 정확히 찍는가 (실측)
+        Helissen 각 개체의 24시간 창 acrophase 의 개체 내 원형 표준편차
+
+  구간         지표         코호트              개체     위상 SD(h)        평균 진폭
+  baseline   activity   helissen2020      5         0.37       0.1421
+  baseline   activity   helissen2021      5         0.14       0.1567
+  baseline   activity   helissen2022      6         1.11       0.0589
+  baseline   tb_core    helissen2022      6         0.31       0.5517
+  baseline   tb_sub     helissen2020      5         0.29       0.9447
+  baseline   tb_sub     helissen2021      5         0.24       0.8640
+  treatment  activity   helissen2020      5         4.19       0.0103
+  treatment  activity   helissen2021      5         5.22       0.0139
+  treatment  activity   helissen2022      6         4.02       0.0436
+  treatment  tb_core    helissen2022      6         2.77       0.3470
+  treatment  tb_sub     helissen2020      5         4.52       0.2025
+  treatment  tb_sub     helissen2021      5         3.77       0.3360
+
+  주의: 코호트마다 값이 크게 다르다. 하나의 코호트로 지표를 서열화하면 안 된다.
+        아래 검정력은 코호트별로 따로 계산하고 범위로 제시한다.
+
+[baseline 구간 위상 SD 요약 — 지표별 코호트 범위]
+  activity   0.14 ~ 1.11 h   (코호트 3개: helissen2020=0.37, helissen2021=0.14, helissen2022=1.11)
+  tb_core    0.31 ~ 0.31 h   (코호트 1개: helissen2022=0.31)
+  tb_sub     0.24 ~ 0.29 h   (코호트 2개: helissen2020=0.29, helissen2021=0.24)
+
+[마스킹] HLU-on 구간에서 지표가 억제되면 위상 추정 오차가 얼마나 커지는가 (실측)
+
+  지표         코호트             baseline SD      HLU중 SD      배수      진폭비
+  activity   helissen2020           0.37         4.19   11.39    0.072
+  activity   helissen2021           0.14         5.22   37.95    0.089
+  activity   helissen2022           1.11         4.02    3.61    0.741
+  tb_sub     helissen2020           0.29         4.52   15.57    0.214
+  tb_sub     helissen2021           0.24         3.77   15.85    0.389
+  tb_core    helissen2022           0.31         2.77    9.02    0.629
+
+  -> HLU 자체가 지표를 억제하므로, HLU-on 구간에서 잰 위상은 baseline 만큼 정확하지 않다.
+     계획서 가설 1(HLU 중 새 위상 형성)은 이 증폭된 오차 위에서 판정해야 한다.
+
+============================================================================================
+[검정력] 계획서 판정 기준(baseline 회귀선 대 처치 회귀선 절편 차이) 기준
+============================================================================================
+검출하려는 위상 이동 Δφ = 1.0 / 2.0 / 3.0 h,  유의수준 0.05,  양측
+baseline 3일 고정. 처치 구간 일수와 마리수를 격자로 돌린다.
+HLU-on 구간 위상 SD 는 위에서 실측한 증폭배수를 적용한다.
+
+Δφ = 2.0 h 를 검출할 검정력 (baseline 3일, 처치 14일)
+  지표         코호트                 n=4     n=6     n=8    n=10    n=12    n=16
+  tb_core    helissen2022       0.92    1.00    1.00    1.00    1.00    1.00
+  tb_sub     helissen2020       0.59    0.88    0.98    1.00    1.00    1.00
+  tb_sub     helissen2021       0.74    0.97    1.00    1.00    1.00    1.00
+  activity   helissen2020       0.65    0.92    0.99    1.00    1.00    1.00
+  activity   helissen2021       0.48    0.79    0.93    0.98    1.00    1.00
+  activity   helissen2022       0.58    0.87    0.98    0.99    1.00    1.00
+
+검정력 0.8 을 달성하는 최소 마리수 (처치 14일)
+  지표         코호트               dphi=1h    dphi=2h    dphi=3h
+  tb_core    helissen2022            8         4         4
+  tb_sub     helissen2020           16         6         4
+  tb_sub     helissen2021           12         6         4
+  activity   helissen2020           16         6         4
+  activity   helissen2021          >16         8         6
+  activity   helissen2022           16         6         4
+
+============================================================================================
+판독 — 1차 종말점
+============================================================================================
+
+  심부체온     dphi=2h 검출에 필요한 마리수: helissen2022=4
+  피하온도     dphi=2h 검출에 필요한 마리수: helissen2020=6, helissen2021=6
+  활동량      dphi=2h 검출에 필요한 마리수: helissen2020=6, helissen2021=8, helissen2022=6

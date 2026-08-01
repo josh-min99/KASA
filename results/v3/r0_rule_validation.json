@@ -1,0 +1,69 @@
+{
+  "criteria": {
+    "C1": "중력 조건 명시",
+    "C2": "일주기 해상도 >= 하루 4점 이며 24시간에 걸쳐 분포",
+    "C3a": "연속 관측 >= 24h (파라미터 1회 추정)",
+    "C3b": "연속 관측 >= 7일 (위상 추이 추정)",
+    "C4": "개체 식별 가능",
+    "C5": "자기 대조 또는 동시 대조군",
+    "C6": "다운로드 가능 + 라이선스 확인",
+    "C7": "조명 조건 기록"
+  },
+  "fixtures": [
+    {
+      "name": "Helissen 2023 (HLU 마우스 텔레메트리)",
+      "source": "doi:10.57745/QVRW8W",
+      "expect": "PASS",
+      "got": "PASS",
+      "reason": "전 기준 충족",
+      "ok": true,
+      "evidence": "2h bin x 11일 연속, 개체별, 대조 3일/HU 5일/회복 2일, LD 12:12, Etalab 오픈"
+    },
+    {
+      "name": "OSD-681 / LSDS-83 (Fuller HDT 쥐 생체원격)",
+      "source": "OSDR OSD-681",
+      "expect": "REJECT",
+      "got": "REJECT",
+      "reason": "미충족: C2,C3a,C3b,C7",
+      "ok": true,
+      "evidence": "cache 파일 실물 확인: Baseline/Day0/30/60/90/120/150/180 기간 평균 33행뿐"
+    },
+    {
+      "name": "OSD-952 / LSDS-168 (RR-1 ISS 행동 에소그램)",
+      "source": "OSDR OSD-952",
+      "expect": "DIRECTION_ONLY",
+      "got": "DIRECTION_ONLY",
+      "reason": "미충족: C2,C3a,C3b,C4,C5",
+      "ok": true,
+      "evidence": "Day별 Light/Dark 2점뿐(하루 4점 미달), 케이지 단위, 비행 전 baseline 없음. 다만 Dark 0.931 vs Light 0.455 로 명암 대비는 존재"
+    },
+    {
+      "name": "Shimbo 2021 MHU-1 (궤도 uG vs 인공 1g 영상 활동)",
+      "source": "Sci Rep 11:2827",
+      "expect": "DIRECTION_ONLY",
+      "got": "DIRECTION_ONLY",
+      "reason": "미충족: C3a,C3b",
+      "ok": true,
+      "evidence": "시간별 활동비율은 있으나 저장용량 제약으로 AG 2개·MG 2개 영상뿐 -> 24h 연속 없음. 지상대조 주간 32.5% / 야간 63.2% 로 명암 대비는 존재"
+    },
+    {
+      "name": "OSD-595 / LSDS-42 (MVP 초파리, 궤도 uG vs 궤도 1G 원심)",
+      "source": "OSDR OSD-595",
+      "expect": "LEVEL_ONLY",
+      "got": "LEVEL_ONLY",
+      "reason": "24h 커버리지 없음 — 리듬 축 제외, 활동량 수준 축만",
+      "ok": true,
+      "evidence": "16일(mission day 13-28) x 하루 6점 x 11모듈, 결측 0. 같은 habitat 안 두 원심기라 방사선·격리·발사가 양쪽 동일 -> 중력만 분리되는 유일 자료. 그러나 원논문이 '6 videos per day spanned the 12-hr light period' 이고 암기 녹화는 적외선 고장으로 미실시 -> 24h 커버리지 없음"
+    },
+    {
+      "name": "60일 6도 HDBR 심부체온 (BBR2-2 + Cocktail)",
+      "source": "doi:10.6084/m9.figshare.13633790",
+      "expect": "CONDITIONAL",
+      "got": "CONDITIONAL",
+      "reason": "미충족: C3b",
+      "ok": true,
+      "evidence": "3주차·8주차에 각 36시간 연속 기록 -> 24h 충족, 7일 연속은 미충족. acrophase 16.23h -> 16.68h 위상 지연 (자기대조)"
+    }
+  ],
+  "passed": true
+}
