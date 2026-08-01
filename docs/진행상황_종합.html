@@ -1,0 +1,481 @@
+<div style="font-family:'Malgun Gothic','맑은 고딕',serif; font-size:11pt; line-height:1.75; color:#000; max-width:800px;">
+
+<p style="text-align:center; font-size:16pt; font-weight:bold; margin:0 0 4px;">중력을 이용한 circadian rhythm 조절 — 드라이랩 진행상황</p>
+<p style="text-align:center; font-size:10pt; color:#444; margin:0 0 6px;">담당: 조민석 · 작성 2026-08-02 · 대상 기간 2026-07-27 ~ 08-02</p>
+<p style="text-align:center; font-size:9.5pt; color:#666; margin:0 0 30px;">저장소 github.com/josh-min99/KARA · 상세 로그 PROGRESS.md · 기술 보고서 results/v2/REPORT_V2.md</p>
+
+<hr style="border:none; border-top:2px solid #000; margin:0 0 24px;">
+
+<p style="font-size:13pt; font-weight:bold; margin:0 0 10px;">1. 한눈에 보기</p>
+
+<p>NASA 공개 데이터로 '우주비행의 clock gene 변화 중 어디까지가 중력 때문인가'를 검정하려 했다.
+결론부터 적으면 <b>공개 데이터로는 이 질문에 답할 수 없다</b>는 것이 확인되었고,
+그 사실 자체를 웻랩 실험의 근거로 삼는 쪽으로 계획서를 재구성하였다.</p>
+
+<p>작업 과정에서 예비 결론 여섯 건을 철회하였다. 대부분 내가 세운 결론을 내가 검증하다 무너뜨린 것이다.
+이 문서는 무엇을 했고 무엇이 남았는지, 그리고 <b>무엇을 왜 철회했는지</b>를 함께 기록한다.
+철회 내역을 남기는 이유는 같은 유형의 오류가 반복되었기 때문이며,
+심사 과정에서 같은 지적이 나올 경우 이미 검토했음을 보이기 위해서다.</p>
+
+<table style="border-collapse:collapse; margin:16px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0; width:26%;">항목</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">상태</td>
+</tr>
+<tr><td style="padding:5px 18px 5px 0;">확보 데이터</td>
+    <td style="padding:5px 0;">NASA OSDR 마우스 전사체 27건 (원본 보존, 재현 가능)</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">선행연구 재현</td>
+    <td style="padding:5px 0;">성공 — 단 RR-1 미션 내부로 한정됨</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">중력 효과 분리</td>
+    <td style="padding:5px 0;"><b>판정 불가</b> — 데이터셋 간 변동이 처리 간 차이를 넘어섬</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">위상 판정</td>
+    <td style="padding:5px 0;"><b>원리적으로 불가</b> — 27건 중 채취 시각 기록은 2건</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">계획서 반영</td>
+    <td style="padding:5px 0;">2장 나 · 3장 작성 완료 (표 5개, 그림 2개)</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;">철회한 결론</td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">6건 (아래 6절)</td></tr>
+</table>
+
+<hr style="border:none; border-top:1px solid #ccc; margin:26px 0 22px;">
+
+<p style="font-size:13pt; font-weight:bold; margin:0 0 10px;">2. 무엇을 물었는가</p>
+
+<p>선행연구(Life 2020, doi:10.3390/life10090196)는 우주비행 마우스에서 조직 간 clock gene 발현의
+비동기화를 보고하였다. 그러나 우주비행은 미세중력에 더해 우주방사선, 폐쇄환경,
+발사와 착륙 스트레스가 중첩된 복합 조건이다. 관측된 변화 중 어느 만큼이 중력 변화 때문인지는
+그 연구만으로 알 수 없다.</p>
+
+<p>드라이랩의 설계는 단순하다. 지상에서 <b>하중 변화만</b> 부과하는 후지현수(Hindlimb Unloading, HLU)
+데이터와 실제 비행 데이터에 동일한 지표를 적용하여, 비행에서 관측된 반응이 하중 변화만으로
+재현되는지 본다. 재현되지 않는 몫은 비중력 요인에 귀속된다.</p>
+
+<p style="font-size:10pt; color:#555; background:#f7f7f7; padding:10px 14px; margin:12px 0;">
+<b>용어.</b> 후지현수(HLU)는 쥐의 뒷다리를 매달아 체중이 실리지 않게 하는 지상 실험 모델이다.
+우주에서 근육과 뼈에 하중이 걸리지 않는 상태를 지상에서 흉내내는 표준 방법이며,
+방사선이나 폐쇄환경 같은 다른 요인은 개입하지 않는다.
+문서에서 '현수'는 모두 이 조작을 가리킨다.</p>
+
+<hr style="border:none; border-top:1px solid #ccc; margin:26px 0 22px;">
+
+<p style="font-size:13pt; font-weight:bold; margin:0 0 10px;">3. 어떻게 했는가</p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(1) 단계 게이트</p>
+
+<p>앞 단계를 통과하지 못하면 뒤 단계의 수치를 결과로 주장하지 않는 방식으로 진행하였다.
+'신호가 없다'와 '분석이 실패했다'를 구별하기 위한 장치다.
+1단계는 선행연구 재현, 2단계는 알려진 효과를 파이프라인이 검출하는지 확인하는 양성대조,
+3단계는 동일 지표의 HLU 적용, 4단계는 분해와 검정력이다.</p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(2) 대비 선택 규칙</p>
+
+<p>공개 데이터의 실험군에는 유전형, 병용 처치, 주사, 방사선 조사, 성별, 시점이 뒤섞여 있다.
+초기에는 부적합한 조건을 정규식으로 걸러내는 방식을 썼는데,
+이 방식에서 <b>필요한 대비까지 삭제되는 사고가 두 차례 발생했다</b>
+(조사군을 지우려는 <span style="font-family:monospace; font-size:10pt;">irradiat</span> 패턴이
+<span style="font-family:monospace; font-size:10pt;">non-irradiated</span>에도 걸린 경우).</p>
+
+<p>따라서 배제 목록을 버리고, <b>중력 이외의 모든 배경 조건이 처리군과 대조군에서 동일할 것</b>을
+요구하는 규칙으로 전환하였다. 대비 문자열을 성분으로 분해한 뒤 중력 성분과 배경 성분을 나누고,
+배경 성분이 양쪽에서 완전히 일치할 때만 채택한다.
+배경이 일치하는 대비를 구성할 수 없는 데이터셋은 억지로 쓰지 않고 '대비 불가'로 기록하여 제외한다.</p>
+
+<p>실행 전에 22개 사례로 규칙을 역검증하여 오류 두 건을 미리 발견해 수정하였다.
+궤도에서 원심분리로 1G를 복원한 군이 '중력 감소'로 분류되던 문제와,
+'주사하지 않음'이 '주사함'과 같은 점수를 받던 문제다.</p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(3) 핵심 지표</p>
+
+<p>각 데이터셋에서 clock 유전자 |log2FC|의 중앙값을 같은 데이터셋 전체 유전자 |log2FC|의
+중앙값으로 나눈 값을 지표로 사용한다(문서에서 'clock 특이 반응 지수').
+1.0이면 clock 유전자가 전사체 전반과 같은 크기로 반응했다는 뜻이고, 1보다 크면 특이적으로
+크게 반응했다는 뜻이다. 데이터셋 내부에서 자기 정규화되므로
+'그 실험은 원래 신호가 약해서 차이가 난다'는 대안 설명을 배제할 수 있다.</p>
+
+<p>차등발현 유전자(FDR&lt;0.05)가 30개 미만인 데이터셋은 '신호 없음'으로 분류하여 제외하였다.
+신호가 없는 데이터셋의 낮은 지표값을 '효과 없음'으로 오독하지 않기 위한 품질 게이트다.</p>
+
+<hr style="border:none; border-top:1px solid #ccc; margin:26px 0 22px;">
+
+<p style="font-size:13pt; font-weight:bold; margin:0 0 10px;">4. 통계를 읽는 법</p>
+
+<p style="font-size:10pt; color:#555; margin:0 0 14px;">
+계획서 표 5를 읽는 데 필요한 최소한의 내용이다. 통계 배경이 없어도 따라올 수 있도록
+실제 숫자 하나를 처음부터 끝까지 따라간다. 이미 아는 사람은 5절로 건너뛰어도 된다.</p>
+
+<p style="font-weight:bold; margin:16px 0 6px;">(1) 군간 차이</p>
+
+<p>우주비행군 4마리와 지상대조군 4마리에서 잰 Arntl 유전자 발현량이다.</p>
+
+<table style="border-collapse:collapse; margin:10px 0; font-size:10.5pt;">
+<tr><td style="padding:4px 16px 4px 0; width:16%;">우주비행</td>
+    <td style="padding:4px 16px 4px 0; font-family:monospace;">8.350&nbsp; 7.921&nbsp; 7.954&nbsp; 7.793</td>
+    <td style="padding:4px 0;">평균 8.004</td></tr>
+<tr><td style="padding:4px 16px 4px 0;">지상대조</td>
+    <td style="padding:4px 16px 4px 0; font-family:monospace;">7.592&nbsp; 7.403&nbsp; 7.621&nbsp; 7.568</td>
+    <td style="padding:4px 0;">평균 7.546</td></tr>
+<tr><td style="border-top:1px solid #999; padding:6px 16px 4px 0;"><b>군간 차이</b></td>
+    <td colspan="2" style="border-top:1px solid #999; padding:6px 0 4px;"><b>+0.458</b> (log2)</td></tr>
+</table>
+
+<p>단위가 log2인 이유는 증가와 감소를 대칭으로 다루기 위해서다.
+원래 값으로 하면 2배는 +100%, 절반은 &minus;50%로 비대칭이라 평균을 내기 곤란하다.
+log2에서는 +1과 &minus;1이 된다.</p>
+
+<table style="border-collapse:collapse; margin:10px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:5px 20px 5px 0;">log2 값</td>
+  <td style="border-bottom:1px solid #000; padding:5px 0;">실제 배수</td>
+</tr>
+<tr><td style="padding:4px 20px 4px 0;">0.138</td><td style="padding:4px 0;">1.10배 (+10%)</td></tr>
+<tr><td style="padding:4px 20px 4px 0;">0.215</td><td style="padding:4px 0;">1.16배 (+16%)</td></tr>
+<tr><td style="padding:4px 20px 4px 0;">0.458</td><td style="padding:4px 0;">1.37배 (+37%)</td></tr>
+<tr><td style="padding:4px 20px 4px 0;">1.000</td><td style="padding:4px 0;">2배</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:4px 20px 4px 0;">1.585</td>
+    <td style="border-bottom:1px solid #000; padding:4px 0;">3배</td></tr>
+</table>
+
+<p>표 5의 숫자는 유전자 하나의 값이 아니라, <b>15개 유전자 각각의 차이에 절댓값을 씌운 뒤 낸 중앙값</b>이다.
+방향이 섞여 있으므로 절댓값을 쓴다.</p>
+
+<p style="font-weight:bold; margin:16px 0 6px;">(2) 신뢰구간 (= CI, Confidence Interval)</p>
+
+<p>핵심 질문은 '쥐 4마리를 다시 뽑아도 +0.458이 나올까'다. 그 불확실성을 수치화한 것이 신뢰구간이다.</p>
+
+<table style="border-collapse:collapse; margin:10px 0; font-size:10.5pt;">
+<tr><td style="padding:4px 16px 4px 0; width:38%;">군 안에서 개체 간 흩어짐</td>
+    <td style="padding:4px 0;">0.184 &nbsp;<span style="color:#666;">(표준편차)</span></td></tr>
+<tr><td style="padding:4px 16px 4px 0;">평균값 자체의 흔들림</td>
+    <td style="padding:4px 0;">0.184 × √(1/4+1/4) = 0.130 &nbsp;<span style="color:#666;">(표준오차)</span></td></tr>
+<tr><td style="border-top:1px solid #999; padding:6px 16px 4px 0;"><b>95% 신뢰구간</b></td>
+    <td style="border-top:1px solid #999; padding:6px 0 4px;">0.458 ± 2.447 × 0.130 = <b>[+0.140, +0.776]</b></td></tr>
+<tr><td style="padding:4px 16px 4px 0;">폭</td><td style="padding:4px 0;">0.636</td></tr>
+</table>
+
+<p><b>의미.</b> 이 데이터와 모순되지 않는 '진짜 차이'의 범위가 0.140에서 0.776이라는 뜻이다.
+표본 수가 늘면 표준오차가 √n에 반비례해 줄고 구간이 좁아진다.
+<b>구간의 폭이 곧 이 실험의 해상도다.</b></p>
+
+<p style="font-weight:bold; margin:16px 0 6px;">(3) 신뢰구간이 0을 배제한다는 것</p>
+
+<p>구간이 0을 포함하면 '차이가 없다'는 가능성이 남아 있으므로 방향을 주장할 수 없다.
+같은 실험의 세 사례를 비교하면 분명해진다.</p>
+
+<table style="border-collapse:collapse; margin:10px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">사례</td>
+  <td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">차이</td>
+  <td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">신뢰구간</td>
+  <td style="border-bottom:1px solid #000; padding:5px 0;">판정</td>
+</tr>
+<tr><td style="padding:5px 16px 5px 0;">Arntl · 비행</td>
+    <td style="padding:5px 16px 5px 0;">+0.458 (+37%)</td>
+    <td style="padding:5px 16px 5px 0;">[+0.140, +0.776]</td>
+    <td style="padding:5px 0;">0 배제 → <b>증가라고 말할 수 있음</b></td></tr>
+<tr><td style="padding:5px 16px 5px 0;">Cry1 · 비행</td>
+    <td style="padding:5px 16px 5px 0;">&minus;0.066 (&minus;4%)</td>
+    <td style="padding:5px 16px 5px 0;">[&minus;0.428, +0.296]</td>
+    <td style="padding:5px 0;">0 포함 → 판정 보류</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">Arntl · HLU</td>
+    <td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">&minus;0.302 (&minus;19%)</td>
+    <td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">[&minus;0.713, <b>+0.109</b>]</td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">0 포함 → <b>판정 보류</b></td></tr>
+</table>
+
+<p>마지막 줄이 중요하다. <b>19%나 줄었는데도 판정할 수 없다.</b>
+구간이 +0.109까지 걸쳐 있어 '사실은 조금 늘었을 수도 있다'가 배제되지 않기 때문이다.
+군당 5마리로는 19% 변화도 확정할 수 없다는 뜻이며,
+표 5의 <span style="font-family:monospace;">5/15</span> 같은 숫자는 15개 중 몇 개가 이 문턱을 넘었는지를 센 것이다.</p>
+
+<p style="font-weight:bold; margin:16px 0 6px;">(4) 잡음 기대치 대비</p>
+
+<p>여기에 함정이 있다. <b>효과가 진짜로 0이어도 관측된 |차이|는 0이 되지 않는다.</b>
+우연히 한쪽 군에 발현이 높은 개체가 몰리기 때문이다.</p>
+
+<p>확인을 위해 진짜 차이가 0인 두 군(각 5마리)을 2만 번 모의 생성하여 |차이|를 재보았다.
+중앙값은 0.0852였다. 이론값 0.0853과 일치한다.
+즉 아무 일도 일어나지 않아도 이만한 값이 나온다.</p>
+
+<p>따라서 관측값을 볼 때는 <b>같은 조건에서 잡음만으로 기대되는 크기</b>와 비교해야 한다.
+그 비율이 표 5의 '잡음 기대치 대비'다. 1.0이면 관측값이 잡음과 구별되지 않는다는 뜻이다.</p>
+
+<hr style="border:none; border-top:1px solid #ccc; margin:26px 0 22px;">
+
+<p style="font-size:13pt; font-weight:bold; margin:0 0 10px;">5. 결과</p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(1) 1단계 재현 — RR-1 내부에서 성공</p>
+
+<p>분석 전에 판정 기준 세 가지를 확정한 뒤 검정하였다.
+비행 데이터 8개 조직에서 Bmal1이 8/8 조직 상향, Per2가 근육 5/5 조직에서 하향으로 나타났고
+부신과 간에서는 유의한 변화가 없었다(부신 FDR 0.998, 간 0.971).
+선행연구가 보고한 방향과 크기에 모두 일치한다.</p>
+
+<p>다만 이 8개 조직은 모두 RR-1 미션 소속이다. 따라서 재현이 성립하는 범위도 RR-1 내부로 한정된다.
+다른 미션(STS-108)의 데이터에서는 Per2가 재현되지 않으며, 오히려 반대 방향으로 나타난다.
+<b>재현조차 미션에 의존한다</b>는 사실은 뒤의 '판정 불가' 결론의 일부다.</p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(2) 2단계 양성대조 — 조건부 통과</p>
+
+<p>검사한 9개 데이터셋 전부에서 차등발현 유전자가 검출되어(중앙값 1,159개) 파이프라인 무결성은
+확인되었다. 다만 생물학적 마커의 검출 강도는 데이터셋마다 크게 달랐다.
+폐용성 근위축의 급성 마커(Fbxo32, Trim63)는 37일 장기 비행에서 이미 기저 수준으로 회복되어
+검출되지 않았고, 대신 만성 섬유형 전환 마커가 강한 패러다임에서 명확히 나타났다
+(OSD-935 가자미근 HLU: Myh4 +4.40, Myh2 &minus;3.80, Myh7 &minus;1.08, 모두 FDR&lt;0.001).
+따라서 신호가 약한 데이터셋에서의 '무신호'는 해석하지 않았다.</p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(3) 3·4단계 조직 매칭 — 방향이 갈린다</p>
+
+<p>5개 조직 24개 데이터셋에서 대비를 구성하여 15건이 품질 게이트를 통과하였다
+(제외 사유는 신호 없음 8건, 대비 불가 1건).</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 16px 6px 0;">조직</td>
+  <td style="border-bottom:1px solid #000; padding:6px 16px 6px 0;">비행</td>
+  <td style="border-bottom:1px solid #000; padding:6px 16px 6px 0;">HLU</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">방향</td>
+</tr>
+<tr><td style="padding:5px 16px 5px 0;">비복근</td><td style="padding:5px 16px 5px 0;">2.63</td>
+    <td style="padding:5px 16px 5px 0;">1.07, 1.10</td><td style="padding:5px 0;">비행 &gt; HLU</td></tr>
+<tr><td style="padding:5px 16px 5px 0;">가자미근</td><td style="padding:5px 16px 5px 0;">0.77–1.90</td>
+    <td style="padding:5px 16px 5px 0;">0.75</td><td style="padding:5px 0;">비행 ≥ HLU (사실상 접함)</td></tr>
+<tr><td style="padding:5px 16px 5px 0;">비장</td><td style="padding:5px 16px 5px 0;">0.64, 1.21</td>
+    <td style="padding:5px 16px 5px 0;">—</td><td style="padding:5px 0;">비교 불가</td></tr>
+<tr><td style="padding:5px 16px 5px 0;">망막</td><td style="padding:5px 16px 5px 0;">0.58, 0.74</td>
+    <td style="padding:5px 16px 5px 0;">0.82</td><td style="padding:5px 0;"><b>HLU &gt; 비행</b></td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">등쪽피부</td>
+    <td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">0.53, 0.91</td>
+    <td style="border-bottom:1px solid #000; padding:5px 16px 5px 0;">1.38</td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;"><b>HLU &gt; 비행</b></td></tr>
+</table>
+
+<p>비교 가능한 4개 조직 중 2곳에서 방향이 뒤집힌다.
+다만 이 갈림의 원인은 조직으로 확정되지 않는다.
+비행이 높게 나온 두 조직에는 RR-1 데이터셋이 각각 한 건씩 들어 있고,
+방향이 뒤집힌 두 조직에는 RR-1이 한 건도 없다.
+<b>조직을 맞춰도 방향이 갈리며, 그 갈림이 조직 때문인지 미션 때문인지조차 분리되지 않는다.</b></p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(4) 미션 층화 — 미션과 조직을 분리할 수 없다</p>
+
+<p>선행연구가 사용한 8개 데이터셋은 모두 RR-1 소속이고, 나머지 비행 데이터는
+RR-7·RR-9·RR-23과 JAXA MHU-1·2·8 등 5개 이상의 미션에 흩어져 있다.
+그런데 두 묶음은 조직 구성도 다르다. RR-1은 근육 5종과 간·부신·신장이고,
+나머지는 가자미근 2건을 제외하면 비장·망막·등쪽피부다. 겹치는 조직은 가자미근 하나뿐이다.</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0;">층</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">n</td>
+  <td style="border-bottom:1px solid #000; padding:6px 18px 6px 0;">중앙값</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">RR-1 / 기타 비</td>
+</tr>
+<tr><td style="padding:5px 18px 5px 0;">RR-1 (조직 혼합)</td><td style="padding:5px 14px 5px 0;">8</td>
+    <td style="padding:5px 18px 5px 0;">3.11</td>
+    <td rowspan="2" style="padding:5px 0;">4.15배</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">기타 미션 (조직 혼합)</td><td style="padding:5px 14px 5px 0;">8</td>
+    <td style="padding:5px 18px 5px 0;">0.75</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">RR-1 · 근육</td><td style="padding:5px 14px 5px 0;">5</td>
+    <td style="padding:5px 18px 5px 0;">2.88</td>
+    <td rowspan="2" style="padding:5px 0;">2.51배</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">기타 미션 · 근육</td><td style="padding:5px 14px 5px 0;">2</td>
+    <td style="padding:5px 18px 5px 0;">1.15</td></tr>
+<tr><td style="padding:5px 18px 5px 0;">RR-1 · 가자미근</td><td style="padding:5px 14px 5px 0;">1</td>
+    <td style="padding:5px 18px 5px 0;">1.90</td>
+    <td rowspan="2" style="padding:5px 0;">범위 거의 접함</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;">기타 미션 · 가자미근</td>
+    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">2</td>
+    <td style="border-bottom:1px solid #000; padding:5px 18px 5px 0;">1.15</td></tr>
+</table>
+
+<p>조직을 통제하지 않으면 비가 4.15배이나 골격근으로 층화하면 2.51배로 줄고,
+양쪽에 모두 존재하는 유일한 조직인 가자미근에서는 범위가 거의 접한다.
+따라서 미션 효과와 조직 효과를 분리할 수 없으며 어느 쪽도 단독으로 주장하지 않는다.</p>
+
+<p>확실한 것은 방향이 아니라 폭이다. 비행 데이터셋 16건의 지수는 0.53에서 5.28까지 열 배로
+흩어지는 반면, 비행과 지상 HLU의 중앙값 차이는 그보다 작다.
+<b>어느 데이터셋을 고르는지가 처리를 무엇으로 두는지보다 결과를 크게 좌우한다.</b></p>
+
+<p style="font-weight:bold; margin:18px 0 6px;">(5) 앵커 분석 — 최선의 설계에서도 판정 불가</p>
+
+<p>OSD-21(STS-108)은 우주비행·지상대조·HLU·HLU+재하중·정상하중 5군이 한 실험 안에 모두 있는
+유일한 스터디다. 조직이 비복근 하나로 고정되어 조직 교락이 없고, 실험 배치가 같아 배치 교락이 없으며,
+미션이 하나여서 미션 교락도 없다. <b>공개 데이터가 제공할 수 있는 최선의 설계</b>다.
+여기에 clock 유전자 15개 전부를 유전자 선택 없이 적용하였다.</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">대비</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">|차이|<br>중앙값</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">신뢰구간<br>폭</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">잡음 기대치<br>대비</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">0을 배제</td>
+</tr>
+<tr><td style="padding:5px 14px 5px 0;">HLU+재하중 vs 정상하중</td>
+    <td style="padding:5px 14px 5px 0;">0.224</td><td style="padding:5px 14px 5px 0;">0.43</td>
+    <td style="padding:5px 14px 5px 0;"><b>3.53배</b></td><td style="padding:5px 0;"><b>8 / 15</b></td></tr>
+<tr><td style="padding:5px 14px 5px 0;">우주비행 vs 지상대조</td>
+    <td style="padding:5px 14px 5px 0;">0.215</td><td style="padding:5px 14px 5px 0;">0.64</td>
+    <td style="padding:5px 14px 5px 0;"><b>2.45배</b></td><td style="padding:5px 0;"><b>5 / 15</b></td></tr>
+<tr><td style="padding:5px 14px 5px 0;">HLU vs 정상하중</td>
+    <td style="padding:5px 14px 5px 0;">0.182</td><td style="padding:5px 14px 5px 0;">0.82</td>
+    <td style="padding:5px 14px 5px 0;">1.51배</td><td style="padding:5px 0;">0 / 15</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">HLU+재하중 vs HLU</td>
+    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">0.138</td>
+    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">0.95</td>
+    <td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;"><b>0.99배</b></td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">0 / 15</td></tr>
+</table>
+
+<p><b>유의한 개수의 차이가 효과크기로 설명되지 않는다.</b>
+우주비행과 HLU의 |차이| 중앙값은 0.215와 0.182로 차이가 0.033에 불과하다.
+이는 두 대비의 신뢰구간 폭의 4~5% 수준으로, 효과크기 차이 자체가 이 데이터의 해상도 아래에 있다.
+그런데 0을 배제하는 개수는 5 대 0으로 갈린다.
+갈림을 만든 것은 효과의 크기가 아니라 그것을 재는 정밀도다.</p>
+
+<p>더 직접적인 반례도 같은 표에 있다.
+<b>이 스터디에서 clock 신호가 가장 많이 잡힌 대비는 우주비행이 아니라 지상 실험인
+HLU+재하중 vs 정상하중(8개)이다.</b>
+'우주비행이 clock 유전자를 특이적으로 교란한다'는 전제는 이 앵커 안에서 지지되지 않는다.</p>
+
+<p>마지막 행은 0.99배로 잡음과 구별되지 않는다. 이 대비는 원저자가 착륙 후 채취 교란을
+통제하려고 설계한 것인데, 군당 n=5에서는 <b>그 통제가 작동하는지 확인조차 되지 않는다.</b>
+통제군을 설계에 넣어두고도 표본 수가 없으면 소용없다는 뜻이다.</p>
+
+<hr style="border:none; border-top:1px solid #ccc; margin:26px 0 22px;">
+
+<p style="font-size:13pt; font-weight:bold; margin:0 0 10px;">6. 철회한 결론</p>
+
+<p>예비 결론 여섯 건을 철회하였다. 각 항목의 철회 사유와 발견 경위를 적는다.</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0; width:30%;">철회한 주장</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">사유</td>
+</tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">지수 3.11 대 0.78</td>
+    <td style="padding:6px 0;">비행 8건과 HLU 4건의 <b>조직이 하나도 겹치지 않았다.</b> 처리 효과인지 조직 효과인지 구별 불가</td></tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">하중 변화만으로는 재현되지 않는다</td>
+    <td style="padding:6px 0;">위와 동일. 조직을 맞추자 4개 조직 중 2곳에서 방향이 뒤집힘</td></tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">조직쌍 프로파일 상관 0.86 대 &minus;0.20</td>
+    <td style="padding:6px 0;">비행군이 단일 미션이라 상관이 높을 수밖에 없는 구조</td></tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">RR-1 3.11 대 기타 0.75는 미션 효과</td>
+    <td style="padding:6px 0;">두 묶음의 조직 구성이 다름. 근육으로 층화하면 비가 4.15 → 2.51로 감소. <b>같은 유형의 오류를 반복한 것</b></td></tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">근육에서는 중력 효과가 남아 있을 가능성</td>
+    <td style="padding:6px 0;">'미확정'으로 하향. 개수 차이가 효과크기 차이가 아님이 확인됨</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:6px 14px 6px 0; vertical-align:top;">3.5시간 구간이 비행 효과의 64%를 만든다</td>
+    <td style="border-bottom:1px solid #000; padding:6px 0;">관측값 0.138이 <b>잡음 기대치 0.139와 사실상 같음.</b> 비율만 계산하고 잡음 바닥을 확인하지 않았음</td></tr>
+</table>
+
+<p style="font-weight:bold; margin:18px 0 6px;">방법상 발견한 문제와 조치</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0; width:30%;">문제</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">조치</td>
+</tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">정규식이 필요한 대비를 삭제 (2회)</td>
+    <td style="padding:6px 0;">배제 목록 방식을 폐기하고 배경 일치 요구 방식으로 전환. 실행 전 22개 사례로 역검증</td></tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">그림에서 유전자 4개만 표시</td>
+    <td style="padding:6px 0;">그 4개가 전부 '비행에서 유의하고 상향'인 것이었다. 15개 전부 표시로 교체</td></tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">저장소 결과 파일 오염</td>
+    <td style="padding:6px 0;">원본 선택이 다운로드 상태에 의존. 전체 재실행으로 복구하고 표 3 검증 완료. <b>파일 고정은 미조치</b></td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:6px 14px 6px 0; vertical-align:top;">사전 지정 유전자 미보고</td>
+    <td style="border-bottom:1px solid #000; padding:6px 0;">Per2는 분석 전 지정 유전자인데 재현되지 않아 그림에서 빠져 있었다. 사전 지정 여부를 그림에 표시</td></tr>
+</table>
+
+<hr style="border:none; border-top:1px solid #ccc; margin:26px 0 22px;">
+
+<p style="font-size:13pt; font-weight:bold; margin:0 0 10px;">7. 유지되는 결론</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0;">결론</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">근거</td>
+</tr>
+<tr><td style="padding:5px 14px 5px 0;">선행연구 재현 (RR-1 내부)</td>
+    <td style="padding:5px 0;">Bmal1 8/8 상향, Per2 근육 5/5 하향</td></tr>
+<tr><td style="padding:5px 14px 5px 0;">파이프라인 무결성</td>
+    <td style="padding:5px 0;">재실행에서도 24건 중 15건 게이트 통과, 수치 전부 재현</td></tr>
+<tr><td style="padding:5px 14px 5px 0;">단일 유전자 수준 판정 불가</td>
+    <td style="padding:5px 0;">n=4~5에서 19% 변화도 신뢰구간이 0을 포함</td></tr>
+<tr><td style="padding:5px 14px 5px 0;">데이터셋 간 변동 &gt; 처리 간 차이</td>
+    <td style="padding:5px 0;">지수 0.53~5.28. 원인을 귀속하지 않는 진술이므로 교락과 무관</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 14px 5px 0;">위상 판정 불가 → 웻랩 필요</td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">27건 중 채취 시각 기록 2건. 한계가 더 분명해짐</td></tr>
+</table>
+
+<p>논지의 이동은 다음과 같다.</p>
+
+<p style="margin:10px 0 10px 16px; padding-left:14px; border-left:3px solid #ccc; color:#333;">
+비행 &gt; HLU이므로 비중력 요인의 기여가 크다 <span style="color:#888;">(철회)</span><br>
+→ 조직·미션 변동이 커서 판정 불가<br>
+→ <b>교란을 모두 제거한 최선의 설계에서도 표본 분산이 결론을 정하고,
+단일 시점 채취라 진폭과 위상을 구별할 수 없다. 데이터를 더 모으거나 더 잘 골라서 해결되지 않는다.</b></p>
+
+<p>마지막 형태는 자기 증거를 스스로 깎는 구조이므로, 심사에서 '데이터가 부족한 것 아닌가'라는
+지적이 나와도 그것이 곧 본 연구의 주장이 된다.</p>
+
+<hr style="border:none; border-top:1px solid #ccc; margin:26px 0 22px;">
+
+<p style="font-size:13pt; font-weight:bold; margin:0 0 10px;">8. 남은 과제</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0; width:26%;">항목</td>
+  <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0; width:16%;">담당</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">내용</td>
+</tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">출력 유전자 방향 확인</td>
+    <td style="padding:6px 14px 6px 0; vertical-align:top;">생명과학</td>
+    <td style="padding:6px 0;">활성화 축(Arntl·Clock·Npas2)은 모두 양, 출력 유전자(Dbp·Tef·Hlf)는 모두 음이다.
+    이 조합이 진폭 변화보다 위상 이동에 맞는 패턴인지 1차 문헌으로 확인 필요.
+    맞다면 '진폭·위상 구별 불가' 주장에 직접 증거가 붙는다</td></tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">Per1 해석 확인</td>
+    <td style="padding:6px 14px 6px 0; vertical-align:top;">생명과학</td>
+    <td style="padding:6px 0;">Per1이 +1.585로 압도적으로 크다. 글루코코르티코이드 급성 반응이라면
+    재진입 스트레스의 결과일 수 있다. 재하중군의 Per1은 방향이 반대여서 통제 성립이 의심된다</td></tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">permutation 보정</td>
+    <td style="padding:6px 14px 6px 0; vertical-align:top;">조민석</td>
+    <td style="padding:6px 0;">clock 세트와 같은 크기의 유전자 세트를 10,000회 무작위 추출해
+    경험적 유의확률 산출. 표 3·4에 적용. 제출 전 실행 여부 결정 필요</td></tr>
+<tr><td style="padding:6px 14px 6px 0; vertical-align:top;">원본 파일 고정</td>
+    <td style="padding:6px 14px 6px 0; vertical-align:top;">조민석</td>
+    <td style="padding:6px 0;">현재 코드가 '가장 작은 로컬 파일'을 고르므로 다운로드 상태에 따라
+    결과가 달라진다. 재현성 보장을 위해 경로를 고정해야 한다</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:6px 14px 6px 0; vertical-align:top;">분량 조정</td>
+    <td style="border-bottom:1px solid #000; padding:6px 14px 6px 0; vertical-align:top;">팀 전체</td>
+    <td style="border-bottom:1px solid #000; padding:6px 0;">담당 파트만 표 5개 + 그림 2개다. 전체 5페이지 제한을 고려하면
+    표 2는 문장으로 풀 수 있고, 표 3과 그림 1은 내용이 중복되므로 하나만 남기는 편이 낫다</td></tr>
+</table>
+
+<hr style="border:none; border-top:1px solid #ccc; margin:26px 0 22px;">
+
+<p style="font-size:13pt; font-weight:bold; margin:0 0 10px;">9. 산출물</p>
+
+<table style="border-collapse:collapse; margin:12px 0; font-size:10.5pt;">
+<tr>
+  <td style="border-bottom:1px solid #000; padding:6px 22px 6px 0;">경로</td>
+  <td style="border-bottom:1px solid #000; padding:6px 0;">내용</td>
+</tr>
+<tr><td style="padding:5px 22px 5px 0; font-family:monospace; font-size:10pt;">docs/계획서_드라이랩_v2.html</td>
+    <td style="padding:5px 0;">계획서 2장 나 · 3장 (구글 독스 붙여넣기용)</td></tr>
+<tr><td style="padding:5px 22px 5px 0; font-family:monospace; font-size:10pt;">results/v2/figures/</td>
+    <td style="padding:5px 0;">그림 1(조직 매칭), 그림 2(앵커). 흑백 인쇄 가능, 캡션 포함</td></tr>
+<tr><td style="padding:5px 22px 5px 0; font-family:monospace; font-size:10pt;">results/v2/tables/</td>
+    <td style="padding:5px 0;">데이터셋별 수치, 조직별 요약, 미션 층화</td></tr>
+<tr><td style="padding:5px 22px 5px 0; font-family:monospace; font-size:10pt;">results/v2/REPORT_V2.md</td>
+    <td style="padding:5px 0;">기술 보고서 (§1–10). 철회 내역과 근거</td></tr>
+<tr><td style="padding:5px 22px 5px 0; font-family:monospace; font-size:10pt;">src/v2_*.py</td>
+    <td style="padding:5px 0;">재실행 가능한 분석 스크립트 6편</td></tr>
+<tr><td style="padding:5px 22px 5px 0; font-family:monospace; font-size:10pt;">OPEN_QUESTIONS.md</td>
+    <td style="padding:5px 0;">생명과학 확인 요청 2건 (기록란 포함)</td></tr>
+<tr><td style="border-bottom:1px solid #000; padding:5px 22px 5px 0; font-family:monospace; font-size:10pt;">PROGRESS.md</td>
+    <td style="border-bottom:1px solid #000; padding:5px 0;">전체 작업 로그. 실패와 철회 포함</td></tr>
+</table>
+
+<p style="font-size:9.5pt; color:#555; margin-top:24px; border-top:1px solid #ccc; padding-top:12px;">
+본문 수치의 원자료는 <span style="font-family:monospace;">results/v2/tables/</span>에 있다.
+계획서에 인용할 때는 표 파일을 근거로 하는 편이 안전하다.
+분석은 실제 다운로드한 데이터로만 수행하였으며, 합성 데이터나 예시 데이터는 사용하지 않았다.
+음성 결과와 실패는 삭제하지 않고 모두 기록하였다.</p>
+
+</div>
