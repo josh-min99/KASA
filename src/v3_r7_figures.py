@@ -26,6 +26,7 @@ if hasattr(sys.stdout, "reconfigure"):
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data", "rhythm")
 FIG = os.path.join(ROOT, "results", "v3", "figures")
+CAPTIONS = []
 os.makedirs(FIG, exist_ok=True)
 
 for f in ["Malgun Gothic", "NanumGothic", "Gulim"]:
@@ -47,8 +48,8 @@ C_LIGHT = "#c9d6e3"
 
 
 def caption(fig, text, width=118):
-    fig.text(0.01, -0.02, "\n".join(textwrap.wrap(text, width)),
-             fontsize=7.3, va="top", ha="left", color="#333333")
+    """캡션을 이미지에 그리지 않고 모아 두기만 한다. dump_captions() 참조."""
+    CAPTIONS.append(text)
 
 
 # ------------------------------------------------------------------ 그림 A
@@ -100,7 +101,7 @@ def fig_a():
             "일주기를 목적으로 설계된 유일한 비행 실험(Neurolab STS-90)은 NASA 아카이브에 "
             "'No data submitted by PI' 로 기록돼 원자료가 존재하지 않는다.")
     fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "figA_audit.png"))
+    fig.savefig(os.path.join(FIG, "그림1_데이터감사.png"))
     plt.close(fig)
 
 
@@ -165,7 +166,7 @@ def fig_b():
             "배제하는 것은 5개 중 3개(심부 코호트, BBR2, Cocktail)다. 세로 빨간 선은 R3.5 에서 실측한 "
             "잡음 바닥이다. 종·측정방식·기간이 교락돼 있으므로 방향만 주장하고 크기는 주장하지 않는다.")
     fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "figB_concordance.png"))
+    fig.savefig(os.path.join(FIG, "그림2_축별정합성.png"))
     plt.close(fig)
 
 
@@ -213,7 +214,7 @@ def fig_c():
             "(가설 1) 는 원리적으로 판정이 어렵고, HLU 를 제거한 free-run 구간(가설 2) 이 주 판정 "
             "경로가 되어야 한다. 심부체온이 저하 폭이 가장 작다(9.0배).")
     fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "figC_masking.png"))
+    fig.savefig(os.path.join(FIG, "그림3_마스킹.png"))
     plt.close(fig)
 
 
@@ -275,13 +276,28 @@ def fig_d():
             "제시했다. 비행 대비의 잡음 바닥(0.088)을 넘으려면 Δφ >= 0.55 h 여야 하고, 웻랩이 검출할 수 "
             "있는 하한(약 1 h)이 그 위에 있다. 즉 웻랩이 Δφ 를 재 오면 기존 비행 자료의 해석이 닫힌다.")
     fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "figD_design.png"))
+    fig.savefig(os.path.join(FIG, "그림4_설계사양.png"))
     plt.close(fig)
 
 
+def dump_captions():
+    """캡션 원문을 파일로 내보낸다.
+
+    캡션을 이미지에 굽지 않는 이유: 한글 문서에서 그림 크기를 조절하면 이미지에 박힌
+    글씨도 같이 확대·축소되어 본문 글꼴과 어긋난다. 캡션은 문서 본문 텍스트로 두고,
+    여기서는 원문만 내보내 문서와 그림이 어긋나지 않게 한다.
+    """
+    p = os.path.join(FIG, "captions.txt")
+    with open(p, "w", encoding="utf-8") as fh:
+        for i, c in enumerate(CAPTIONS, 1):
+            fh.write("[그림 %d]\n%s\n\n" % (i, c))
+    print("캡션 원문 -> %s" % p)
+
+
 if __name__ == "__main__":
-    fig_a(); print("figA_audit.png")
-    fig_b(); print("figB_concordance.png")
-    fig_c(); print("figC_masking.png")
-    fig_d(); print("figD_design.png")
+    fig_a(); print("그림1_데이터감사.png")
+    fig_b(); print("그림2_축별정합성.png")
+    fig_c(); print("그림3_마스킹.png")
+    fig_d(); print("그림4_설계사양.png")
+    dump_captions()
     print(f"-> {FIG}")

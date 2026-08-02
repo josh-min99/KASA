@@ -12,3 +12,6 @@ data/raw/
 
 # OSDR 전 파일 색인 (20MB). src/v3_r1_osdr_sweep.py 로 재생성된다.
 data/rhythm/osdr_files_index.csv
+
+# 이미지 포함 배포본 (1.3MB). src/v3_build_doc.py 로 재생성된다.
+docs/한글양식_최종_이미지포함.html

@@ -156,7 +156,8 @@ def main():
     for token in ["157,801", "2,593", "633", "6/6", "-49 ~ -80%", "+2.7%",
                   "3.6배에서 38배", "0.55시간", "16,561",
                   "No data submitted by PI", "자유진행(free-run)",
-                  "표 1.", "표 2.", "표 3.", "표 4.", "[그림 E]",
+                  "표 1.", "표 2.", "표 3.", "표 4.",
+                  "그림 1.", "그림 2.", "그림 3.", "그림 4.", "그림 5.",
                   "심부체온 5/6", "2.6배"]:
         chk(f"한글양식 원고에 '{token}' 존재", token in hwp_html, True)
         chk(f"  (txt 판에도) '{token}'", token in hwp_txt, True)
@@ -176,6 +177,21 @@ def main():
     s20 = float(pw[pw.T_hours == 20].min_strength.iloc[0])
     s28 = float(pw[pw.T_hours == 28].min_strength.iloc[0])
     chk("T=28 대 T=20 자극 세기 비", round(s28 / s20, 1), 2.6, 0.05)
+
+    print("\n[그림 첨부 상태]")
+    figs = ["그림1_데이터감사.png", "그림2_축별정합성.png", "그림3_마스킹.png",
+            "그림4_설계사양.png", "그림5_웻랩예상결과.png"]
+    figdir = os.path.join(RES, "figures")
+    for f in figs:
+        chk(f"{f} 존재", os.path.exists(os.path.join(figdir, f)), True)
+        chk(f"  본문에 삽입됨", f in hwp_html, True)
+    built = os.path.join(DOCS, "한글양식_최종_이미지포함.html")
+    chk("이미지 포함 배포본 존재", os.path.exists(built), True)
+    if os.path.exists(built):
+        b = open(built, encoding="utf-8").read()
+        chk("  배포본에 그림이 base64 로 박혀 있음",
+            b.count("data:image/png;base64,"), len(figs))
+        chk("  배포본에 남은 상대경로 없음", ".png\"" in b, False)
 
     print("\n[리듬 유지 개체 수 — 심부체온 대 활동량]")
     for ds, var, want_keep, want_tot in [("helissen2022", "tb_core", 5, 6),

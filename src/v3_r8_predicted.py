@@ -20,7 +20,7 @@ R8: 웻랩 예상 결과 시뮬레이션 그림.
   두 시나리오는 HLU 구간에서 관측이 거의 같다. HLU 를 제거해야 갈라진다.
   이것이 free-run 구간을 주 판정 경로로 두는 이유이며, 그림의 핵심 메시지다.
 
-산출: results/v3/figures/figE_predicted_wetlab.png
+산출: results/v3/figures/그림5_웻랩예상결과.png
       data/rhythm/predicted_wetlab.csv
 """
 import os
@@ -221,11 +221,13 @@ def main():
            "검출 가능하다. 오른쪽 패널은 본 연구의 진동자 모델이 산출한 동조 가능 영역으로, 같은 자극 세기라도 "
            "T = 28 h(14시간 on/off)가 T = 20 h(10시간 on/off)보다 2.6배 강한 자극을 요구한다. "
            "즉 세 군의 난이도가 대칭이 아니다.")
-    fig.text(0.01, -0.03, "\n".join(textwrap.wrap(cap, 168)),
-             fontsize=7.3, va="top", ha="left", color="#333333")
+    # 캡션은 이미지에 굽지 않는다. 한글에서 그림 크기를 조절하면 이미지에 박힌 글씨도
+    # 같이 확대·축소되어 본문 글꼴과 어긋나기 때문이다. 원문만 파일로 내보낸다.
+    with open(os.path.join(FIG, "caption_fig5.txt"), "w", encoding="utf-8") as fh:
+        fh.write(cap + "\n")
 
     fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "figE_predicted_wetlab.png"))
+    fig.savefig(os.path.join(FIG, "그림5_웻랩예상결과.png"))
     plt.close(fig)
 
     df = pd.DataFrame(rows)
@@ -241,7 +243,7 @@ def main():
     print("\n=== 군별 예상 판정 간격 ===")
     print(df[["T_hours", "gap_h", "sem_free", "detectable", "min_strength"]]
           .round(3).to_string(index=False))
-    print(f"\n-> {FIG}/figE_predicted_wetlab.png, {DATA}/predicted_wetlab.csv")
+    print(f"\n-> {FIG}/그림5_웻랩예상결과.png, {DATA}/predicted_wetlab.csv")
 
 
 if __name__ == "__main__":

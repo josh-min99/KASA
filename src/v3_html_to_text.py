@@ -58,6 +58,10 @@ class Conv(HTMLParser):
             self.in_cell, self.cell = True, []
         elif tag == "br":
             (self.cell if self.in_cell else self.buf).append(" ")
+        elif tag == "img":
+            src = dict(attrs).get("src", "")
+            self.flush()
+            self.out.append("  [여기에 그림 삽입 : %s]" % os.path.basename(src))
         elif tag == "hr":
             self.flush()
             self.out.append("\n" + "-" * 71)
