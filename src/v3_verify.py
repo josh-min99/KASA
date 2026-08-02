@@ -153,9 +153,11 @@ def main():
                     encoding="utf-8").read()
     hwp_txt = open(os.path.join(DOCS, "한글양식_2_연구방법_3_예상결과.txt"),
                    encoding="utf-8").read()
+    # 압축 과정에서 뺀 문구는 여기서 빠져 있어야 한다.
+    #   'No data submitted by PI' (Neurolab 감사 결과) — 데이터 조사 절을 탐색 범위만 남기며 삭제
+    #   '그림 1.' '그림 2.'                            — 캡션을 이미지 안으로 넣어 본문에 없다
     for token in ["157,801", "2,593", "633", "3.6~38배", "0.55시간",
-                  "No data submitted by PI", "자유진행(free-run)",
-                  "표 1.", "표 2.", "그림 1.", "그림 2.",
+                  "자유진행(free-run)", "표 1.", "표 2.",
                   "절편 검정", "기울기 검정", "(T − 24)시간씩 이동"]:
         chk(f"한글양식 원고에 '{token}' 존재", token in hwp_html, True)
         chk(f"  (txt 판에도) '{token}'", token in hwp_txt, True)
