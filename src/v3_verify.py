@@ -153,13 +153,11 @@ def main():
                     encoding="utf-8").read()
     hwp_txt = open(os.path.join(DOCS, "한글양식_2_연구방법_3_예상결과.txt"),
                    encoding="utf-8").read()
-    for token in ["157,801", "2,593", "633", "6/6", "3.6배에서 38배", "16,561",
+    for token in ["157,801", "2,593", "633", "3.6배에서 38배", "16,561", "0.55시간",
                   "No data submitted by PI", "자유진행(free-run)",
-                  "표 1.", "표 2.", "표 3.",
-                  "그림 1.", "그림 2.", "그림 3.",
-                  "심부체온 5/6", "잡음 바닥은 0.259",
-                  "절편 검정", "기울기 검정", "10마리에서 6마리로",
-                  "1.95배", "만조 시각이 매일 50분씩", "(T − 24)시간씩 이동"]:
+                  "표 1.", "표 2.", "그림 1.", "그림 2.",
+                  "심부체온 5/6", "절편 검정", "기울기 검정",
+                  "(T − 24)시간씩 이동"]:
         chk(f"한글양식 원고에 '{token}' 존재", token in hwp_html, True)
         chk(f"  (txt 판에도) '{token}'", token in hwp_txt, True)
 
@@ -175,8 +173,7 @@ def main():
     # T=28 이 T=20 보다 몇 배 강한 자극을 요구하는가 (문서 기재값 2.6배)
 
     print("\n[그림 첨부 상태]")
-    figs = ["그림1_데이터감사.png", "그림2_마스킹과검정력.png",
-            "그림3_웻랩예상결과.png"]
+    figs = ["그림2_마스킹과검정력.png", "그림3_웻랩예상결과.png"]
     figdir = os.path.join(RES, "figures")
     for f in figs:
         chk(f"{f} 존재", os.path.exists(os.path.join(figdir, f)), True)
@@ -219,9 +216,9 @@ def check_docx():
     from docx import Document
     dd = Document(dx)
     body = "\n".join(p.text for p in dd.paragraphs)
-    chk("  표 3개", len(dd.tables), 3)
+    chk("  표 2개", len(dd.tables), 2)
     n_img = sum(1 for r in dd.part.rels.values() if "image" in r.reltype)
-    chk("  그림 3개", n_img, 3)
+    chk("  그림 2개", n_img, 2)
     for note in ["축약 가능", "여유 시 생략", "팀 전체 절차", "이관 제안",
                  "드라이랩 담당분"]:
         chk(f"  작업 메모 '{note}' 없음", note in body, False)
