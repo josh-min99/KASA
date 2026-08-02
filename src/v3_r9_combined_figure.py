@@ -84,7 +84,7 @@ def panel_wetlab(ax, T, title, sd_b, sd_t, sd_r, show_y):
     #   인가 중 구간은 관측되지 않는 값이므로 흐리게 둔다.
     hidden = (PHI0 + (TAU - 24.0) * d) % 24
     seg_plot(d[:h_end + 1], hidden[:h_end + 1], ls="--", color=C_MASK, lw=1.8,
-             alpha=0.45)
+             alpha=0.45, label="  (인가 중 · 미관측)")
     seg_plot(d[h_end:], hidden[h_end:], ls="--", color=C_MASK, lw=3.0,
              label="마스킹 예측")
 
@@ -104,6 +104,8 @@ def panel_wetlab(ax, T, title, sd_b, sd_t, sd_r, show_y):
 
     # 간격 수치를 화살표 옆에 두면 패널마다 위치가 달라 데이터와 겹친다(초판 문제).
     # 제목 둘째 줄로 올려 고정한다.
+    # 표준오차 대비 배수(7.1 / 6.4 / 20.0)는 넣지 않는다. 패널 폭에 안 들어가고,
+    # 본문에 '표준오차의 6.4~20배' 로 범위가 이미 적혀 있다. 이걸로 표 2 를 없앴다.
     ax.set_title(f"{title}\n판정 간격 {abs(gap):.1f} h", fontsize=TITLE,
                  loc="left", pad=3, linespacing=1.25)
     ax.set_xlabel("실험 일수")
@@ -127,19 +129,22 @@ def panel_inverse(ax):
     ax.plot(fw.dphi, fw["med"], "-", color=C_GROUND, lw=3.0)
     ax.fill_between(fw.dphi, fw.q25, fw.q75, color=C_GROUND, alpha=0.15, lw=0)
     ax.axhline(0.088, color=C_FLIGHT, lw=2.0, ls="--")
-    ax.text(11.8, 0.115, "잡음 바닥 0.088", ha="right", va="bottom",
-            fontsize=ANNO, color=C_FLIGHT)
     ax.axhline(0.215, color="#333333", lw=1.6)
-    ax.text(11.8, 0.245, "비행 실측 0.215", ha="right", va="bottom",
+    # 두 선 사이 간격(0.127)이 글자 높이보다 좁다. 선 옆에 붙이면 반드시 겹치므로
+    # 곡선 아래 빈 영역에 띄워 둔다.
+    ax.text(11.8, 0.50, "비행 실측 0.215", ha="right", va="bottom",
             fontsize=ANNO, color="#333333")
+    ax.text(11.8, 0.30, "잡음 바닥 0.088", ha="right", va="bottom",
+            fontsize=ANNO, color=C_FLIGHT)
     ax.axvspan(1.0, 12, color="#8fb14a", alpha=0.10, lw=0)
     ax.text(1.5, 1.42, "웻랩 검출 가능 (1 h 이상)", fontsize=ANNO, color="#4a7020")
     ax.plot([0.55, 0.55], [0, 0.088], ls=":", color=C_FLIGHT, lw=1.8)
-    ax.annotate("0.55 h", xy=(0.55, 0.088), xytext=(2.1, 0.42),
+    ax.annotate("0.55 h", xy=(0.55, 0.088), xytext=(0.9, 0.62),
                 fontsize=ANNO, color=C_FLIGHT,
                 arrowprops=dict(arrowstyle="-", color=C_FLIGHT, lw=1.2))
-    ax.set_title("비행 자료가 해석되는 하한\n0.55 h — 웻랩 하한 1 h 와 겹침",
-                 fontsize=TITLE, loc="left", pad=3, linespacing=1.25)
+    # 본문에 '0.55시간과 1시간이 겹친다' 가 그대로 있어 제목에서는 뺀다.
+    ax.set_title("위상 이동 Δφ 대\n단일 시점 발현 변화", fontsize=TITLE,
+                 loc="left", pad=3, linespacing=1.25)
     ax.set_xlabel("위상 이동 Δφ (h)")
     ax.set_ylabel("clock |log2FC|")
     ax.set_xlim(0, 12)
@@ -152,10 +157,10 @@ def main():
     sd_b, sd_t, sd_r = phase_sd_by_phase()
     print(f"실측 위상 오차(심부체온): 전 {sd_b:.2f} / 중 {sd_t:.2f} / 후 {sd_r:.2f} h")
 
-    fig = plt.figure(figsize=(13.6, 4.0))
+    fig = plt.figure(figsize=(13.6, 3.6))
     # 4열 사이에 빈 열을 하나 넣어 그림 1 묶음과 그림 2 를 눈으로 갈라 놓는다.
     gs = fig.add_gridspec(1, 5, width_ratios=[1, 1, 1, 0.22, 1.30], wspace=0.20,
-                          left=0.048, right=0.995, top=0.735, bottom=0.155)
+                          left=0.048, right=0.995, top=0.715, bottom=0.150)
     axes = [fig.add_subplot(gs[0, i]) for i in (0, 1, 2, 4)]
 
     groups = [(24, "12시간 on/off (T = 24 h)"),
@@ -167,10 +172,10 @@ def main():
 
     # 그림 번호는 본문에서 '그림 1', '그림 2' 로 부르므로 묶음 위에 크게 붙인다.
     p0, p2, p3 = (a.get_position() for a in (axes[0], axes[2], axes[3]))
-    fig.text((p0.x0 + p2.x1) / 2, 0.955, "그림 1.  웻랩 시뮬레이션 결과",
-             ha="center", va="top", fontsize=20, fontweight="bold")
-    fig.text((p3.x0 + p3.x1) / 2, 0.955, "그림 2.  역문제",
-             ha="center", va="top", fontsize=20, fontweight="bold")
+    fig.text((p0.x0 + p2.x1) / 2, 0.988, "그림 1.  웻랩 시뮬레이션 결과",
+             ha="center", va="top", fontsize=18, fontweight="bold")
+    fig.text((p3.x0 + p3.x1) / 2, 0.988, "그림 2.  역문제",
+             ha="center", va="top", fontsize=18, fontweight="bold")
 
     out = os.path.join(FIG, "그림_통합.png")
     fig.savefig(out)

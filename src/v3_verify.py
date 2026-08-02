@@ -157,8 +157,9 @@ def main():
     #   'No data submitted by PI' (Neurolab 감사 결과) — 데이터 조사 절을 탐색 범위만 남기며 삭제
     #   '3.6~38배'  (마스킹으로 인한 위상 오차 증가) — 사용자 요청으로 삭제.
     #               free-run 이 판정 구간이라는 결론만 표 2 캡션에 남겼다.
+    #   '표 2.' (군별 예상 판정 간격) — 같은 수치가 그림 1 패널 제목에 있어 표를 없앴다
     for token in ["157,801", "2,593", "633", "0.55시간",
-                  "자유진행(free-run)", "표 1.", "표 2.", "그림 1.", "그림 2.",
+                  "자유진행(free-run)", "표 1.", "그림 1.", "그림 2.",
                   "절편 검정", "기울기 검정", "(T − 24)시간씩 이동"]:
         chk(f"한글양식 원고에 '{token}' 존재", token in hwp_html, True)
         chk(f"  (txt 판에도) '{token}'", token in hwp_txt, True)
@@ -220,7 +221,7 @@ def check_docx():
     from docx import Document
     dd = Document(dx)
     body = "\n".join(p.text for p in dd.paragraphs)
-    chk("  표 2개", len(dd.tables), 2)
+    chk("  표 1개(표 2 는 그림 1 제목으로 흡수)", len(dd.tables), 1)
     n_img = sum(1 for r in dd.part.rels.values() if "image" in r.reltype)
     chk("  그림 1개(그림 1·2 합본)", n_img, 1)
     for note in ["축약 가능", "여유 시 생략", "팀 전체 절차", "이관 제안",

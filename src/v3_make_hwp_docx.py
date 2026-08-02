@@ -80,14 +80,14 @@ def set_font(run, name, size, bold=False, color=None):
 
 
 def body_para(doc, text, indent_cm=0.0, size=SZ_BODY, font=F_BODY,
-              space_after=2, bold_spans=None):
+              space_after=2, bold_spans=None, space_before=0):
     p = doc.add_paragraph()
     pf = p.paragraph_format
     pf.left_indent = Cm(indent_cm)
     pf.line_spacing_rule = WD_LINE_SPACING.MULTIPLE
     pf.line_spacing = 1.6                     # 줄간격 160%
     pf.space_after = Pt(space_after)
-    pf.space_before = Pt(0)
+    pf.space_before = Pt(space_before)
     for seg, is_bold in (bold_spans or [(text, False)]):
         set_font(p.add_run(seg), font, size, bold=is_bold)
     return p
@@ -209,9 +209,10 @@ class Doc(HTMLParser):
         spans = [(t, b) for t, b in spans if t]
 
         if norm.startswith("2 ") or norm.startswith("3 "):     # 절 제목
-            body_para(self.doc, "", size=SZ_HEAD)
+            # 앞에 빈 문단을 넣으면 14pt x 160% = 0.79cm 를 통째로 쓴다.
+            # 문단 위 간격으로 바꿔 같은 시각 효과를 1/3 값으로 낸다.
             body_para(self.doc, norm, font=F_HEAD, size=SZ_HEAD,
-                      bold_spans=[(norm, True)], space_after=6)
+                      bold_spans=[(norm, True)], space_after=6, space_before=8)
         elif norm.startswith("□"):
             body_para(self.doc, norm, font=F_HEAD, size=SZ_HEAD,
                       bold_spans=[(norm, True)], space_after=4)
@@ -221,7 +222,12 @@ class Doc(HTMLParser):
             body_para(self.doc, norm, indent_cm=0.7, bold_spans=spans, space_after=2)
         elif norm.startswith("※"):
             body_para(self.doc, norm, indent_cm=0.7, size=SZ_CAP, bold_spans=spans)
-        elif norm.startswith("[") or norm.startswith("그림"):
+        elif norm.startswith("표 ") or norm.startswith("그림 "):
+            # 표·그림 캡션. 이 분기가 없으면 '표 ...' 는 본문 취급(14pt), '그림 ...' 은
+            # SZ_CAP(12pt) 로 나가 HTML 에 적어 둔 9pt 가 무시되고 두 줄로 접힌다.
+            body_para(self.doc, norm, indent_cm=0.7, size=9, bold_spans=spans,
+                      space_after=2)
+        elif norm.startswith("["):
             body_para(self.doc, norm, indent_cm=0.7, size=SZ_CAP, bold_spans=spans,
                       space_after=8)
         else:
@@ -234,8 +240,8 @@ class Doc(HTMLParser):
             return
         p = self.doc.add_paragraph()
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        p.paragraph_format.space_before = Pt(6)
-        p.paragraph_format.space_after = Pt(2)
+        p.paragraph_format.space_before = Pt(2)
+        p.paragraph_format.space_after = Pt(1)
         # HTML 의 max-width 를 폭 비율로 삼는다(600px = FIG_WIDTH_CM)
         w = FIG_WIDTH_CM * px / 600.0
         p.add_run().add_picture(path, width=Cm(w))
@@ -258,7 +264,10 @@ class Doc(HTMLParser):
                 para.paragraph_format.space_after = Pt(0)
                 para.paragraph_format.line_spacing = 1.15
                 set_font(para.add_run(txt), F_BODY, 9, bold=(bold or i == 0))
-        self.doc.add_paragraph().paragraph_format.space_after = Pt(4)
+        # 표 뒤 빈 문단은 기본 11pt 라 0.5cm 를 먹는다. 간격만 남기고 줄인다.
+        gap = self.doc.add_paragraph()
+        gap.paragraph_format.space_after = Pt(2)
+        set_font(gap.add_run(""), F_BODY, 4)
 
 
 def main():
