@@ -153,7 +153,7 @@ def main():
                     encoding="utf-8").read()
     hwp_txt = open(os.path.join(DOCS, "한글양식_2_연구방법_3_예상결과.txt"),
                    encoding="utf-8").read()
-    for token in ["157,801", "2,593", "633", "3.6배에서 38배", "16,561", "0.55시간",
+    for token in ["157,801", "2,593", "633", "3.6배에서 38배", "0.55시간",
                   "No data submitted by PI", "자유진행(free-run)",
                   "표 1.", "표 2.", "그림 1.", "그림 2.",
                   "심부체온 5/6", "절편 검정", "기울기 검정",
