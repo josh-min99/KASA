@@ -297,10 +297,83 @@ def dump_captions():
     print("캡션 원문 -> %s" % p)
 
 
+# ------------------------------------------------- 그림 2 (마스킹 + 검정력 합본)
+def fig_masking_power():
+    """계획서 축약본용. 그림 C(마스킹)와 그림 D-A(검정력)를 한 장으로 합친다.
+
+    5단계(진동자 모델)와 예상결과 (2)(5)를 계획서에서 뺐으므로, 남은 그림은
+    데이터 감사 / 마스킹+검정력 / 웻랩 예상결과 세 장이다.
+    """
+    pr = pd.read_csv(os.path.join(DATA, "phase_precision.csv"))
+    g = pd.read_csv(os.path.join(DATA, "power_regression.csv"))
+    varlab = {"tb_core": "심부체온", "tb_sub": "피하온도", "activity": "활동량"}
+
+    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(11.4, 4.2),
+                                  gridspec_kw={"width_ratios": [1.15, 1.0]})
+
+    # (A) 마스킹
+    s = (pr[pr.condition.isin(["baseline", "treatment"])]
+         .groupby(["variable", "dataset", "condition"]).phase_sd_h.median().reset_index())
+    xs, labels, i = [], [], 0
+    for v in ["tb_core", "tb_sub", "activity"]:
+        for ds in sorted(s[s.variable == v].dataset.unique()):
+            b = s[(s.variable == v) & (s.dataset == ds) & (s.condition == "baseline")]
+            t = s[(s.variable == v) & (s.dataset == ds) & (s.condition == "treatment")]
+            if not len(b) or not len(t):
+                continue
+            bv, tv = float(b.phase_sd_h.iloc[0]), float(t.phase_sd_h.iloc[0])
+            ax.plot([i, i], [bv, tv], color="#999999", lw=1.0, zorder=1)
+            ax.scatter([i], [bv], color=C_GROUND, s=40, zorder=3)
+            ax.scatter([i], [tv], color=C_FLIGHT, s=40, marker="s", zorder=3)
+            ax.annotate(f"x{tv/bv:.0f}", (i, tv), textcoords="offset points",
+                        xytext=(8, 0), fontsize=7.4, color=C_FLIGHT, va="center")
+            xs.append(i)
+            labels.append(varlab[v] + "\n" + ds.replace("helissen", ""))
+            i += 1
+    ax.set_xticks(xs); ax.set_xticklabels(labels, fontsize=7.6)
+    ax.set_ylabel("하루치 데이터의 위상 추정 표준편차 (h)")
+    ax.set_ylim(0, 6.2)
+    ax.scatter([], [], color=C_GROUND, s=40, label="후지현수 전")
+    ax.scatter([], [], color=C_FLIGHT, s=40, marker="s", label="후지현수 중")
+    ax.legend(loc="upper left", frameon=False)
+    ax.set_title("(A) 후지현수 중 위상 추정 정밀도가 나빠진다", fontsize=10.5, loc="left")
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
+
+    # (B) 검정력
+    style = {"tb_core": ("-", C_FLIGHT), "tb_sub": ("--", C_GROUND), "activity": (":", C_GREY)}
+    sub = g[(g.dphi == 2.0) & (g.T_hours == 24) & (g.n_days_base == 3)]
+    for v in ["tb_core", "tb_sub", "activity"]:
+        d = (sub[sub.variable == v].groupby("n_animals")
+             .power_intercept.agg(["min", "max", "mean"]))
+        ls, c = style[v]
+        ax2.plot(d.index, d["mean"], ls, color=c, lw=1.8, label=varlab[v])
+        ax2.fill_between(d.index, d["min"], d["max"], color=c, alpha=0.13, lw=0)
+    ax2.axhline(0.8, color="#555555", lw=0.9, ls="-.")
+    ax2.text(24, 0.815, "검정력 0.8", ha="right", fontsize=7.8, color="#555555")
+    ax2.set_xlabel("군당 마리 수")
+    ax2.set_ylabel("검정력")
+    ax2.set_ylim(0.1, 1.03)
+    ax2.legend(loc="lower right", frameon=False)
+    ax2.set_title("(B) 절편 검정으로 위상 이동 2 h 검출", fontsize=10.5, loc="left")
+    for sp in ("top", "right"):
+        ax2.spines[sp].set_visible(False)
+
+    caption(fig,
+            "그림 2. 마스킹의 정량화와 그에 따른 표본 수. (A) 개체별 원자료에서 24시간 창을 하루씩 "
+            "밀며 최고시각을 추정하고 개체 내 표준편차를 구했다. 후지현수를 걸면 지표가 억제되어 "
+            "위상 추정 오차가 3.6배에서 38배까지 커진다. 활동량만의 문제가 아니라 모든 지표에 "
+            "해당하며, 저하 폭은 심부체온이 가장 작다. (B) 이 오차를 잡음으로 두고 계획서의 판정 "
+            "기준인 회귀선 절편 차이 검정을 적용한 검정력. 음영은 코호트 간 범위다.")
+    fig.tight_layout()
+    fig.savefig(os.path.join(FIG, "그림2_마스킹과검정력.png"))
+    plt.close(fig)
+
+
 if __name__ == "__main__":
+    # 계획서에 들어가는 것은 두 장. fig_b(축별 정합성)와 fig_d(설계 사양 2패널)는
+    # 예상결과 (2)(5)를 뺐으므로 본문에서 제외했으나, 발표자료용으로 코드는 남겨 둔다.
     fig_a(); print("그림1_데이터감사.png")
-    fig_b(); print("그림2_축별정합성.png")
-    fig_c(); print("그림3_마스킹.png")
-    fig_d(); print("그림4_설계사양.png")
+    fig_masking_power(); print("그림2_마스킹과검정력.png")
     dump_captions()
     print(f"-> {FIG}")

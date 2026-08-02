@@ -153,17 +153,13 @@ def main():
                     encoding="utf-8").read()
     hwp_txt = open(os.path.join(DOCS, "한글양식_2_연구방법_3_예상결과.txt"),
                    encoding="utf-8").read()
-    for token in ["157,801", "2,593", "633", "6/6", "-49 ~ -80%", "+2.7%",
-                  "3.6배에서 38배", "0.55시간", "16,561",
+    for token in ["157,801", "2,593", "633", "6/6", "3.6배에서 38배", "16,561",
                   "No data submitted by PI", "자유진행(free-run)",
-                  "표 1.", "표 2.", "표 3.", "표 4.",
-                  "그림 1.", "그림 2.", "그림 3.", "그림 4.", "그림 5.",
-                  "심부체온 5/6", "0.13 대 0.05", "1:1 위상 잠금",
-                  "6단계", "7단계", "잡음 바닥은 0.259",
+                  "표 1.", "표 2.", "표 3.",
+                  "그림 1.", "그림 2.", "그림 3.",
+                  "심부체온 5/6", "잡음 바닥은 0.259",
                   "절편 검정", "기울기 검정", "10마리에서 6마리로",
-                  "1.95배", "만조 시각이 매일 50분씩", "(T − 24)시간씩 이동",
-                  "dB/dt", "dm/dt", "dP/dt", "Hill 계수 n = 8", "23.95시간",
-                  "651개 조합", "1:1 위상 잠금", "4차 Runge-Kutta"]:
+                  "1.95배", "만조 시각이 매일 50분씩", "(T − 24)시간씩 이동"]:
         chk(f"한글양식 원고에 '{token}' 존재", token in hwp_html, True)
         chk(f"  (txt 판에도) '{token}'", token in hwp_txt, True)
 
@@ -171,23 +167,16 @@ def main():
     print("\n[표 4 — 군별 예상 판정 간격]")
     pw = pd.read_csv(os.path.join(DATA, "predicted_wetlab.csv"))
     pw["ratio"] = pw.gap_h.abs() / pw.sem_free
-    for T, gap, ratio, stren in [(24, 4.2, 7.1, 0.00), (20, 3.8, 6.4, 0.05),
-                                 (28, 11.8, 20.0, 0.13)]:
+    for T, gap, ratio in [(24, 4.2, 7.1), (20, 3.8, 6.4), (28, 11.8, 20.0)]:
         r = pw[pw.T_hours == T].iloc[0]
         chk(f"T={T}h 판정 간격(h)", round(abs(float(r.gap_h)), 1), gap, 0.05)
         chk(f"T={T}h 표준오차 대비 배수", round(float(r.ratio), 1), ratio, 0.05)
-        chk(f"T={T}h 동조 필요 자극 세기", round(float(r.min_strength), 2), stren, 0.005)
     chk("세 군 모두 검출 가능", int(pw.detectable.all()), 1)
     # T=28 이 T=20 보다 몇 배 강한 자극을 요구하는가 (문서 기재값 2.6배)
-    s20 = float(pw[pw.T_hours == 20].min_strength.iloc[0])
-    s28 = float(pw[pw.T_hours == 28].min_strength.iloc[0])
-    chk("T=20 동조 필요 세기(모델 단위)", round(s20, 2), 0.05, 0.005)
-    chk("T=28 동조 필요 세기(모델 단위)", round(s28, 2), 0.13, 0.005)
-    chk("T=28 이 T=20 보다 큰 세기를 요구", int(s28 > s20), 1)
 
     print("\n[그림 첨부 상태]")
-    figs = ["그림1_데이터감사.png", "그림2_축별정합성.png", "그림3_마스킹.png",
-            "그림4_설계사양.png", "그림5_웻랩예상결과.png"]
+    figs = ["그림1_데이터감사.png", "그림2_마스킹과검정력.png",
+            "그림3_웻랩예상결과.png"]
     figdir = os.path.join(RES, "figures")
     for f in figs:
         chk(f"{f} 존재", os.path.exists(os.path.join(figdir, f)), True)
@@ -209,6 +198,8 @@ def main():
         chk(f"{var} HLU중 리듬 유지 개체", f"{int((t.p_rhythm < 0.05).sum())}/{len(t)}",
             f"{want_keep}/{want_tot}")
 
+    check_docx()
+
     print("\n" + "=" * 92)
     print(f"통과 {len(OKS)} / 실패 {len(FAILS)}")
     if FAILS:
@@ -216,6 +207,24 @@ def main():
         for n, g, w in FAILS:
             print(f"  {n}: 산출={g} 문서={w}")
     return 1 if FAILS else 0
+
+
+def check_docx():
+    """한글 제출본(.docx) 점검 — 표·그림 개수와 작업 메모 잔류 여부."""
+    print("\n[한글 제출본]")
+    dx = os.path.join(DOCS, "KASA_연구계획서_2연구방법_3예상결과.docx")
+    chk("docx 생성됨", os.path.exists(dx), True)
+    if not os.path.exists(dx):
+        return
+    from docx import Document
+    dd = Document(dx)
+    body = "\n".join(p.text for p in dd.paragraphs)
+    chk("  표 3개", len(dd.tables), 3)
+    n_img = sum(1 for r in dd.part.rels.values() if "image" in r.reltype)
+    chk("  그림 3개", n_img, 3)
+    for note in ["축약 가능", "여유 시 생략", "팀 전체 절차", "이관 제안",
+                 "드라이랩 담당분"]:
+        chk(f"  작업 메모 '{note}' 없음", note in body, False)
 
 
 if __name__ == "__main__":

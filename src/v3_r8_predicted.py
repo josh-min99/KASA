@@ -20,7 +20,7 @@ R8: 웻랩 예상 결과 시뮬레이션 그림.
   두 시나리오는 HLU 구간에서 관측이 거의 같다. HLU 를 제거해야 갈라진다.
   이것이 free-run 구간을 주 판정 경로로 두는 이유이며, 그림의 핵심 메시지다.
 
-산출: results/v3/figures/그림5_웻랩예상결과.png
+산출: results/v3/figures/그림3_웻랩예상결과.png
       data/rhythm/predicted_wetlab.csv
 """
 import os
@@ -122,8 +122,7 @@ def main():
               (20, "10시간 on/off  (T = 20 h)"),
               (28, "14시간 on/off  (T = 28 h)")]
 
-    fig, axes = plt.subplots(1, 4, figsize=(15.4, 4.1),
-                             gridspec_kw={"width_ratios": [1, 1, 1, 0.92]})
+    fig, axes = plt.subplots(1, 3, figsize=(12.2, 4.1))
     rows = []
 
     # 실제로 관측되는 값은 '하루 중 몇 시에 정점인가'(0-24h)이다. 누적 이동량이 아니다.
@@ -190,27 +189,7 @@ def main():
     axes[0].set_ylabel("관측 정점 시각 acrophase (h)")
     axes[0].legend(loc="lower left", frameon=False)
 
-    # ---- 4번째 패널 : Arnold tongue (동조 가능 영역)
-    ax = axes[3]
-    ent_pts = at[at.entrained]
-    ax.scatter(ent_pts.drive_period_h, ent_pts.strength, s=9, color="#8fb14a",
-               alpha=0.85, lw=0, label="동조 가능")
-    for T, c in [(20, C_MASK), (24, "#444444"), (28, C_ENTRAIN)]:
-        sub = at[(at.drive_period_h.between(T - 0.4, T + 0.4)) & (at.entrained)]
-        smin = float(sub.strength.min()) if len(sub) else np.nan
-        ax.axvline(T, color=c, lw=1.0, ls=":")
-        if np.isfinite(smin):
-            ax.plot([T], [smin], "v", color=c, ms=7, zorder=4)
-            ax.text(T, smin - 0.012, f"{smin:.2f}", ha="center", va="top",
-                    fontsize=8, color=c, fontweight="bold")
-    ax.set_xlabel("HLU 주기 T (h)")
-    ax.set_ylabel("필요한 자극 세기 (모델 단위)")
-    ax.set_xlim(18.5, 29.5)
-    ax.set_ylim(-0.03, 0.21)
-    ax.set_title("동조에 필요한 자극 세기", fontsize=10, loc="left")
-    ax.legend(loc="upper left", frameon=False)
-    for s in ("top", "right"):
-        ax.spines[s].set_visible(False)
+    # (진동자 모델 패널은 5단계를 계획서에서 빼면서 함께 제거)
 
     cap = ("그림 E. 웻랩 예상 결과 시뮬레이션. 세로 음영은 HLU 주기를 인가하는 14일, 그 오른쪽은 HLU 를 "
            "완전히 제거한 free-run 14일이다. 점은 예상 관측값이며, 오차막대는 임의값이 아니라 Helissen "
@@ -218,17 +197,14 @@ def main():
            f"{sd_r:.2f} h)를 {N_ANIMALS}마리 군평균으로 환산한 값이다. HLU 인가 구간에서는 동조와 마스킹이 "
            "같은 궤적을 그리고 오차도 가장 크므로 두 가설을 구별할 수 없다. 두 예측은 HLU 를 제거한 뒤에야 "
            "갈라지며, 그 간격(초록 화살표)이 판정 신호다. 세 군 모두 간격이 군평균 표준오차의 3배를 넘어 "
-           "검출 가능하다. 오른쪽 패널은 본 연구의 진동자 모델이 산출한 동조 가능 영역이다. 세 군 모두 동조 "
-           "가능 범위 안에 있으나 필요한 자극 세기가 다르며, T = 28 h(14시간 on/off)가 T = 20 h(10시간 "
-           "on/off)보다 뚜렷하게 강한 자극을 요구한다(모델 단위 0.13 대 0.05). 이 모델은 파라미터가 "
-           "실측값이 아니므로 상대적 난이도라는 정성적 구조에만 쓰고 배수를 결론에 쓰지 않는다.")
+           "검출 가능하다.")
     # 캡션은 이미지에 굽지 않는다. 한글에서 그림 크기를 조절하면 이미지에 박힌 글씨도
     # 같이 확대·축소되어 본문 글꼴과 어긋나기 때문이다. 원문만 파일로 내보낸다.
     with open(os.path.join(FIG, "caption_fig5.txt"), "w", encoding="utf-8") as fh:
         fh.write(cap + "\n")
 
     fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "그림5_웻랩예상결과.png"))
+    fig.savefig(os.path.join(FIG, "그림3_웻랩예상결과.png"))
     plt.close(fig)
 
     df = pd.DataFrame(rows)
@@ -244,7 +220,7 @@ def main():
     print("\n=== 군별 예상 판정 간격 ===")
     print(df[["T_hours", "gap_h", "sem_free", "detectable", "min_strength"]]
           .round(3).to_string(index=False))
-    print(f"\n-> {FIG}/그림5_웻랩예상결과.png, {DATA}/predicted_wetlab.csv")
+    print(f"\n-> {FIG}/그림3_웻랩예상결과.png, {DATA}/predicted_wetlab.csv")
 
 
 if __name__ == "__main__":
