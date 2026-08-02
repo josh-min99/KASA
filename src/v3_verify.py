@@ -158,7 +158,8 @@ def main():
                   "No data submitted by PI", "자유진행(free-run)",
                   "표 1.", "표 2.", "표 3.", "표 4.",
                   "그림 1.", "그림 2.", "그림 3.", "그림 4.", "그림 5.",
-                  "심부체온 5/6", "2.6배"]:
+                  "심부체온 5/6", "0.13 대 0.05", "1:1 위상 잠금",
+                  "6단계", "7단계"]:
         chk(f"한글양식 원고에 '{token}' 존재", token in hwp_html, True)
         chk(f"  (txt 판에도) '{token}'", token in hwp_txt, True)
 
@@ -176,7 +177,9 @@ def main():
     # T=28 이 T=20 보다 몇 배 강한 자극을 요구하는가 (문서 기재값 2.6배)
     s20 = float(pw[pw.T_hours == 20].min_strength.iloc[0])
     s28 = float(pw[pw.T_hours == 28].min_strength.iloc[0])
-    chk("T=28 대 T=20 자극 세기 비", round(s28 / s20, 1), 2.6, 0.05)
+    chk("T=20 동조 필요 세기(모델 단위)", round(s20, 2), 0.05, 0.005)
+    chk("T=28 동조 필요 세기(모델 단위)", round(s28, 2), 0.13, 0.005)
+    chk("T=28 이 T=20 보다 큰 세기를 요구", int(s28 > s20), 1)
 
     print("\n[그림 첨부 상태]")
     figs = ["그림1_데이터감사.png", "그림2_축별정합성.png", "그림3_마스킹.png",
