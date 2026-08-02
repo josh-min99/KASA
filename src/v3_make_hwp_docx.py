@@ -38,7 +38,7 @@ DST = os.path.join(DOCS, "KASA_연구계획서_2연구방법_3예상결과.docx"
 F_HEAD = "HY헤드라인M"
 F_BODY = "휴먼명조"
 SZ_HEAD, SZ_BODY, SZ_CAP = 14, 14, 12
-FIG_WIDTH_CM = 10.0          # 분량 절감
+FIG_WIDTH_CM = 13.0          # 캡션이 이미지에 들어가 있어 너무 줄이면 안 읽힌다
 
 # 원고에는 팀 내부용 메모가 섞여 있다. 제출본에는 남으면 안 되므로 여기서 걸러낸다.
 # (HTML 원본에는 그대로 두어야 편집할 때 판단 근거가 남는다.)
@@ -141,7 +141,9 @@ class Doc(HTMLParser):
         elif tag == "pre":
             self.flush(); self.in_pre = True
         elif tag == "img":
-            self.flush(); self.pending_img = a.get("src", "")
+            self.flush()
+            m = re.search(r"max-width:(\d+)px", a.get("style", ""))
+            self.pending_img = (a.get("src", ""), int(m.group(1)) if m else 600)
         elif tag == "hr":
             self.flush()
 
@@ -180,7 +182,7 @@ class Doc(HTMLParser):
 
     def flush(self):
         if self.pending_img:
-            self.add_image(self.pending_img)
+            self.add_image(*self.pending_img)
             self.pending_img = None
         if not self.buf:
             return
@@ -224,7 +226,7 @@ class Doc(HTMLParser):
         else:
             body_para(self.doc, norm, indent_cm=0.4, bold_spans=spans)
 
-    def add_image(self, rel):
+    def add_image(self, rel, px=600):
         path = os.path.normpath(os.path.join(DOCS, rel))
         if not os.path.exists(path):
             print("  그림 없음:", rel)
@@ -233,8 +235,10 @@ class Doc(HTMLParser):
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p.paragraph_format.space_before = Pt(6)
         p.paragraph_format.space_after = Pt(2)
-        p.add_run().add_picture(path, width=Cm(FIG_WIDTH_CM))
-        print(f"  그림 삽입: {os.path.basename(path)}")
+        # HTML 의 max-width 를 폭 비율로 삼는다(600px = FIG_WIDTH_CM)
+        w = FIG_WIDTH_CM * px / 600.0
+        p.add_run().add_picture(path, width=Cm(w))
+        print(f"  그림 삽입: {os.path.basename(path)}  폭 {w:.1f}cm")
 
     def render_table(self):
         rows = [r for r in self.rows if r]

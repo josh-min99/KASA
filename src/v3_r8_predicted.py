@@ -48,8 +48,8 @@ for f in ["Malgun Gothic", "NanumGothic", "Gulim"]:
         break
 plt.rcParams.update({
     "figure.facecolor": "white", "axes.facecolor": "white",
-    "font.size": 9, "axes.labelsize": 9, "xtick.labelsize": 8.5,
-    "ytick.labelsize": 8.5, "legend.fontsize": 8,
+    "font.size": 11, "axes.labelsize": 11, "xtick.labelsize": 10,
+    "ytick.labelsize": 10, "legend.fontsize": 9.5,
     "axes.unicode_minus": False, "savefig.dpi": 300,
     "savefig.bbox": "tight", "savefig.facecolor": "white",
 })
@@ -122,7 +122,7 @@ def main():
               (20, "10시간 on/off  (T = 20 h)"),
               (28, "14시간 on/off  (T = 28 h)")]
 
-    fig, axes = plt.subplots(1, 3, figsize=(12.2, 4.1))
+    fig, axes = plt.subplots(1, 3, figsize=(10.4, 3.9))
     rows = []
 
     # 실제로 관측되는 값은 '하루 중 몇 시에 정점인가'(0-24h)이다. 누적 이동량이 아니다.
@@ -191,19 +191,18 @@ def main():
 
     # (진동자 모델 패널은 5단계를 계획서에서 빼면서 함께 제거)
 
-    cap = ("그림 E. 웻랩 예상 결과 시뮬레이션. 세로 음영은 HLU 주기를 인가하는 14일, 그 오른쪽은 HLU 를 "
-           "완전히 제거한 free-run 14일이다. 점은 예상 관측값이며, 오차막대는 임의값이 아니라 Helissen "
-           f"원자료에서 실측한 심부체온 위상 추정 오차(HLU 전 {sd_b:.2f} h / HLU 중 {sd_t:.2f} h / 해제 후 "
-           f"{sd_r:.2f} h)를 {N_ANIMALS}마리 군평균으로 환산한 값이다. HLU 인가 구간에서는 동조와 마스킹이 "
-           "같은 궤적을 그리고 오차도 가장 크므로 두 가설을 구별할 수 없다. 두 예측은 HLU 를 제거한 뒤에야 "
-           "갈라지며, 그 간격(초록 화살표)이 판정 신호다. 세 군 모두 간격이 군평균 표준오차의 3배를 넘어 "
-           "검출 가능하다.")
-    # 캡션은 이미지에 굽지 않는다. 한글에서 그림 크기를 조절하면 이미지에 박힌 글씨도
-    # 같이 확대·축소되어 본문 글꼴과 어긋나기 때문이다. 원문만 파일로 내보낸다.
-    with open(os.path.join(FIG, "caption_fig5.txt"), "w", encoding="utf-8") as fh:
-        fh.write(cap + "\n")
+    cap = ("그림 1. 웻랩 시뮬레이션 결과. 음영은 후지현수 인가 14일, 오른쪽은 제거한 자유진행 14일이다. "
+           "오차막대는 실측 심부체온 위상 오차(인가 전 0.31 / 중 2.77 / 해제 후 1.67 h)의 8마리 군평균이다. "
+           "인가 중에는 동조와 마스킹이 같은 궤적을 그려 구별되지 않고, 제거 후 갈라지는 간격(초록 화살표)이 판정 신호다.")
 
-    fig.tight_layout()
+    # 캡션을 이미지 안에 넣는다(사용자 요청). 문서 본문에서 캡션 문단이 차지하던
+    # 줄을 없애 분량을 줄이기 위해서다. 대신 글씨가 그림과 함께 축소되므로
+    # 그림 폭을 너무 줄이면 읽히지 않는다.
+    fig.subplots_adjust(bottom=0.30, left=0.06, right=0.99, top=0.93)
+    fig.text(0.012, 0.055, "\n".join(textwrap.wrap(cap, 132)),
+             fontsize=9.0, va="top", ha="left", color="#222222")
+    with open(os.path.join(FIG, "caption_fig1.txt"), "w", encoding="utf-8") as fh:
+        fh.write(cap + "\n")
     fig.savefig(os.path.join(FIG, "그림1_웻랩예상결과.png"))
     plt.close(fig)
 

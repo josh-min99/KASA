@@ -374,7 +374,10 @@ def fig_masking_power():
 def fig_inverse():
     """위상 이동량 대 단일 시점 발현 변화. 7단계(역문제) 결과용."""
     fw = pd.read_csv(os.path.join(DATA, "inverse_forward.csv"))
-    fig, ax = plt.subplots(figsize=(7.4, 4.0))
+    with plt.rc_context({"font.size": 11, "axes.labelsize": 11,
+                         "xtick.labelsize": 10, "ytick.labelsize": 10}):
+        pass
+    fig, ax = plt.subplots(figsize=(7.2, 4.1))
     ax.plot(fw.dphi, fw["med"], "-", color=C_GROUND, lw=2.0,
             label="예상 clock |log2FC| 중앙값")
     ax.fill_between(fw.dphi, fw.q25, fw.q75, color=C_GROUND, alpha=0.15, lw=0,
@@ -396,8 +399,12 @@ def fig_inverse():
     ax.legend(loc="upper left", bbox_to_anchor=(0.02, 0.90), frameon=False, fontsize=8.2)
     for sp in ("top", "right"):
         ax.spines[sp].set_visible(False)
-    caption(fig, "역문제 — 웻랩 Δφ 가 비행 스냅샷을 해석 가능하게 만든다")
-    fig.tight_layout()
+    cap = ("그림 2. 역문제. 위상만 Δφ 이동했을 때 단일 시점 전사체에서 보일 발현 변화. "
+           "음영은 희생 시각 미상에 따른 범위다.")
+    fig.subplots_adjust(bottom=0.28)
+    fig.text(0.012, 0.05, "\n".join(textwrap.wrap(cap, 92)),
+             fontsize=9.2, va="top", ha="left", color="#222222")
+    caption(fig, cap)
     fig.savefig(os.path.join(FIG, "그림2_역문제.png"))
     plt.close(fig)
 
