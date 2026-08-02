@@ -220,7 +220,7 @@ def fig_c():
 
 # ------------------------------------------------------------------ 그림 D
 def fig_d():
-    g = pd.read_csv(os.path.join(DATA, "power_grid.csv"))
+    g = pd.read_csv(os.path.join(DATA, "power_regression.csv"))
     fw = pd.read_csv(os.path.join(DATA, "inverse_forward.csv"))
     lim = pd.read_csv(os.path.join(DATA, "inverse_dphi.csv"))
 
@@ -228,19 +228,21 @@ def fig_d():
 
     varlab = {"tb_core": "심부체온", "tb_sub": "피하온도", "activity": "활동량"}
     style = {"tb_core": ("-", C_FLIGHT), "tb_sub": ("--", C_GROUND), "activity": (":", C_GREY)}
-    sub = g[(g.n_days_treat == 14) & (g.true_dphi == 2.0)]
+    sub = g[(g.dphi == 2.0) & (g.T_hours == 24)]
     for v in ["tb_core", "tb_sub", "activity"]:
-        d = sub[sub.variable == v].groupby("n_animals").power.agg(["min", "max", "mean"])
+        d = (sub[sub.variable == v].groupby("n_animals")
+             .power_intercept.agg(["min", "max", "mean"]))
         ls, c = style[v]
         ax1.plot(d.index, d["mean"], ls, color=c, lw=1.8, label=varlab[v])
         ax1.fill_between(d.index, d["min"], d["max"], color=c, alpha=0.13, lw=0)
     ax1.axhline(0.8, color="#555555", lw=0.9, ls="-.")
-    ax1.text(16, 0.815, "검정력 0.8", ha="right", fontsize=7.8, color="#555555")
+    ax1.text(24, 0.815, "검정력 0.8", ha="right", fontsize=7.8, color="#555555")
     ax1.set_xlabel("군당 마리 수")
     ax1.set_ylabel("검정력")
-    ax1.set_ylim(0.3, 1.03)
+    ax1.set_ylim(0.1, 1.03)
     ax1.legend(loc="lower right", frameon=False)
-    ax1.set_title("(A) 위상 이동 2 h 검출 (처치 14일)", fontsize=10.5, loc="left")
+    ax1.set_title("(A) 절편 검정으로 위상 이동 2 h 검출 (처치 14일)",
+                  fontsize=10.5, loc="left")
     for s in ("top", "right"):
         ax1.spines[s].set_visible(False)
 
@@ -269,8 +271,9 @@ def fig_d():
 
     caption(fig,
             "그림 D. 설계 사양. (A) 잡음을 Helissen 원자료의 실측 위상 추정 오차에서 뽑고, 계획서의 판정 "
-            "기준(baseline 회귀선 대 처치 회귀선 절편 차이)을 그대로 시뮬레이션한 검정력. 음영은 코호트 "
-            "간 범위다. 2 h 이동은 심부체온 4마리, 피하온도 6마리, 활동량 6-8마리로 검출된다. "
+            "기준인 회귀선 절편 차이 검정을 그대로 적용한 검정력. 음영은 코호트 간 범위다. "
+            "2 h 이동은 심부체온 8마리, 피하온도 10-16마리, 활동량 12-16마리를 요구한다. "
+            "주기가 24 h 와 다른 군에서는 기울기 검정이 훨씬 강력해 필요 마리수가 4-12마리로 줄어든다. "
             "(B) 위상만 Δφ 이동했을 때 단일 시점 전사체에서 보이는 clock |log2FC|. 진폭은 지상 아틀라스 "
             "(GSE54650, 간) 실측값이고, 희생 시각이 기록돼 있지 않으므로 0-24 h 전 구간을 두어 범위로 "
             "제시했다. 비행 대비의 잡음 바닥(0.088)을 넘으려면 Δφ >= 0.55 h 여야 하고, 웻랩이 검출할 수 "

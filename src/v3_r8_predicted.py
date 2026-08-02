@@ -58,7 +58,7 @@ RNG = np.random.default_rng(20260804)
 
 TAU = 23.7           # 암전에서 마우스 고유 주기 (문헌 통상값)
 N_BASE, N_HLU, N_FREE = 3, 14, 14
-N_ANIMALS = 8        # R5 에서 dphi=1h 검출에 필요한 심부체온 마리 수
+N_ANIMALS = 8        # R5b 에서 심부체온 절편 검정으로 dphi=2h 를 검출하는 데 필요한 수
 
 C_ENTRAIN = "#c8452e"
 C_MASK = "#1f6fb4"
