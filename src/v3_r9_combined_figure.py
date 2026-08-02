@@ -26,7 +26,7 @@ from matplotlib import font_manager
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from v3_r8_predicted import (BAND, C_ENTRAIN, C_MASK, N_ANIMALS, N_BASE,
-                             N_FREE, N_HLU, RNG, phase_sd_by_phase,
+                             N_FREE, N_HLU, RNG, TAU, phase_sd_by_phase,
                              trajectory, wrap12)
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -76,12 +76,22 @@ def panel_wetlab(ax, T, title, sd_b, sd_t, sd_r, show_y):
     seg_plot(d[:h_end + 1], ent_o[:h_end + 1], ls="-", color="#444444", lw=2.2)
     seg_plot(d[h_end:], ent_o[h_end:], ls="-", color=C_ENTRAIN, lw=3.0,
              label="동조 예측")
-    seg_plot(d[h_end:], msk_o[h_end:], ls="--", color=C_MASK, lw=3.0,
+
+    # 마스킹이면 내부 시계는 내내 고유 주기 tau 로 돈다. 그 궤적을 처음부터 끝까지
+    # 한 직선으로 그린다.
+    #   초판은 해제 시점부터만 그렸는데, 그 시작점이 '마스킹된 관측값' 이라
+    #   해제 직후 하루 만에 급히 꺾이는 가짜 구간이 생겼다(10/14시간 군에서 눈에 띈다).
+    #   인가 중 구간은 관측되지 않는 값이므로 흐리게 둔다.
+    hidden = (PHI0 + (TAU - 24.0) * d) % 24
+    seg_plot(d[:h_end + 1], hidden[:h_end + 1], ls="--", color=C_MASK, lw=1.8,
+             alpha=0.45)
+    seg_plot(d[h_end:], hidden[h_end:], ls="--", color=C_MASK, lw=3.0,
              label="마스킹 예측")
 
+    # 경계 날짜를 두 구간에 모두 넣으면 점이 두 번 찍힌다(초판 문제).
     for seg, sd, col in [(slice(0, b_end + 1), sd_b, "#444444"),
-                         (slice(b_end, h_end + 1), sd_t, "#444444"),
-                         (slice(h_end, len(d)), sd_r, C_ENTRAIN)]:
+                         (slice(b_end + 1, h_end + 1), sd_t, "#444444"),
+                         (slice(h_end + 1, len(d)), sd_r, C_ENTRAIN)]:
         dd = d[seg]
         yy = (ent_o[seg] + RNG.normal(0, sem(sd), len(dd))) % 24
         ax.errorbar(dd, yy, yerr=sem(sd), fmt="o", ms=4.5, lw=1.4,
