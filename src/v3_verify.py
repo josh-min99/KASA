@@ -148,6 +148,17 @@ def main():
     for token in ["Neurolab STS-90", "OSD-595", "Hélissen", "Martin et al. 2020"]:
         chk(f"제안서에 '{token}' 존재", token in md, True)
 
+    # KASA 한글 양식 원고 (구글 독스 붙여넣기용 HTML 과 txt 는 같은 내용이어야 한다)
+    hwp_html = open(os.path.join(DOCS, "한글양식_2_연구방법_3_예상결과.html"),
+                    encoding="utf-8").read()
+    hwp_txt = open(os.path.join(DOCS, "한글양식_2_연구방법_3_예상결과.txt"),
+                   encoding="utf-8").read()
+    for token in ["157,801", "2,593", "633", "6/6", "-49 ~ -80%", "+2.7%",
+                  "심부체온 4마리", "3.6배에서 38배", "0.55시간", "16,561",
+                  "No data submitted by PI", "자유진행(free-run)"]:
+        chk(f"한글양식 원고에 '{token}' 존재", token in hwp_html, True)
+        chk(f"  (txt 판에도) '{token}'", token in hwp_txt, True)
+
     print("\n" + "=" * 92)
     print(f"통과 {len(OKS)} / 실패 {len(FAILS)}")
     if FAILS:
