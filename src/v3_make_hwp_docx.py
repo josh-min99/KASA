@@ -38,7 +38,8 @@ DST = os.path.join(DOCS, "KASA_연구계획서_2연구방법_3예상결과.docx"
 F_HEAD = "HY헤드라인M"
 F_BODY = "휴먼명조"
 SZ_HEAD, SZ_BODY, SZ_CAP = 14, 14, 12
-FIG_WIDTH_CM = 13.0          # 캡션이 이미지에 들어가 있어 너무 줄이면 안 읽힌다
+# 합친 그림은 본문 전폭(A4 21cm - 좌우 여백 2.5cm x 2 = 16cm)을 전제로 글씨를 키워 두었다.
+FIG_WIDTH_CM = 16.0          # HTML max-width:600px 가 이 폭에 대응한다
 
 # 원고에는 팀 내부용 메모가 섞여 있다. 제출본에는 남으면 안 되므로 여기서 걸러낸다.
 # (HTML 원본에는 그대로 두어야 편집할 때 판단 근거가 남는다.)

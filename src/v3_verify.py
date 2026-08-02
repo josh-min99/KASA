@@ -155,9 +155,10 @@ def main():
                    encoding="utf-8").read()
     # 압축 과정에서 뺀 문구는 여기서 빠져 있어야 한다.
     #   'No data submitted by PI' (Neurolab 감사 결과) — 데이터 조사 절을 탐색 범위만 남기며 삭제
-    #   '그림 1.' '그림 2.'                            — 캡션을 이미지 안으로 넣어 본문에 없다
-    for token in ["157,801", "2,593", "633", "3.6~38배", "0.55시간",
-                  "자유진행(free-run)", "표 1.", "표 2.",
+    #   '3.6~38배'  (마스킹으로 인한 위상 오차 증가) — 사용자 요청으로 삭제.
+    #               free-run 이 판정 구간이라는 결론만 표 2 캡션에 남겼다.
+    for token in ["157,801", "2,593", "633", "0.55시간",
+                  "자유진행(free-run)", "표 1.", "표 2.", "그림 1.", "그림 2.",
                   "절편 검정", "기울기 검정", "(T − 24)시간씩 이동"]:
         chk(f"한글양식 원고에 '{token}' 존재", token in hwp_html, True)
         chk(f"  (txt 판에도) '{token}'", token in hwp_txt, True)
@@ -174,7 +175,9 @@ def main():
     # T=28 이 T=20 보다 몇 배 강한 자극을 요구하는가 (문서 기재값 2.6배)
 
     print("\n[그림 첨부 상태]")
-    figs = ["그림1_웻랩예상결과.png", "그림2_역문제.png"]
+    # 그림 1 과 그림 2 는 세로 여백을 아끼려고 한 장(4패널)으로 합쳐 넣는다.
+    # 낱장 판(그림1_웻랩예상결과.png / 그림2_역문제.png)은 발표자료용으로 남아 있다.
+    figs = ["그림_통합.png"]
     figdir = os.path.join(RES, "figures")
     for f in figs:
         chk(f"{f} 존재", os.path.exists(os.path.join(figdir, f)), True)
@@ -219,7 +222,7 @@ def check_docx():
     body = "\n".join(p.text for p in dd.paragraphs)
     chk("  표 2개", len(dd.tables), 2)
     n_img = sum(1 for r in dd.part.rels.values() if "image" in r.reltype)
-    chk("  그림 2개", n_img, 2)
+    chk("  그림 1개(그림 1·2 합본)", n_img, 1)
     for note in ["축약 가능", "여유 시 생략", "팀 전체 절차", "이관 제안",
                  "드라이랩 담당분"]:
         chk(f"  작업 메모 '{note}' 없음", note in body, False)
