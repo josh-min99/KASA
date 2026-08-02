@@ -38,7 +38,7 @@ DST = os.path.join(DOCS, "KASA_연구계획서_2연구방법_3예상결과.docx"
 F_HEAD = "HY헤드라인M"
 F_BODY = "휴먼명조"
 SZ_HEAD, SZ_BODY, SZ_CAP = 14, 14, 12
-FIG_WIDTH_CM = 13.5          # 분량 절감을 위해 본문 폭보다 작게
+FIG_WIDTH_CM = 10.0          # 분량 절감
 
 # 원고에는 팀 내부용 메모가 섞여 있다. 제출본에는 남으면 안 되므로 여기서 걸러낸다.
 # (HTML 원본에는 그대로 두어야 편집할 때 판단 근거가 남는다.)

@@ -370,10 +370,43 @@ def fig_masking_power():
     plt.close(fig)
 
 
+# --------------------------------------------- 역문제 단독 그림 (구 fig_d 패널 B)
+def fig_inverse():
+    """위상 이동량 대 단일 시점 발현 변화. 7단계(역문제) 결과용."""
+    fw = pd.read_csv(os.path.join(DATA, "inverse_forward.csv"))
+    fig, ax = plt.subplots(figsize=(7.4, 4.0))
+    ax.plot(fw.dphi, fw["med"], "-", color=C_GROUND, lw=2.0,
+            label="예상 clock |log2FC| 중앙값")
+    ax.fill_between(fw.dphi, fw.q25, fw.q75, color=C_GROUND, alpha=0.15, lw=0,
+                    label="희생 시각 미상에 따른 범위")
+    ax.axhline(0.088, color=C_FLIGHT, lw=1.3, ls="--")
+    ax.text(11.8, 0.10, "비행 대비 잡음 바닥 0.088", ha="right", va="bottom",
+            fontsize=8.2, color=C_FLIGHT)
+    ax.axhline(0.215, color="#333333", lw=1.1)
+    ax.text(11.8, 0.235, "비행 대비 실측 0.215", ha="right", va="bottom",
+            fontsize=8.2, color="#333333")
+    ax.axvspan(1.0, 12, color="#8fb14a", alpha=0.10, lw=0)
+    ax.text(1.2, 1.45, "웻랩이 검출 가능한 영역 (1 h 이상)", fontsize=8.4, color="#4a7020")
+    ax.annotate("", xy=(0.55, 0.088), xytext=(0.55, 0.0),
+                arrowprops=dict(arrowstyle="-", color=C_FLIGHT, lw=1.0, ls=":"))
+    ax.text(0.62, 0.02, "0.55 h", fontsize=8.2, color=C_FLIGHT)
+    ax.set_xlabel("위상 이동 Δφ (h)")
+    ax.set_ylabel("단일 시점에서 보이는 clock |log2FC|")
+    ax.set_xlim(0, 12); ax.set_ylim(0, 1.6)
+    ax.legend(loc="upper left", bbox_to_anchor=(0.02, 0.90), frameon=False, fontsize=8.2)
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
+    caption(fig, "역문제 — 웻랩 Δφ 가 비행 스냅샷을 해석 가능하게 만든다")
+    fig.tight_layout()
+    fig.savefig(os.path.join(FIG, "그림2_역문제.png"))
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     # 계획서에 들어가는 것은 두 장. fig_b(축별 정합성)와 fig_d(설계 사양 2패널)는
     # 예상결과 (2)(5)를 뺐으므로 본문에서 제외했으나, 발표자료용으로 코드는 남겨 둔다.
-    fig_a(); print("그림1_데이터감사.png")
-    fig_masking_power(); print("그림2_마스킹과검정력.png")
+    # 계획서에 들어가는 것은 웻랩 예상결과(v3_r8)와 역문제 두 장.
+    # fig_a / fig_b / fig_c / fig_d / fig_masking_power 는 발표자료용으로 남겨 둔다.
+    fig_inverse(); print("그림2_역문제.png")
     dump_captions()
     print(f"-> {FIG}")

@@ -20,7 +20,7 @@ R8: 웻랩 예상 결과 시뮬레이션 그림.
   두 시나리오는 HLU 구간에서 관측이 거의 같다. HLU 를 제거해야 갈라진다.
   이것이 free-run 구간을 주 판정 경로로 두는 이유이며, 그림의 핵심 메시지다.
 
-산출: results/v3/figures/그림3_웻랩예상결과.png
+산출: results/v3/figures/그림1_웻랩예상결과.png
       data/rhythm/predicted_wetlab.csv
 """
 import os
@@ -204,7 +204,7 @@ def main():
         fh.write(cap + "\n")
 
     fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "그림3_웻랩예상결과.png"))
+    fig.savefig(os.path.join(FIG, "그림1_웻랩예상결과.png"))
     plt.close(fig)
 
     df = pd.DataFrame(rows)
@@ -220,7 +220,7 @@ def main():
     print("\n=== 군별 예상 판정 간격 ===")
     print(df[["T_hours", "gap_h", "sem_free", "detectable", "min_strength"]]
           .round(3).to_string(index=False))
-    print(f"\n-> {FIG}/그림3_웻랩예상결과.png, {DATA}/predicted_wetlab.csv")
+    print(f"\n-> {FIG}/그림1_웻랩예상결과.png, {DATA}/predicted_wetlab.csv")
 
 
 if __name__ == "__main__":

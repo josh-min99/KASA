@@ -1,108 +1,97 @@
 <div style="font-family:'맑은 고딕','Malgun Gothic',serif; font-size:11pt; line-height:1.7; color:#000; max-width:800px;">
 
 <p style="text-align:center; font-size:14pt; font-weight:bold; margin:0 0 4px;">KASA 연구계획서 — 「2 연구의 내용 및 방법」 · 「3 기대효과 및 활용방안」</p>
-<p style="text-align:center; font-size:10pt; color:#444; margin:0 0 6px;">드라이랩 담당분 원고 · 2026-08 (압축본)</p>
+<p style="text-align:center; font-size:10pt; color:#444; margin:0 0 6px;">드라이랩 담당분 원고 · 2026-08 (최종 압축본)</p>
 
 <div style="border:1px solid #bbb; background:#fafafa; padding:10px 14px; margin:0 0 26px; font-size:10pt; line-height:1.6;">
-<b>서식</b> — □ 줄은 HY헤드라인M 14pt, ◦ / - / ※ 줄은 휴먼명조 14pt · 줄간격 160% · 자간 0%. 표와 그림 캡션은 11pt 정도로 줄여 두었습니다.<br>
-<b>압축 내역</b> — 상세본(13쪽)에서 데이터 조사·검증 절차를 탐색 범위 수준으로 줄이고, 연구방법을 3항목 5줄로 압축했으며, 그림 1장·표 1개·중간 결과물 항목을 덜어냈습니다. 그림 캡션은 이미지에 넣지 않고 본문 텍스트로 두었습니다(한글에서 그림 크기를 조절해도 글꼴이 어긋나지 않게).<br>
+<b>서식</b> — □ 줄은 HY헤드라인M 14pt, ◦ / - 줄은 휴먼명조 14pt · 줄간격 160% · 자간 0%. 표와 그림 캡션은 9~11pt.<br>
+<b>분량</b> — §2 와 §3 (1)~(3) 이 약 2쪽, (4) 역문제가 약 1쪽입니다. (4)는 활용방안 절로 이관할 대상이므로 분량 계산에서 분리해 보십시오.<br>
 학교명·성명이 들어가지 않도록 팀원은 '팀원 A~D' 로만 적었습니다. 본문 수치는 전부 산출물과 자동 대조됩니다.
 </div>
 
 <hr style="border:none; border-top:2px solid #000; margin:0 0 14px;">
-<p style="font-size:13pt; font-weight:bold; margin:0 0 16px;">2 &nbsp; 연구의 내용 및 방법</p>
+<p style="font-size:13pt; font-weight:bold; margin:0 0 14px;">2 &nbsp; 연구의 내용 및 방법</p>
 
-<p style="font-size:12pt; font-weight:bold; margin:0 0 10px;">□ 연구방법</p>
+<p style="font-size:12pt; font-weight:bold; margin:0 0 8px;">□ 연구방법</p>
 
-<p style="color:#666; font-size:10pt; margin:0 0 12px;">※ 아래는 '나. 드라이랩' 부분입니다.</p>
+<p style="margin:12px 0 4px;">◦ (나) 드라이랩 — 공개 데이터로 웻랩의 측정 지표와 표본 수를 사전에 확정한다</p>
+<p style="margin:2px 0 2px 22px;">- NASA 공개과학데이터저장소(OSDR) 스터디 633건 · 파일 157,801개, 생명과학데이터아카이브(LSDA) 2,593건, 공개 저장소와 문헌(중력 조건 11종 × 리듬 지표 8종)을 전수 조사하여 원자료를 확보하고, 측정 방식이 다른 자료를 cosinor 지표로 통일한다.</p>
 
-<p style="margin:14px 0 4px;">◦ (나) 드라이랩 — 공개 데이터로 웻랩의 측정 지표와 표본 수를 사전에 확정한다</p>
-<p style="margin:2px 0 2px 22px;">- 탐색 범위는 NASA 공개과학데이터저장소(OSDR) 스터디 633건 · 파일 157,801개를 파일명 수준까지 개봉한 전수 조사, NASA 생명과학데이터아카이브(LSDA) 데이터셋 2,593건, 공개 저장소(Recherche Data Gouv, figshare 등), 그리고 중력 조건 11종 × 리듬 지표 8종을 교차한 문헌 검색이다. 채택 기준은 분석 착수 전에 확정하고, 판정을 이미 아는 자료로 검증한 뒤 사용하였다.</p>
-<p style="margin:2px 0 2px 22px;">- 확보한 원자료는 측정 방식이 서로 달라, cosinor 지표를 공통으로 산출하고 모든 효과를 같은 개체의 처치 전 구간 대비 변화로 환산한다. 어떤 비율도 주장하기 전에 처치가 없었던 구간에서 '효과가 없을 때 나타나는 변화의 크기'를 먼저 구해, 이후 모든 결과를 그 값 대비 몇 배인지로 표기한다.</p>
+<p style="margin:12px 0 4px;">◦ 표본 수 산출</p>
+<p style="margin:2px 0 2px 22px;">- 실측 위상 추정 오차를 잡음으로 두고 계획서의 회귀선 판정 기준을 적용한다. <b>절편 검정</b>은 새 위상 형성을, <b>기울기 검정</b>은 주기 변화를 묻는다. 주기가 T이면 정점이 하루 (T − 24)시간씩 이동하므로 기울기 검정의 효과 크기는 설계가 정한다. 개체별 회귀 후 1표본 t 검정을 적용하며, 개체 고유 위상이 상쇄되어 적은 마리 수로도 성립한다.</p>
 
-<p style="margin:14px 0 4px;">◦ 표본 수 산출</p>
-<p style="margin:2px 0 2px 22px;">- 실측 시계열에서 얻은 하루치 위상 추정 오차를 잡음으로 두고, 본 연구의 판정 기준인 회귀선 비교를 그대로 적용한다. <b>절편 검정</b>은 '처치로 새 위상이 형성되었는가', <b>기울기 검정</b>은 '주기 자체가 인가 주기로 바뀌었는가'를 묻는다. 리듬의 주기가 T이면 정점 시각이 하루에 (T − 24)시간씩 이동하므로, 기울기 검정의 효과 크기는 실험 설계가 정한다.</p>
-<p style="margin:2px 0 2px 22px;">- 개체마다 두 구간에 직선을 적합하고 개체 단위 통계량에 1표본 t 검정을 적용한다. 개체 고유의 위상이 차분에서 상쇄되므로 적은 마리 수로도 검정이 성립한다.</p>
+<p style="margin:12px 0 4px;">◦ 예상 결과와 역문제 설정</p>
+<p style="margin:2px 0 2px 22px;">- 동조 · 마스킹 두 가설의 일별 위상 궤적을 정의하고 실측 오차를 표준오차로 부여한다. 또한 위상만 이동했을 때 단일 시점 전사체에서 보일 발현 변화를 지상 아틀라스 진폭으로 미리 계산한다.</p>
 
-<p style="margin:14px 0 4px;">◦ 예상 결과 산출과 역문제 설정</p>
-<p style="margin:2px 0 2px 22px;">- 동조 가설과 마스킹 가설이 각각 만드는 관측값을 일별 위상 계산으로 정의하고, 실측 위상 오차를 표준오차로 부여한다. 두 가설은 후지현수 구간에서 구별되지 않으며, 제거한 뒤 갈라지는 간격이 판정 신호가 된다. 또한 공개 비행 전사체는 단일 시점이라 진폭 변화와 위상 이동을 구별하지 못하므로, 위상만 이동했을 때 보일 시계유전자 발현 변화를 지상 아틀라스의 실측 진폭으로 미리 계산해 둔다.</p>
+<p style="font-size:12pt; font-weight:bold; margin:18px 0 6px;">□ 연구절차</p>
+<p style="margin:2px 0 2px 22px;">- 팀원 A(전산 전공) : 공개 데이터 조사, 공통 지표 · 표본 수 · 역문제 예측 산출, 재현 스크립트 작성.</p>
 
-<p style="font-size:12pt; font-weight:bold; margin:22px 0 8px;">□ 연구절차</p>
-<p style="margin:2px 0 2px 22px;">- 팀원 A(전산 전공) : 공개 데이터 전수 조사, 원자료 확보와 공통 지표 산출, 잡음 기준 · 검정력 산출, 역문제 예측. 재현 스크립트 일체 작성. 원본 파일은 해시값으로 고정하여 재실행 시 같은 결과가 나오도록 관리한다.</p>
+<hr style="border:none; border-top:2px solid #000; margin:24px 0 14px;">
+<p style="font-size:13pt; font-weight:bold; margin:0 0 14px;">3 &nbsp; 연구결과의 기대효과 및 활용방안</p>
 
-<hr style="border:none; border-top:2px solid #000; margin:28px 0 14px;">
-<p style="font-size:13pt; font-weight:bold; margin:0 0 16px;">3 &nbsp; 연구결과의 기대효과 및 활용방안</p>
+<p style="font-size:12pt; font-weight:bold; margin:0 0 8px;">□ 예상되는 결과</p>
 
-<p style="font-size:12pt; font-weight:bold; margin:0 0 10px;">□ 예상되는 결과</p>
+<p style="margin:12px 0 4px;">◦ (1) 이 질문에 답할 공개 데이터가 존재하지 않음을 확인하였다</p>
+<p style="margin:2px 0 2px 22px;">- OSDR 파일 157,801개 중 리듬 자료는 52개(5개 스터디)뿐이고 하루 4점을 24시간에 걸쳐 확보한 것은 0건이다. 일주기를 목적으로 한 유일한 비행 실험은 NASA 아카이브에 <b>"원자료가 제출되지 않음(No data submitted by PI)"</b>으로 남아 있고, 지상에서 중력을 되돌린 유일한 통제 실험은 위상을 재지 않았다.</p>
+<p style="margin:2px 0 2px 22px;">- 선행연구가 부족해서가 아니라 이 질문에 답할 데이터를 아직 누구도 만들지 않았다. 웻랩이 그 첫 자료가 된다.</p>
 
-<p style="margin:14px 0 4px;">◦ (1) 이 질문에 답할 공개 데이터가 존재하지 않음을 확인하였다</p>
-<p style="margin:2px 0 2px 22px;">- OSDR 전체 파일 157,801개 중 리듬 관련 자료는 52개(5개 스터디)뿐이었고, 그중 하루 4점 이상을 24시간에 걸쳐 확보한 것은 한 건도 없었다.</p>
-<p style="margin:2px 0 2px 22px;">- 일주기 리듬을 목적으로 설계된 유일한 우주비행 실험은 NASA 아카이브에 <b>"원자료가 제출되지 않음(No data submitted by PI)"</b>으로 기록돼 있고, 지상에서 중력을 되돌려 넣은 유일한 통제 실험은 일주기 위상을 측정하지 않았다.</p>
-<p style="margin:2px 0 2px 22px;">- 즉 본 연구가 필요한 이유는 선행연구가 부족해서가 아니라, 이 질문에 답할 형태의 데이터를 아직 누구도 만들지 않았기 때문이다. 웻랩이 그 첫 자료가 된다.</p>
+<p style="margin:14px 0 4px;">◦ (2) 측정 지표 · 표본 수 · 판정 경로가 산출되었다</p>
+<p style="margin:2px 0 2px 22px;">- 1차 지표를 심부체온, 2차 지표를 활동량으로 둔다.</p>
 
-<p style="margin:16px 0 4px;">◦ (2) 측정 지표 · 표본 수 · 판정 경로가 산출되었다</p>
-<p style="margin:2px 0 2px 22px;">- <b>1차 지표를 심부체온으로 둔다.</b> 같은 동물 · 같은 기간 · 같은 임플란트에서 후지현수 중 리듬이 유지된 개체는 심부체온 5/6, 활동량 1/6, 피하온도 1/5였다. 체온 리듬이 활동량의 부산물이 아니며 피부가 아닌 심부여야 함을 같은 자료가 보여준다. 활동량은 2차 지표로 유지한다.</p>
-
-<table style="border-collapse:collapse; margin:8px 0 8px 22px; font-size:9.5pt;">
-<tr><td colspan="5" style="border-bottom:1px solid #000; padding:4px 0; font-weight:bold;">표 1. 검정력 0.8 을 얻는 최소 마리 수 (처치 전 3일 · 처치 14일 · 유의수준 0.05)</td></tr>
+<table style="border-collapse:collapse; margin:6px 0 6px 22px; font-size:9pt;">
+<tr><td colspan="5" style="border-bottom:1px solid #000; padding:3px 0;"><b>표 1.</b> 검정력 0.8 최소 마리 수 (처치 전 3일 · 처치 14일 · α=0.05)</td></tr>
 <tr style="border-bottom:1px solid #888;">
-  <td style="padding:3px 12px 3px 0;">지표</td>
-  <td style="padding:3px 10px 3px 0; text-align:center;">절편 검정<br>2시간 이동</td>
-  <td style="padding:3px 10px 3px 0; text-align:center;">기울기<br>12h군</td>
-  <td style="padding:3px 10px 3px 0; text-align:center;">기울기<br>10h군</td>
-  <td style="padding:3px 0; text-align:center;">기울기<br>14h군</td></tr>
-<tr><td style="padding:3px 12px 3px 0;"><b>심부체온</b></td>
-  <td style="padding:3px 10px 3px 0; text-align:center;"><b>7</b></td>
-  <td style="padding:3px 10px 3px 0; text-align:center;">10</td>
-  <td style="padding:3px 10px 3px 0; text-align:center;"><b>3</b></td>
-  <td style="padding:3px 0; text-align:center;"><b>3</b></td></tr>
-<tr><td style="padding:3px 12px 3px 0;">피하온도</td>
-  <td style="padding:3px 10px 3px 0; text-align:center;">10 ~ 16</td>
-  <td style="padding:3px 10px 3px 0; text-align:center;">10 ~ 16</td>
-  <td style="padding:3px 10px 3px 0; text-align:center;">3</td>
-  <td style="padding:3px 0; text-align:center;">3</td></tr>
-<tr><td style="padding:3px 12px 3px 0;">활동량</td>
-  <td style="padding:3px 10px 3px 0; text-align:center;">12 ~ 16</td>
-  <td style="padding:3px 10px 3px 0; text-align:center;">16 초과</td>
-  <td style="padding:3px 10px 3px 0; text-align:center;">3 ~ 5</td>
-  <td style="padding:3px 0; text-align:center;">3 ~ 10</td></tr>
+  <td style="padding:2px 12px 2px 0;">지표</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">절편<br>2 h</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">기울기<br>12h군</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">기울기<br>10h군</td>
+  <td style="padding:2px 0; text-align:center;">기울기<br>14h군</td></tr>
+<tr><td style="padding:2px 12px 2px 0;"><b>심부체온</b></td>
+  <td style="padding:2px 10px 2px 0; text-align:center;"><b>7</b></td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">10</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;"><b>3</b></td>
+  <td style="padding:2px 0; text-align:center;"><b>3</b></td></tr>
+<tr><td style="padding:2px 12px 2px 0;">활동량</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">12~16</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">16 초과</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">3~5</td>
+  <td style="padding:2px 0; text-align:center;">3~10</td></tr>
 </table>
 
-<p style="margin:2px 0 2px 22px;">- 후지현수 중에는 지표가 억제되어 위상 추정 오차가 <b>3.6배에서 38배까지</b> 커진다(그림 1). 이는 모든 지표에 해당하므로 '후지현수 중에 새 위상이 형성되는가'는 직접 판정이 어렵고, <b>후지현수를 제거한 자유진행(free-run) 구간이 주 판정 경로</b>가 되어야 한다.</p>
-<p style="margin:2px 0 2px 22px;">- 10시간 · 14시간 군은 위상이 하루 4시간씩 표류해 기울기 검정이 3마리로 성립하나, 12시간 군은 0.3시간에 그쳐 절편 검정에 의존한다. <b>군별 주 검정을 사전에 지정한다.</b></p>
+<p style="margin:2px 0 2px 22px;">- 후지현수 중에는 지표가 억제되어 위상 추정 오차가 <b>3.6~38배</b> 커지므로, 제거한 <b>자유진행(free-run) 구간이 주 판정 경로</b>가 되어야 한다.</p>
+<p style="margin:2px 0 2px 22px;">- 10 · 14시간 군은 위상이 하루 4시간씩 표류해 기울기 검정이 3마리로 성립하나 12시간 군은 0.3시간이라 절편 검정에 의존한다. 군별 주 검정을 사전 지정한다.</p>
 
-<p style="margin:10px 0 4px 22px;"><img src="../results/v3/figures/그림2_마스킹과검정력.png" style="width:100%; max-width:640px;"></p>
-<p style="margin:2px 0 12px 22px; font-size:9.5pt; line-height:1.5;"><b>그림 1. 마스킹의 정량화와 그에 따른 표본 수.</b> (A) 개체별 원자료에서 24시간 창을 하루씩 밀며 최고시각을 추정하고 개체 내 표준편차를 구했다. 후지현수를 걸면 지표가 억제되어 위상 추정 오차가 3.6배에서 38배까지 커지며, 저하 폭은 심부체온이 가장 작다. (B) 이 오차를 잡음으로 두고 회귀선 절편 차이 검정을 적용한 검정력. 음영은 코호트 간 범위다.</p>
+<p style="margin:14px 0 4px;">◦ (3) 웻랩 수행 후 예상되는 결과</p>
 
-<p style="margin:16px 0 4px;">◦ (3) 웻랩 수행 후 예상되는 결과</p>
-<p style="margin:2px 0 6px 22px;">사전 분석에서 실측한 위상 추정 오차를 그대로 넣어 세 군의 예상 관측값을 산출하였다(그림 2). 후지현수를 거는 동안에는 두 가설이 같은 궤적을 그려 구별할 수 없고, 제거한 뒤에야 갈라진다.</p>
-
-<table style="border-collapse:collapse; margin:8px 0 8px 22px; font-size:9.5pt;">
-<tr><td colspan="4" style="border-bottom:1px solid #000; padding:4px 0; font-weight:bold;">표 2. 군별 예상 판정 간격 (심부체온, 8마리 기준)</td></tr>
+<table style="border-collapse:collapse; margin:6px 0 6px 22px; font-size:9pt;">
+<tr><td colspan="4" style="border-bottom:1px solid #000; padding:3px 0;"><b>표 2.</b> 군별 예상 판정 간격 (심부체온, 8마리)</td></tr>
 <tr style="border-bottom:1px solid #888;">
-  <td style="padding:3px 14px 3px 0;">실험군</td>
-  <td style="padding:3px 12px 3px 0; text-align:center;">주기</td>
-  <td style="padding:3px 12px 3px 0; text-align:center;">두 가설의 예상 간격</td>
-  <td style="padding:3px 0; text-align:center;">군평균 표준오차 대비</td></tr>
-<tr><td style="padding:3px 14px 3px 0;">12시간 on/off</td><td style="padding:3px 12px 3px 0; text-align:center;">24 h</td>
-  <td style="padding:3px 12px 3px 0; text-align:center;">4.2 h</td><td style="padding:3px 0; text-align:center;">7.1 배</td></tr>
-<tr><td style="padding:3px 14px 3px 0;"><b>10시간 on/off</b></td><td style="padding:3px 12px 3px 0; text-align:center;">20 h</td>
-  <td style="padding:3px 12px 3px 0; text-align:center;">3.8 h</td><td style="padding:3px 0; text-align:center;">6.4 배</td></tr>
-<tr><td style="padding:3px 14px 3px 0;">14시간 on/off</td><td style="padding:3px 12px 3px 0; text-align:center;">28 h</td>
-  <td style="padding:3px 12px 3px 0; text-align:center;">11.8 h</td><td style="padding:3px 0; text-align:center;">20.0 배</td></tr>
+  <td style="padding:2px 12px 2px 0;">실험군</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">주기</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">예상 간격</td>
+  <td style="padding:2px 0; text-align:center;">표준오차 대비</td></tr>
+<tr><td style="padding:2px 12px 2px 0;">12시간 on/off</td><td style="padding:2px 10px 2px 0; text-align:center;">24 h</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">4.2 h</td><td style="padding:2px 0; text-align:center;">7.1 배</td></tr>
+<tr><td style="padding:2px 12px 2px 0;"><b>10시간 on/off</b></td><td style="padding:2px 10px 2px 0; text-align:center;">20 h</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">3.8 h</td><td style="padding:2px 0; text-align:center;">6.4 배</td></tr>
+<tr><td style="padding:2px 12px 2px 0;">14시간 on/off</td><td style="padding:2px 10px 2px 0; text-align:center;">28 h</td>
+  <td style="padding:2px 10px 2px 0; text-align:center;">11.8 h</td><td style="padding:2px 0; text-align:center;">20.0 배</td></tr>
 </table>
 
-<p style="margin:2px 0 2px 22px;">- <b>주 가설.</b> 세 군 모두 후지현수 구간에서 위상이 인가 주기를 따라 이동하고, 제거한 뒤에도 그 위상이 유지된다. 예상 판정 간격이 군평균 표준오차의 6.4~20배이므로 세 군 모두 검출 가능하다. 이 경우 <b>빛이 아닌 중력 변화만으로 생체리듬이 새로 동조된다</b>는 결론이 성립한다.</p>
-<p style="margin:2px 0 2px 22px;">- <b>10시간 군이 결정적 증거다.</b> 마우스의 내인성 주기는 약 23.7시간이므로, 20시간 주기를 따라간다면 내인성 리듬과의 우연한 일치일 수 없다.</p>
-<p style="margin:2px 0 2px 22px;">- <b>대안 결과.</b> 처치 전 위상으로 되돌아가면 동조가 아니라 마스킹이었다는 결론이 된다. 이 경우에도 지상 모사가 어디까지 유효한지의 경계가 정해지므로 후속 연구가 반복할 필요가 없는 결과가 남는다. <b>어느 쪽이 나오든 결론이 난다.</b></p>
+<p style="margin:2px 0 2px 22px;">- <b>주 가설.</b> 세 군 모두 위상이 인가 주기를 따라 이동하고 제거 후에도 유지된다. 판정 간격이 표준오차의 6.4~20배라 세 군 모두 검출 가능하며, <b>빛이 아닌 중력만으로 생체리듬이 동조된다</b>는 결론이 성립한다.</p>
+<p style="margin:2px 0 2px 22px;">- <b>10시간 군이 결정적이다.</b> 내인성 주기 23.7시간과 우연히 일치할 수 없기 때문이다.</p>
+<p style="margin:2px 0 2px 22px;">- <b>대안 결과.</b> 처치 전 위상으로 복귀하면 마스킹이며, 그 경우에도 지상 모사의 유효 경계가 정해져 <b>어느 쪽이든 결론이 난다.</b></p>
 
-<p style="margin:10px 0 4px 22px;"><img src="../results/v3/figures/그림3_웻랩예상결과.png" style="width:100%; max-width:690px;"></p>
-<p style="margin:2px 0 12px 22px; font-size:9.5pt; line-height:1.5;"><b>그림 2. 웻랩 예상 결과.</b> 세로 음영은 후지현수 주기를 인가하는 14일, 오른쪽은 제거한 자유진행 14일이다. 오차막대는 임의값이 아니라 사전 분석에서 실측한 심부체온 위상 추정 오차(후지현수 전 0.31시간 / 중 2.77시간 / 해제 후 1.67시간)를 8마리 군평균으로 환산한 값이다. 인가 구간에서는 동조와 마스킹이 같은 궤적을 그려 구별할 수 없고, 제거한 뒤 갈라지는 간격(초록 화살표)이 판정 신호다.</p>
+<p style="margin:8px 0 3px 22px;"><img src="../results/v3/figures/그림1_웻랩예상결과.png" style="width:100%; max-width:480px;"></p>
+<p style="margin:2px 0 10px 22px; font-size:9pt; line-height:1.45;"><b>그림 1. 웻랩 예상 결과.</b> 음영은 후지현수 인가 14일. 오차막대는 실측 위상 오차의 8마리 군평균이다. 인가 중에는 두 가설이 겹치고, 제거 후 갈라지는 간격(초록 화살표)이 판정 신호다.</p>
 
 <p style="margin:16px 0 4px;">◦ (4) 웻랩 결과가 기존 우주비행 자료의 재해석을 가능하게 한다</p>
-<p style="margin:2px 0 2px 22px;">- 웻랩이 측정할 위상 이동량은 새 자료를 만드는 데 그치지 않는다. 단일 시점 전사체가 진폭 변화와 위상 이동을 구별하지 못하는 문제를, 위상 이동량을 외부에서 넣어 줌으로써 풀 수 있기 때문이다.</p>
-<p style="margin:2px 0 2px 22px;">- 사전 계산 결과 기존 비행 자료가 해석 가능해지는 위상 이동의 하한은 약 <b>0.55시간</b>이고 웻랩이 검출할 수 있는 하한은 약 <b>1시간</b>으로, <b>두 범위가 겹친다.</b> 즉 추가 우주 실험 없이도 이미 축적된 비행 자료의 재해석이 가능해진다.</p>
-<p style="margin:2px 0 2px 22px;">- 웻랩 결과가 나오기 전에 예측을 확정해 둔다. 측정된 위상 이동이 하한보다 작으면, 기존 비행 자료에서 시계유전자 신호가 잡히지 않는 것은 '효과 없음'의 증거가 아니라 분해능의 한계임이 정량적으로 확정된다. 하한보다 크면, 비행 자료의 관측값이 예측값에 못 미치는 만큼이 곧 <b>중력 이외 요인의 기여분의 하한</b>이 된다.</p>
+<p style="margin:2px 0 2px 22px;">- 공개 비행 전사체는 단일 시점이라 진폭 변화와 위상 이동을 구별하지 못한다. 웻랩이 위상 이동량을 재 오면 그 미지수가 채워진다.</p>
+<p style="margin:2px 0 2px 22px;">- 비행 자료가 해석 가능해지는 하한은 약 <b>0.55시간</b>, 웻랩 검출 하한은 약 <b>1시간</b>으로 <b>두 범위가 겹친다.</b> 추가 우주 실험 없이 축적된 자료의 재해석이 가능해진다.</p>
 
+<p style="margin:8px 0 3px 22px;"><img src="../results/v3/figures/그림2_역문제.png" style="width:100%; max-width:400px;"></p>
+<p style="margin:2px 0 10px 22px; font-size:9pt; line-height:1.45;"><b>그림 2. 역문제.</b> 위상만 Δφ 이동했을 때 단일 시점 전사체에서 보일 발현 변화. 음영은 희생 시각 미상에 따른 범위다.</p>
+
+<p style="margin:2px 0 2px 22px;">- 예측은 웻랩 전에 확정해 둔다. 측정값이 하한보다 작으면 비행 자료의 무신호가 '효과 없음'이 아니라 <b>분해능 한계</b>임이 확정되고, 크면 예측에 못 미치는 만큼이 <b>중력 이외 요인의 기여 하한</b>이 된다.</p>
 
 </div>
