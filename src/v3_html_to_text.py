@@ -43,9 +43,14 @@ class Conv(HTMLParser):
         self.row = []
         self.cell = []
         self.in_cell = False
+        self.in_pre = False
 
     # ---- 텍스트 수집
     def handle_data(self, d):
+        if self.in_pre:          # 수식 블록은 줄바꿈을 그대로 살린다
+            lines = d.strip("\n").splitlines()
+            self.out.append("\n".join("      " + l for l in lines))
+            return
         (self.cell if self.in_cell else self.buf).append(d)
 
     def handle_starttag(self, tag, attrs):
@@ -58,6 +63,9 @@ class Conv(HTMLParser):
             self.in_cell, self.cell = True, []
         elif tag == "br":
             (self.cell if self.in_cell else self.buf).append(" ")
+        elif tag == "pre":
+            self.flush()
+            self.in_pre = True
         elif tag == "img":
             src = dict(attrs).get("src", "")
             self.flush()
@@ -76,6 +84,8 @@ class Conv(HTMLParser):
         elif tag in ("td", "th") and self.in_table:
             self.row.append(re.sub(r"\s+", " ", "".join(self.cell)).strip())
             self.in_cell = False
+        elif tag == "pre":
+            self.in_pre = False
         elif tag in ("p", "div"):
             self.flush()
 
