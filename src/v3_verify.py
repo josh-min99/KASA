@@ -154,10 +154,37 @@ def main():
     hwp_txt = open(os.path.join(DOCS, "한글양식_2_연구방법_3_예상결과.txt"),
                    encoding="utf-8").read()
     for token in ["157,801", "2,593", "633", "6/6", "-49 ~ -80%", "+2.7%",
-                  "심부체온 4마리", "3.6배에서 38배", "0.55시간", "16,561",
-                  "No data submitted by PI", "자유진행(free-run)"]:
+                  "3.6배에서 38배", "0.55시간", "16,561",
+                  "No data submitted by PI", "자유진행(free-run)",
+                  "표 1.", "표 2.", "표 3.", "표 4.", "[그림 E]",
+                  "심부체온 5/6", "2.6배"]:
         chk(f"한글양식 원고에 '{token}' 존재", token in hwp_html, True)
         chk(f"  (txt 판에도) '{token}'", token in hwp_txt, True)
+
+    # 표 4 (군별 예상 판정 간격) 수치가 산출물과 맞는가
+    print("\n[표 4 — 군별 예상 판정 간격]")
+    pw = pd.read_csv(os.path.join(DATA, "predicted_wetlab.csv"))
+    pw["ratio"] = pw.gap_h.abs() / pw.sem_free
+    for T, gap, ratio, stren in [(24, 4.2, 7.1, 0.00), (20, 3.8, 6.4, 0.05),
+                                 (28, 11.8, 20.0, 0.13)]:
+        r = pw[pw.T_hours == T].iloc[0]
+        chk(f"T={T}h 판정 간격(h)", round(abs(float(r.gap_h)), 1), gap, 0.05)
+        chk(f"T={T}h 표준오차 대비 배수", round(float(r.ratio), 1), ratio, 0.05)
+        chk(f"T={T}h 동조 필요 자극 세기", round(float(r.min_strength), 2), stren, 0.005)
+    chk("세 군 모두 검출 가능", int(pw.detectable.all()), 1)
+    # T=28 이 T=20 보다 몇 배 강한 자극을 요구하는가 (문서 기재값 2.6배)
+    s20 = float(pw[pw.T_hours == 20].min_strength.iloc[0])
+    s28 = float(pw[pw.T_hours == 28].min_strength.iloc[0])
+    chk("T=28 대 T=20 자극 세기 비", round(s28 / s20, 1), 2.6, 0.05)
+
+    print("\n[리듬 유지 개체 수 — 심부체온 대 활동량]")
+    for ds, var, want_keep, want_tot in [("helissen2022", "tb_core", 5, 6),
+                                         ("helissen2022", "activity", 1, 6),
+                                         ("helissen2020", "tb_sub", 1, 5)]:
+        t = par[(par.dataset == ds) & (par.variable == var) &
+                (par.condition == "treatment")]
+        chk(f"{var} HLU중 리듬 유지 개체", f"{int((t.p_rhythm < 0.05).sum())}/{len(t)}",
+            f"{want_keep}/{want_tot}")
 
     print("\n" + "=" * 92)
     print(f"통과 {len(OKS)} / 실패 {len(FAILS)}")

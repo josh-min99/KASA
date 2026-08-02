@@ -9,7 +9,8 @@
 ◦ / - / ※ 줄 → <b>휴먼명조 14pt, 줄간격 160%, 자간 0%</b><br>
 5쪽 제한이 빡빡하므로 <span style="color:#b03030;">[축약 가능]</span> 표시한 줄부터 지워도 논지가 유지되도록 배치했습니다.<br>
 학교명·성명이 들어가지 않도록 팀원은 '팀원 A~D' 로만 적었습니다.<br>
-수치는 전부 산출물과 대조 검증되어 있습니다(<code>python src/v3_verify.py</code>, 58건 통과).
+본문 수치는 전부 산출물과 자동 대조됩니다(<code>python src/v3_verify.py</code>).<br>
+한글 붙여넣기용 txt 판은 이 HTML 에서 자동 생성됩니다(<code>python src/v3_html_to_text.py</code>) — 내용은 HTML 만 고치세요.
 </div>
 
 <hr style="border:none; border-top:2px solid #000; margin:0 0 14px;">
@@ -54,27 +55,116 @@
 
 <p style="font-size:12pt; font-weight:bold; margin:0 0 10px;">□ 예상되는 결과</p>
 
-<p style="color:#666; font-size:10pt; margin:0 0 12px;">※ (1)~(3)은 이미 산출된 사전 분석 결과이고, (4)~(5)는 웻랩 수행 후 예상되는 결과입니다. 웻랩 예상결과 문단은 (5) 뒤에 이어 붙입니다.</p>
+<p style="color:#666; font-size:10pt; margin:0 0 12px;">※ (1)~(3)은 이미 산출을 마친 사전 분석 결과이고, (4)~(5)는 웻랩 수행 후 예상되는 결과입니다.</p>
 
-<p style="margin:14px 0 4px;">◦ (1) 사전 분석 결과 : 이 질문에 답할 공개 데이터가 존재하지 않음을 확인하였다</p>
-<p style="margin:2px 0 2px 22px;">- OSDR 전체 파일 157,801개 중 리듬 관련 자료는 52개 파일(5개 스터디)뿐이었고, 그중 하루 4점 이상을 24시간에 걸쳐 확보한 것은 한 건도 없었다.</p>
+<p style="margin:14px 0 4px;">◦ (1) 사전 분석 결과 ① : 이 질문에 답할 공개 데이터가 존재하지 않음을 확인하였다</p>
+
+<table style="border-collapse:collapse; margin:8px 0 10px 22px; font-size:10.5pt;">
+<tr><td colspan="2" style="border-bottom:1px solid #000; padding:5px 0; font-weight:bold;">표 1. NASA OSDR 전수 스윕 결과</td></tr>
+<tr><td style="padding:4px 26px 4px 0;">전체 스터디</td><td style="padding:4px 0; text-align:right;">633 건</td></tr>
+<tr><td style="padding:4px 26px 4px 0;">전체 파일 (파일명 수준까지 개봉)</td><td style="padding:4px 0; text-align:right;">157,801 개</td></tr>
+<tr><td style="padding:4px 26px 4px 0;">리듬 관련 후보 파일</td><td style="padding:4px 0; text-align:right;">52 개</td></tr>
+<tr><td style="padding:4px 26px 4px 0;">리듬 관련 후보 스터디</td><td style="padding:4px 0; text-align:right;">5 건</td></tr>
+<tr><td style="border-top:1px solid #000; padding:5px 26px 5px 0; font-weight:bold;">하루 4점 이상을 24시간에 걸쳐 확보한 자료</td>
+    <td style="border-top:1px solid #000; padding:5px 0; text-align:right; font-weight:bold;">0 건</td></tr>
+</table>
+<p style="margin:2px 0 8px 22px; font-size:10pt; color:#555;">[그림 A] 채택 판정 분포 및 전수 스윕에서 남은 자료</p>
 <p style="margin:2px 0 2px 22px;">- 일주기 리듬을 목적으로 설계된 유일한 우주비행 실험(쥐 24마리에 생체원격 장치를 이식해 16일간 체온 · 심박을 연속 기록)은 NASA 아카이브 기록에 <b>"원자료가 제출되지 않음(No data submitted by PI)"</b>으로 남아 있다.</p>
 <p style="margin:2px 0 2px 22px;">- 지상에서 중력을 되돌려 넣은 유일한 통제 실험(60일 침상안정 + 매일 원심분리, 3군 24명)은 수면다원검사를 8개 야간에만 시행했을 뿐 일주기 위상을 재지 않았다.</p>
 <p style="margin:2px 0 2px 22px;">- 즉 본 연구가 필요한 이유는 선행연구가 부족해서가 아니라, 이 질문에 답할 형태의 데이터를 아직 누구도 만들지 않았기 때문이다. 웻랩이 그 첫 자료가 된다.</p>
 
-<p style="margin:16px 0 4px;">◦ (2) 사전 분석 결과 : 웻랩이 무엇을 측정해야 하는지가 데이터로 결정되었다</p>
-<p style="margin:2px 0 2px 22px;">- 확보한 원자료를 같은 축에 올려 비교한 결과, <b>활동량은 지상 모사와 실제 비행이 어긋났다.</b> 지상 후지현수에서 활동량 수준은 세 코호트 모두 크게 떨어졌으나(-49 ~ -80%), 궤도에서 중력만 분리한 비교 — 같은 사육 장치 안에서 한쪽 원심기를 지구 중력으로, 다른 쪽을 미세중력으로 돌려 방사선 · 격리 · 발사가 양쪽에 동일한 설계 — 에서는 그만한 감소가 나타나지 않았다(+2.7%).</p>
-<p style="margin:2px 0 2px 22px;">- 반면 <b>체온 리듬의 최고시각은 다섯 개 비교 모두 지연 방향</b>이었고, 실제 비행 영장류에서 보고된 체온 리듬 위상 지연과 방향이 일치하였다.</p>
+<p style="margin:16px 0 4px;">◦ (2) 사전 분석 결과 ② : 웻랩이 무엇을 측정해야 하는지가 데이터로 결정되었다</p>
+
+<table style="border-collapse:collapse; margin:8px 0 10px 22px; font-size:10pt;">
+<tr><td colspan="4" style="border-bottom:1px solid #000; padding:5px 0; font-weight:bold;">표 2. 축별 정합성 — 지상 모사가 실제 비행으로 전이되는가</td></tr>
+<tr style="border-bottom:1px solid #888;">
+  <td style="padding:5px 16px 5px 0;">축</td>
+  <td style="padding:5px 16px 5px 0;">지상 언로딩 (원자료)</td>
+  <td style="padding:5px 16px 5px 0;">실제 비행</td>
+  <td style="padding:5px 0;">전이</td></tr>
+<tr><td style="padding:5px 16px 5px 0;">활동량 수준</td>
+    <td style="padding:5px 16px 5px 0;">-49 ~ -80% (3/3 구간이 0 배제)</td>
+    <td style="padding:5px 16px 5px 0;">+2.7% [-0.2, +6.0]<br><span style="font-size:9pt; color:#555;">궤도 1G 원심 대 uG</span></td>
+    <td style="padding:5px 0;"><b>안 됨</b></td></tr>
+<tr><td style="padding:5px 16px 5px 0;">체온 리듬 진폭</td>
+    <td style="padding:5px 16px 5px 0;">-37 ~ -79%</td>
+    <td style="padding:5px 16px 5px 0;">해당 자료 없음</td>
+    <td style="padding:5px 0;">판정 불가</td></tr>
+<tr><td style="padding:5px 16px 5px 0;"><b>체온 최고시각</b></td>
+    <td style="padding:5px 16px 5px 0;">지연 5/5<br><span style="font-size:9pt; color:#555;">(구간이 0 배제 3/5)</span></td>
+    <td style="padding:5px 16px 5px 0;">지연<br><span style="font-size:9pt; color:#555;">영장류 Cosmos 2044/2229</span></td>
+    <td style="padding:5px 0;"><b>됨</b></td></tr>
+</table>
+<p style="margin:2px 0 8px 22px; font-size:10pt; color:#555;">[그림 B] 활동량 수준과 체온 위상의 축별 비교</p>
+
+<p style="margin:2px 0 2px 22px;">- 지상 후지현수에서 활동량은 크게 떨어지지만, 궤도에서 중력만 분리한 비교 — 같은 사육 장치 안에서 한쪽 원심기를 지구 중력으로, 다른 쪽을 미세중력으로 돌려 방사선 · 격리 · 발사가 양쪽에 동일한 설계 — 에서는 그만한 감소가 없다. <b>지상의 큰 감소를 중력 효과로 보기 어렵다.</b></p>
 <p style="margin:2px 0 2px 22px;">- 따라서 웻랩의 <b>1차 측정 지표를 심부체온, 2차 지표를 활동량</b>으로 둔다. 체온 위상은 지상 모사와 실제 비행이 방향으로 일치하는 유일한 축이므로, 웻랩 결과를 우주환경에 연결하는 논증이 이 축 위에서만 성립한다.</p>
+<p style="margin:2px 0 2px 22px;">- 같은 동물 · 같은 기간 · 같은 임플란트에서 후지현수 중 리듬이 유지된 개체는 <b>심부체온 5/6, 활동량 1/6, 피하온도 1/5</b>였다. 체온 리듬이 활동량의 단순 부산물이 아니며, 피부가 아닌 <b>심부</b> 체온이어야 함을 같은 자료가 함께 보여준다.</p>
 
-<p style="margin:16px 0 4px;">◦ (3) 사전 분석 결과 : 표본 수와 판정 경로가 산출되었다</p>
-<p style="margin:2px 0 2px 22px;">- 처치 전 3일 · 처치 14일, 유의수준 0.05, 검정력 0.8 기준으로 2시간의 위상 이동을 검출하는 데 필요한 마리 수는 <b>심부체온 4마리, 활동량 6~8마리</b>이며, 1시간 이동은 심부체온 8마리가 필요하다. 웻랩 표본 수를 이 값으로 정한다.</p>
-<p style="margin:2px 0 2px 22px;">- 후지현수를 거는 동안에는 지표가 억제되어 위상 추정 오차가 <b>3.6배에서 38배까지</b> 커진다. 이는 활동량만의 문제가 아니라 모든 지표에 해당한다. 따라서 '후지현수 중에 새 위상이 형성되는가'는 어떤 지표로도 직접 판정이 어렵고, <b>후지현수를 완전히 제거한 자유진행(free-run) 구간이 주 판정 경로</b>가 되어야 한다. 본 연구의 두 가설 중 두 번째 가설에 판정의 무게를 두는 근거가 여기에 있다.</p>
+<p style="margin:16px 0 4px;">◦ (3) 사전 분석 결과 ③ : 표본 수와 판정 경로가 산출되었다</p>
 
-<p style="margin:16px 0 4px;">◦ (4) 웻랩 수행 후 예상되는 결과 : 두 시나리오 모두 결론에 도달한다</p>
-<p style="margin:2px 0 2px 22px;">- <b>시나리오 A.</b> 후지현수 제거 후 자유진행 구간에서 처치 구간의 위상이 유지되면, 중력 변화가 단순한 교란이 아니라 동조 신호(zeitgeber)로 작동했음을 뜻한다. 24시간과 다른 주기(10시간 · 14시간) 군에서도 동일하게 관찰되면, 관측된 변화가 내인성 24시간 리듬과의 우연한 일치가 아님이 함께 확인된다.</p>
-<p style="margin:2px 0 2px 22px;">- <b>시나리오 B.</b> 처치 전 위상으로 되돌아가면 동조가 아니라 마스킹이었다는 결론이 된다. 이 경우에도 체온 위상 축에서 지상 모사가 어디까지 유효한지의 경계가 정해지므로, 후속 연구가 반복할 필요가 없는 결과가 남는다.</p>
-<p style="margin:2px 0 2px 22px;">- 어느 쪽이 나오든 결론이 나온다는 점이 본 설계의 특징이다. 사전 분석에서 측정 지표와 표본 수를 확정해 두었기 때문에 판정 불가로 끝나지 않는다.</p>
+<table style="border-collapse:collapse; margin:8px 0 10px 22px; font-size:10pt;">
+<tr><td colspan="5" style="border-bottom:1px solid #000; padding:5px 0; font-weight:bold;">표 3. 검정력 0.8 을 얻는 최소 마리 수 (처치 전 3일 · 처치 14일 · 유의수준 0.05)</td></tr>
+<tr style="border-bottom:1px solid #888;">
+  <td style="padding:5px 16px 5px 0;">측정 지표</td>
+  <td style="padding:5px 14px 5px 0; text-align:center;">1시간 이동</td>
+  <td style="padding:5px 14px 5px 0; text-align:center;">2시간 이동</td>
+  <td style="padding:5px 14px 5px 0; text-align:center;">3시간 이동</td>
+  <td style="padding:5px 0;">후지현수 중 정밀도 저하</td></tr>
+<tr><td style="padding:5px 16px 5px 0;"><b>심부체온</b></td>
+    <td style="padding:5px 14px 5px 0; text-align:center;"><b>8</b></td>
+    <td style="padding:5px 14px 5px 0; text-align:center;"><b>4</b></td>
+    <td style="padding:5px 14px 5px 0; text-align:center;">4</td>
+    <td style="padding:5px 0;">9.0 배</td></tr>
+<tr><td style="padding:5px 16px 5px 0;">피하온도</td>
+    <td style="padding:5px 14px 5px 0; text-align:center;">12 ~ 16</td>
+    <td style="padding:5px 14px 5px 0; text-align:center;">6</td>
+    <td style="padding:5px 14px 5px 0; text-align:center;">4</td>
+    <td style="padding:5px 0;">15.6 ~ 15.9 배</td></tr>
+<tr><td style="padding:5px 16px 5px 0;">활동량</td>
+    <td style="padding:5px 14px 5px 0; text-align:center;">16 초과</td>
+    <td style="padding:5px 14px 5px 0; text-align:center;">6 ~ 8</td>
+    <td style="padding:5px 14px 5px 0; text-align:center;">4 ~ 6</td>
+    <td style="padding:5px 0;">3.6 ~ 38 배</td></tr>
+</table>
+<p style="margin:2px 0 8px 22px; font-size:10pt; color:#555;">[그림 C] 후지현수 중 위상 추정 정밀도 저하 &nbsp;/&nbsp; [그림 D-A] 마리 수별 검정력 곡선</p>
+
+<p style="margin:2px 0 2px 22px;">- 후지현수를 거는 동안에는 지표가 억제되어 위상 추정 오차가 <b>3.6배에서 38배까지</b> 커진다. 이는 활동량만의 문제가 아니라 모든 지표에 해당한다. 따라서 '후지현수 중에 새 위상이 형성되는가'는 어떤 지표로도 직접 판정이 어렵고, <b>후지현수를 완전히 제거한 자유진행(free-run) 구간이 주 판정 경로</b>가 되어야 한다.</p>
+<p style="margin:2px 0 2px 22px;">- 마리 수를 늘리는 대신 <b>관측 기간을 늘리는 것도 대안</b>이다. 심부체온 4마리로도 처치 10일 이상이면 검정력 0.8을 넘지만 5일이면 0.60에 그친다. 동물 수를 최소화해야 할 경우 이 지렛대를 쓸 수 있다.</p>
+
+<p style="margin:16px 0 4px;">◦ (4) 웻랩 수행 후 예상되는 결과 : 세 군 모두 자유진행 구간에서 판정이 가능하다</p>
+
+<p style="margin:2px 0 8px 22px;">사전 분석에서 실측한 위상 추정 오차를 그대로 넣어, 세 군의 예상 관측값을 시뮬레이션하였다<b>[그림 E]</b>. 후지현수를 거는 동안에는 동조 가설과 마스킹 가설이 <b>같은 궤적을 그리고 오차도 가장 크므로 두 가설을 구별할 수 없다.</b> 두 예측은 후지현수를 제거한 뒤에야 갈라지며, 그 간격이 판정 신호가 된다.</p>
+
+<table style="border-collapse:collapse; margin:8px 0 10px 22px; font-size:10pt;">
+<tr><td colspan="5" style="border-bottom:1px solid #000; padding:5px 0; font-weight:bold;">표 4. 군별 예상 판정 간격 (심부체온, 8마리 기준)</td></tr>
+<tr style="border-bottom:1px solid #888;">
+  <td style="padding:5px 14px 5px 0;">실험군</td>
+  <td style="padding:5px 12px 5px 0; text-align:center;">주기 T</td>
+  <td style="padding:5px 12px 5px 0; text-align:center;">두 가설의<br>예상 간격</td>
+  <td style="padding:5px 12px 5px 0; text-align:center;">군평균<br>표준오차 대비</td>
+  <td style="padding:5px 0; text-align:center;">동조에 필요한<br>자극 세기(모델)</td></tr>
+<tr><td style="padding:5px 14px 5px 0;">12시간 on/off</td>
+    <td style="padding:5px 12px 5px 0; text-align:center;">24 h</td>
+    <td style="padding:5px 12px 5px 0; text-align:center;">4.2 h</td>
+    <td style="padding:5px 12px 5px 0; text-align:center;">7.1 배</td>
+    <td style="padding:5px 0; text-align:center;">0.00</td></tr>
+<tr><td style="padding:5px 14px 5px 0;"><b>10시간 on/off</b></td>
+    <td style="padding:5px 12px 5px 0; text-align:center;">20 h</td>
+    <td style="padding:5px 12px 5px 0; text-align:center;">3.8 h</td>
+    <td style="padding:5px 12px 5px 0; text-align:center;">6.4 배</td>
+    <td style="padding:5px 0; text-align:center;">0.05</td></tr>
+<tr><td style="padding:5px 14px 5px 0;">14시간 on/off</td>
+    <td style="padding:5px 12px 5px 0; text-align:center;">28 h</td>
+    <td style="padding:5px 12px 5px 0; text-align:center;">11.8 h</td>
+    <td style="padding:5px 12px 5px 0; text-align:center;">20.0 배</td>
+    <td style="padding:5px 0; text-align:center;">0.13</td></tr>
+</table>
+
+<p style="margin:2px 0 2px 22px;">- <b>주 가설(동조).</b> 세 군 모두 후지현수 구간에서 위상이 인가 주기를 따라 이동하고, 후지현수를 제거한 뒤에도 그 위상이 유지된다. 예상 판정 간격이 군평균 표준오차의 6.4 ~ 20배이므로 세 군 모두 검출 가능하다. 이 경우 <b>빛이 아닌 중력 변화만으로 생체리듬이 새로 동조된다</b>는 결론이 성립한다.</p>
+<p style="margin:2px 0 2px 22px;">- <b>10시간 군이 결정적 증거다.</b> 마우스의 내인성 주기는 약 23.7시간이므로, 20시간 주기를 따라간다면 그것은 내인성 리듬과의 우연한 일치일 수 없다. 24시간 군만 반응하고 20시간 군이 반응하지 않으면 동조라고 주장할 수 없다.</p>
+<p style="margin:2px 0 2px 22px;">- <b>세 군의 난이도는 대칭이 아니다.</b> 본 연구의 진동자 모델에 따르면 같은 자극 세기에서 28시간 주기(14시간 on/off)는 20시간 주기(10시간 on/off)보다 <b>2.6배 강한 자극</b>을 요구한다. 따라서 14시간 군이 동조에 실패하더라도 가설이 기각되는 것은 아니며, 오히려 <b>군 간 반응 차이 자체가 중력 자극의 세기를 역으로 추정하는 자료</b>가 된다.</p>
+<p style="margin:2px 0 2px 22px;">- <b>대안 결과(마스킹).</b> 후지현수 제거 후 처치 전 위상으로 되돌아가면 동조가 아니라 마스킹이었다는 결론이 된다. 이 경우에도 체온 위상 축에서 지상 모사가 어디까지 유효한지의 경계가 정해지므로, 후속 연구가 반복할 필요가 없는 결과가 남는다. <b>어느 쪽이 나오든 결론이 나온다는 점이 본 설계의 특징이다.</b></p>
 
 <p style="margin:16px 0 4px;">◦ (5) 웻랩 결과가 기존 우주비행 데이터의 재해석을 가능하게 한다</p>
 <p style="margin:2px 0 2px 22px;">- 웻랩이 측정할 위상 이동량은 새 자료를 만드는 데 그치지 않는다. 단일 시점 전사체가 진폭 변화와 위상 이동을 구별하지 못하는 문제를, 위상 이동량을 외부에서 넣어 줌으로써 풀 수 있기 때문이다.</p>
@@ -82,8 +172,9 @@
 <p style="margin:2px 0 2px 22px;">- 웻랩 결과가 나오기 전에 예측을 확정해 둔다. 측정된 위상 이동이 하한보다 작으면, 기존 비행 자료에서 시계유전자 신호가 잡히지 않는 것은 '효과 없음'의 증거가 아니라 분해능의 한계임이 정량적으로 확정된다. 하한보다 크면, 비행 자료의 관측값이 예측값에 못 미치는 만큼이 곧 중력 이외 요인의 기여분의 하한이 된다.</p>
 
 <p style="margin:16px 0 4px;">◦ (6) 연구 수행과정에서 산출되는 중간 결과물</p>
-<p style="margin:2px 0 2px 22px;">- 공개 데이터 감사표(자료 16건 × 채택 기준 8개 및 판정 근거), 서로 다른 실험을 통합한 공통 형식 시계열 자료 16,561행, 지표별 잡음 바닥표, 표본 수 · 관측일수별 검정력 격자, 위상 이동량 대 시계유전자 발현 변화 예측표.</p>
-<p style="margin:2px 0 2px 22px;">- 시각 자료 4종 : 데이터 감사 결과, 축별 정합성 비교, 마스킹의 정량화, 검정력 곡선 및 역문제 예측. 전 과정 재현 스크립트를 함께 산출한다.</p>
+<p style="margin:2px 0 2px 22px;">- <b>표</b> : 공개 데이터 감사표(자료 16건 × 채택 기준 8개 및 판정 근거), 서로 다른 실험을 통합한 공통 형식 시계열 자료 16,561행, 지표별 잡음 바닥표, 표본 수 · 관측일수별 검정력 격자, 위상 이동량 대 시계유전자 발현 변화 예측표, 군별 예상 판정 간격표.</p>
+<p style="margin:2px 0 2px 22px;">- <b>그림</b> : [A] 데이터 감사 결과, [B] 축별 정합성 비교, [C] 마스킹의 정량화, [D] 검정력 곡선 및 역문제 예측, <b>[E] 웻랩 예상 결과 시뮬레이션</b>.</p>
+<p style="margin:2px 0 2px 22px;">- <b>코드</b> : 자료 확보부터 그림 생성까지 전 과정 재현 스크립트. 사용한 원본 파일은 해시값으로 고정하였고, 문서에 적은 수치는 산출물과 자동 대조된다.</p>
 
 <hr style="border:none; border-top:2px solid #000; margin:32px 0 14px;">
 <p style="font-size:13pt; font-weight:bold; margin:0 0 10px;">5 &nbsp; 참고문헌 — 드라이랩에서 새로 추가되는 항목</p>
