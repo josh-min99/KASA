@@ -18,3 +18,6 @@ docs/한글양식_최종_이미지포함.html
 
 # 진동자 모델 민감도 로그 (재생성 가능)
 results/v3/r5c_sensitivity.txt
+
+# 검증용 임시 PDF
+*.pdf
