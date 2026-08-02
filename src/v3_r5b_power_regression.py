@@ -153,14 +153,18 @@ def main():
             continue
         for ds in sub.index:
             b, t = float(sub.loc[ds, "baseline"]), float(sub.loc[ds, "treatment"])
-            for T in (24, 20, 28):
-                for dphi in (1.0, 2.0, 3.0):
-                    for n in (4, 6, 8, 10, 12, 16, 20, 24):
-                        pa, pb = powers(n, nb, nt, b, t, dphi, T)
-                        rows.append(dict(variable=var, label=lab, dataset=ds, T_hours=T,
-                                         dphi=dphi, n_animals=n,
-                                         power_intercept=pa, power_slope=pb,
-                                         sd_base=b, sd_treat=t))
+            # 처치 전 구간 길이도 격자에 넣는다. 3일이 기본 설계값이고,
+            # 5·7일은 '동물 수 대신 관측 기간을 늘리는' 대안을 평가하기 위한 것이다.
+            for nb_i in (3, 5, 7):
+                for T in (24, 20, 28):
+                    for dphi in (1.0, 2.0, 3.0):
+                        for n in (3, 4, 5, 6, 7, 8, 10, 12, 16, 20, 24):
+                            pa, pb = powers(n, nb_i, nt, b, t, dphi, T)
+                            rows.append(dict(variable=var, label=lab, dataset=ds,
+                                             n_days_base=nb_i, T_hours=T,
+                                             dphi=dphi, n_animals=n,
+                                             power_intercept=pa, power_slope=pb,
+                                             sd_base=b, sd_treat=t))
     df = pd.DataFrame(rows)
     df.to_csv(os.path.join(DATA, "power_regression.csv"), index=False, encoding="utf-8-sig")
 
@@ -174,7 +178,8 @@ def main():
             cells = []
             for dphi in (1.0, 2.0, 3.0):
                 q = df[(df.variable == var) & (df.dataset == ds) & (df.dphi == dphi)
-                       & (df.T_hours == 24) & (df.power_intercept >= 0.8)]
+                       & (df.T_hours == 24) & (df.n_days_base == 3)
+                       & (df.power_intercept >= 0.8)]
                 cells.append(str(int(q.n_animals.min())) if len(q) else ">24")
             P(f"  {lab:10s} {ds:14s} " + "".join(f"{c:>9s}" for c in cells))
 
@@ -189,7 +194,8 @@ def main():
             cells = []
             for T in (24, 20, 28):
                 q = df[(df.variable == var) & (df.dataset == ds) & (df.T_hours == T)
-                       & (df.dphi == 2.0) & (df.power_slope >= 0.8)]
+                       & (df.dphi == 2.0) & (df.n_days_base == 3)
+                       & (df.power_slope >= 0.8)]
                 cells.append(str(int(q.n_animals.min())) if len(q) else ">24")
             P(f"  {lab:10s} {ds:14s} " + "".join(f"{c:>8s}" for c in cells))
 
@@ -208,8 +214,24 @@ def main():
     P("3) 12시간 군(T=24h)은 기울기 차이가 0.3 h/일 로 작아 절편 검정에 의존한다.")
     P("   세 군 중 이 군이 가장 많은 마리수를 요구한다.")
     P("")
-    P("4) baseline 3일로는 기울기 표준오차가 0.219 h/일 이라 참 표류(0.3 h/일)와 구별되지 않는다.")
-    P("   절편 검정이 baseline 회귀선의 연장에 의존하므로, baseline 을 늘리면 검정력이 오른다.")
+    P("4) 처치 전 구간을 늘리는 것의 효과는 검정마다 다르다. 아래는 심부체온 기준.")
+    P("")
+    P(f"   {'처치전':>6s} {'절편검정 dphi=2h':>16s} {'기울기검정 T=24h':>16s} {'기울기검정 T=20h':>16s}")
+    for nb_i in (3, 5, 7):
+        cells = []
+        for col, f in (("power_intercept", dict(dphi=2.0, T_hours=24)),
+                       ("power_slope", dict(dphi=2.0, T_hours=24)),
+                       ("power_slope", dict(dphi=2.0, T_hours=20))):
+            q = df[(df.variable == "tb_core") & (df.n_days_base == nb_i)]
+            for k, v in f.items():
+                q = q[q[k] == v]
+            q = q[q[col] >= 0.8]
+            cells.append(str(int(q.n_animals.min())) if len(q) else ">24")
+        P(f"   {nb_i:>4d}일 {cells[0]:>16s} {cells[1]:>16s} {cells[2]:>16s}")
+    P("")
+    P("   절편 검정은 처치 구간 오차(2.77h)가 표준오차의 대부분을 차지하므로")
+    P("   처치 전 구간을 늘려도 개선되지 않는다. 반면 기울기 검정은 처치 전 구간의")
+    P("   기울기 추정이 직접 들어가므로 3일 -> 5일에서 뚜렷하게 개선되고 그 뒤로는 포화된다.")
 
     txt = "\n".join(log)
     print(txt)
